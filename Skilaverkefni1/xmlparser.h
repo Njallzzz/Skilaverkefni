@@ -4,13 +4,14 @@
 #include <QString>
 #include <QFile>
 #include <QFileInfo>
+#include <QDate>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <vector>
 #include "person.h"
 
 // Debug
-#include <iostream>
+#include <QDebug>
 
 using namespace std;
 
@@ -20,9 +21,7 @@ public:
     XMLParser( QString filename );
 
     int ReadDatabase( vector<Person> & list );
-
-    int WriteEntry( QString name, bool gender, int birthyear );
-    int WriteEntry( QString name, bool gender, int birthyear, int deathyear );
+    int WriteEntry( Person add );
 
 private:
     int WriteEmpty();

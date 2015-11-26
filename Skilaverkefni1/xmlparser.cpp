@@ -9,21 +9,21 @@ XMLParser::XMLParser( QString filename ) {
 
 int XMLParser::ReadDatabase( vector<Person> & list ) {
     container.setFileName( file );
-    if ( !container.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    if ( !container.open( QIODevice::ReadOnly ) )
         return 1;
 
     QXmlStreamReader stream(&container);
     while( (!stream.atEnd()) && (!stream.hasError()) ) {
         bool finished[4] = {false, false, false, false};
         Person temp;
-        temp.deathyear = 0;
 
-        //while(  )
         while( !stream.atEnd() && !stream.hasError() && !(finished[0] && finished[1] && finished[2] && finished[3]) ) {
             stream.readNext();
 
             if( finished[0] && finished[1] && finished[2] )
                 finished[3] = true;
+            //if( stream.name().toString() == "Person"  )
+            //    finished[3] = true;
 
             if( stream.name().toString() == "Name" ) {
                 temp.name = stream.readElementText();
@@ -34,29 +34,29 @@ int XMLParser::ReadDatabase( vector<Person> & list ) {
                 else
                     temp.gender = 1;
                 finished[1] = true;
-            } else if( stream.name().toString() == "BirthYear" ) {
-                temp.birthyear = stream.readElementText().toInt();
+            } else if( stream.name().toString() == "Birth" ) {
+                temp.birth = QDate::fromString( stream.readElementText(), "dd.MM.yyyy" );
                 finished[2] = true;
-           } else if( stream.name().toString() == "DeathYear" ) {
-                temp.deathyear = stream.readElementText().toInt();
+            } else if( stream.name().toString() == "Death" ) {
+                temp.death = QDate::fromString( stream.readElementText(), "dd.MM.yyyy" );
                 finished[3] = true;
-           }
+            }
         }
 
         if( finished[0] ) {
             list.push_back(temp);
         }
     }
+    container.close();
 
     if( stream.hasError() )
         return stream.error();
 
-    container.close();
     return 0;
 }
 
-int XMLParser::WriteEntry( QString name, bool gender, int birthyear ) {
-    container.setFileName( file );
+int XMLParser::WriteEntry( Person add ) {
+/*    container.setFileName( file );
     if ( !container.open(QIODevice::WriteOnly) )
         return 1;
 
@@ -78,7 +78,7 @@ int XMLParser::WriteEntry( QString name, bool gender, int birthyear ) {
     stream.writeEndElement();
     stream.writeEndDocument();
 
-    container.close();
+    container.close();*/
     return 0;
 }
 

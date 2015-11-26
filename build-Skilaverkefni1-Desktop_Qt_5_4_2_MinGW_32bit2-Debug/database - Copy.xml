@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Data>
-    <Person>
-        <Name>Njáll Hilmar Hilmarsson</Name>
-        <Gender>Male</Gender>
-        <BirthYear>1993</BirthYear>
-    </Person>
 	<Person>
-        <Name>Anna Devalu</Name>
-        <Gender>Female</Gender>
-        <BirthYear>1995</BirthYear>
-    </Person>
+		<Name>Alan Turing</Name>
+		<Gender>Male</Gender>
+		<Death>07.6.1954</Death>
+		<Birth>23.6.1912</Birth>
+	</Person>
 	<Person>
-        <Name>Arnór Farþegi</Name>
-        <Gender>Male</Gender>
-        <BirthYear>1990</BirthYear>
-		<DeathYear>1995</DeathYear>
-    </Person>
+		<Name>Njáll Hilmar Hilmarsson</Name>
+		<Gender>Male</Gender>
+		<Birth>14.11.1993</Birth>
+	</Person>
+	<Person>
+		<Name>Grace Hopper</Name>
+		<Gender>Female</Gender>
+		<Birth>09.12.1906</Birth>
+		<Death>01.01.1992</Death>
+	</Person>
+	<Person>
+		<Name>Tim Berners-Lee</Name>
+		<Gender>Male</Gender>
+		<Birth>08.06.1955</Birth>
+	</Person>
 </Data>

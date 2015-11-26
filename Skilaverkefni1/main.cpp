@@ -13,7 +13,8 @@ int main(int argc, char *argv[]) {
     //database.WriteEntry( "Anna", 1, 1995 );
 
     vector<Person> list;
-    database.ReadDatabase( list );
+    if( database.ReadDatabase( list ) )
+        qDebug() << "Error!" << endl;
 
     for(unsigned int x = 0; x < list.size(); x++) {
         qDebug() << "Name: " << list[x].name;
@@ -21,11 +22,10 @@ int main(int argc, char *argv[]) {
             qDebug() << "Gender: Female";
         else
             qDebug() << "Gender: Male";
-        qDebug() << "Birth Year: " << list[x].birthyear;
-        qDebug() << "Death Year: " << list[x].deathyear << endl;
+        qDebug() << "Birth Year: " << list[x].birth.toString("dd.MM.yyyy");
+        qDebug() << "Death Year: " << list[x].death.toString("dd.MM.yyyy") << endl;
     }
 
-    qDebug() << "End of Program" << endl;
+    qDebug() << "End of Program";
     return a.exec();
 }
-
