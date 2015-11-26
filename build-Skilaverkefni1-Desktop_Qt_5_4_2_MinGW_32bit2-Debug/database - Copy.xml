@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Data>
+    <Person>
+        <Name>Njáll Hilmar Hilmarsson</Name>
+        <Gender>Male</Gender>
+        <BirthYear>1993</BirthYear>
+    </Person>
+	<Person>
+        <Name>Anna Devalu</Name>
+        <Gender>Female</Gender>
+        <BirthYear>1995</BirthYear>
+    </Person>
+	<Person>
+        <Name>Arnór Farþegi</Name>
+        <Gender>Male</Gender>
+        <BirthYear>1990</BirthYear>
+		<DeathYear>1995</DeathYear>
+    </Person>
+</Data>
