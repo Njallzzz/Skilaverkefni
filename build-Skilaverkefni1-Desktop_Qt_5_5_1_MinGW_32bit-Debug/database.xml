@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Data>
-	<Person>
-		<Name>Alan Turing</Name>
-		<Gender>Male</Gender>
-		<Death>07.06.1954</Death>
-		<Birth>23.06.1912</Birth>
-	</Person>
-	<Person>
-		<Name>Njáll Hilmar Hilmarsson</Name>
-		<Gender>Male</Gender>
-		<Birth>14.11.1993</Birth>
-	</Person>
-	<Person>
-		<Name>Grace Hopper</Name>
-		<Gender>Female</Gender>
-		<Death>01.01.1992</Death>
-		<Birth>09.12.1906</Birth>
-	</Person>
-	<Person>
-		<Name>Tim Berners-Lee</Name>
-		<Gender>Male</Gender>
-		<Birth>08.06.1955</Birth>
-	</Person>
+    <Person>
+        <Name>Alan Turing</Name>
+        <Gender>Male</Gender>
+        <Death>07.06.1954</Death>
+        <Birth>23.06.1912</Birth>
+    </Person>
+    <Person>
+        <Name>Njáll Hilmar Hilmarsson</Name>
+        <Gender>Male</Gender>
+        <Birth>14.11.1993</Birth>
+    </Person>
+    <Person>
+        <Name>Grace Hopper</Name>
+        <Gender>Female</Gender>
+        <Death>01.01.1992</Death>
+        <Birth>09.12.1906</Birth>
+    </Person>
+    <Person>
+        <Name>Tim Berners-Lee</Name>
+        <Gender>Male</Gender>
+        <Birth>08.06.1955</Birth>
+    </Person>
+    <Person>
+        <Name>Charles Babbage</Name>
+        <Gender>Male</Gender>
+        <Death>18.10.1871</Death>
+        <Birth>26.12.1791</Birth>
+    </Person>
+    <Person>
+        <Name>Ada Lovelace</Name>
+        <Gender>Female</Gender>
+        <Death>27.11.1852</Death>
+        <Birth>10.12.1815</Birth>
 </Data>

@@ -22,4 +22,15 @@
 		<Gender>Male</Gender>
 		<Birth>08.06.1955</Birth>
 	</Person>
+    <Person>
+        <Name>Charles Babbage</Name>
+        <Gender>Male</Gender>
+        <Death>18.10.1871</Death>
+        <Birth>26.12.1791</Birth>
+    </Person>
+    <Person>
+        <Name>Ada Lovelace</Name>
+        <Gender>Female</Gender>
+        <Death>27.11.1852</Death>
+        <Birth>10.12.1815</Birth>
 </Data>
