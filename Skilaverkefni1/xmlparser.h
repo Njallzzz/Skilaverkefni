@@ -12,22 +12,26 @@
 
 // Debug
 #include <QDebug>
-
 using namespace std;
 
-class XMLParser {
+class XMLParser {                               // XML Database Class
 public:
-    //XMLParser( );
-    XMLParser( QString filename );
+    XMLParser();                                // Default constructor
+    XMLParser( QString filename );              // Second constructor, Select database filename, accessed in same directory as executable
 
-    int ReadDatabase( vector<Person> & list );
-    int WriteEntry( Person add );
+    void SetDatabase( QString filename );       // Change database
 
+    int ReadDatabase( vector<Person> & list );  // Read all entries in database file
+    int WriteDatabase( vector<Person> & list ); // Write all entries in database file, warning: removes any missing entries if they are not present in vector
+
+    int AddEntry( Person person );              // Adds a single entry into database
+    int RemoveEntry( QString name );            // Remove entries from database by name
+    int RemoveEntry( int index );               // Remove a single entry from database by index
 private:
-    int WriteEmpty();
+    int WriteEmpty();                           // Writes a empty database folder
 
-    QString file;
-    QFile container;
+    QString file;                               // Stores filename of database
+    QFile container;                            // File handler for database access
 };
 
 #endif // XMLPARSER_H
