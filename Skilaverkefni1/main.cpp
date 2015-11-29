@@ -2,8 +2,11 @@
 #include <QDebug>
 #include "xmlparser.h"
 #include "person.h"
+#include <iostream>
 
 using namespace std;
+int menu();
+
 
 int main(int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
@@ -49,6 +52,10 @@ int main(int argc, char *argv[]) {
     if( database.ReadDatabase( list ) )                         // Example of how to read from 'database.xml'
         qDebug() << "Unable to read file 'database.xml'" << endl;
 
+    int choice = menu();
+
+    if(choice == 1)
+    {
     for(unsigned int x = 0; x < list.size(); x++) {
         qDebug() << "Name: " << list[x].name;
         if( list[x].gender )
@@ -56,9 +63,10 @@ int main(int argc, char *argv[]) {
         else
             qDebug() << "Gender: Male";
         qDebug() << "Birth Year: " << list[x].birth.toString("dd.MM.yyyy");
+
         qDebug() << "Death Year: " << list[x].death.toString("dd.MM.yyyy") << endl;
     }
-
+    }
     if( database.RemoveEntry( "Ada Lovelace" ) )                     // Example of how to remove every person with name: 'Ada Lovelace'
         qDebug() << "Unable to delete 'Ada Lovelace' from database" << endl;
 
@@ -68,4 +76,19 @@ int main(int argc, char *argv[]) {
 
     qDebug() << "End of Program";
     return a.exec();
+}
+
+int menu()
+{   int x;
+
+    qDebug() << "<<<<<<<<FAMOUS COMPUTER SCIENTISTS>>>>>>>>" << endl << endl;
+    qDebug() << "Choose an option: " << endl;
+    qDebug() << "   1. Display list" << endl;
+    qDebug() << "   2. Add an entry" << endl;
+    qDebug() << "   3. Remove an entry" << endl;
+    qDebug() << "   4. Search list" << endl;
+    qDebug() << "   5. Quit" << endl;
+
+    cin >> x;
+    return x;
 }
