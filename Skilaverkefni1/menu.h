@@ -16,4 +16,5 @@ int menu();
 void display(vector<Person>& list);
 Person addPerson();
 int deletePerson(vector<Person>& list);
-
+int sortList();
+bool keepSorted();

@@ -17,7 +17,7 @@ int menu()
     {
         cout << "Not a valid option!" << endl;
     }
-    }while(x < 49 || x > 53);
+    }while(x < 49 || x > 54);
 
     int y = x-48;
     return y;
@@ -43,6 +43,7 @@ void display(vector<Person>& list)
             {
                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\tMale\t";
             }
+
             else
             {
                  cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\tMale\t";
@@ -123,12 +124,13 @@ int deletePerson(vector<Person>& list)
    cin >> x;
    cout << "Are you sure you want to delete '" << list[x-1].name.toUtf8().constData() << "' from the list?(y/n)";
    cin >> choice;
-   if(choice == 'y' )
+
+   if(choice == 'y'|| choice == 'Y' )
    {
        return x;
    }
 
-   else if (choice == 'n')
+   else if (choice == 'n' || choice == 'N')
    {
        return 0;
    }
@@ -136,5 +138,42 @@ int deletePerson(vector<Person>& list)
 }
 
 
+int sortList()
+{
+    char x;
+    cout << "Choose how you want to sort the list" << endl;
+    cout << "\t1. Sort by name" << endl;
+    cout << "\t2. Sort by birth year" << endl;
+    cout << "\t3. Sort by death year" << endl;
+    cout << "\t4. Sort by gender" << endl;
+
+    cout << "Your choice: " ;
+    do{
+    cin >> x;
+    if(x < 49 || x > 52)                //makes sure input is correct
+    {
+        cout << "Not a valid option! Please choose a number from 1 to 4" << endl;
+    }
+    }while(x < 49 || x > 52);
+
+    int y = x-48;
+    return y;
+
+}
+
+bool keepSorted()
+{   char x;
+    cout << "Do you want to keep the list sorted?(y/n)";
+    cin >> x;
+    if (x=='y' || x =='Y')
+    {
+        return true;
+    }
+    if(x=='n' || x == 'N')
+    {
+        return false;
+    }
+
+}
 
 

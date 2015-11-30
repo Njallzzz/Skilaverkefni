@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
         qDebug() << "Unable to read file 'database.xml'" << endl;
 
     int choice =0;
-    while(choice != 5)
+    while(choice != 6)
     {
         choice  = menu();
         if(choice == 1)
@@ -100,6 +100,31 @@ int main(int argc, char *argv[]) {
             if(remove != 0)
             {
                  database.RemoveEntry(remove-1);
+            }
+        }
+
+        if(choice == 5)
+        {
+            int sort = sortList();
+            if(sort == 1)
+            {
+                sorter.sortByName(list, 0, list.size() - 1);
+            }
+            if(sort == 2)
+            {
+                sorter.sortByBirth(list, 0, list.size() - 1);
+            }
+            if(sort == 3)
+            {
+                sorter.sortByDeath(list, 0, list.size() - 1);
+            }
+            display(list);
+
+            //her kemur sort by gender
+
+            if(keepSorted())
+            {
+                database.WriteDatabase(list);
             }
         }
 
