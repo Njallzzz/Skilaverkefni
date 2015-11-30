@@ -49,11 +49,17 @@ int main(int argc, char *argv[]) {
     temp.death = QDate::fromString( "07.06.1954", "dd.MM.yyyy" );
     database.AddEntry( temp );
 
-    temp.name = "Alan Turning (Modified)";                                  // Example of how to modify a single entry in 'database.xml'
-    temp.gender = 1;
-    temp.birth = QDate::fromString( "01.01.1900", "dd.MM.yyyy" );
-    temp.death = QDate::fromString( "02.02.2000", "dd.MM.yyyy" );
+    temp.name = "Alan Turing (Modified)";                                  // Example of how to modify single entry into 'database.xml'
+    temp.gender = 0;
+    temp.birth = QDate::fromString( "23.06.1912", "dd.MM.yyyy" );
+    temp.death = QDate::fromString( "07.06.1954", "dd.MM.yyyy" );
     database.ModifyEntry( 4, temp );
+
+    temp.name = "Jonh Doe";                                  // Example of how to modify single entry into 'database.xml'
+    temp.gender = 0;
+    temp.birth = QDate::fromString( "01.01.2000", "dd.MM.yyyy" );
+    temp.death = QDate::fromString( "20.12.2100", "dd.MM.yyyy" );
+    database.ModifyEntry( 0, temp );
 
     if( database.ReadDatabase( list ) )                         // Example of how to read from 'database.xml'
         qDebug() << "Unable to read file 'database.xml'" << endl;
