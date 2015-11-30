@@ -87,6 +87,7 @@ int main(int argc, char *argv[]) {
         choice  = menu();
         if(choice == 1)
         {
+            sorter.sortByBirth(list, 0, list.size() - 1);
             display(list);
         }
         if(choice == 2)
@@ -102,7 +103,7 @@ int main(int argc, char *argv[]) {
 
 
 
-        sorter.sortByBirth(list, 0, list.size() - 1);
+        sorter.sortByDeath(list, 0, list.size() - 1);
         for(unsigned int x = 0; x < list.size(); x++) {
             qDebug() << "Name: " << list[x].name;
             if ( list[x].gender  == 1)

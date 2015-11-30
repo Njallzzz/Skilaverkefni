@@ -64,3 +64,32 @@ void Sorter::sortByBirth(vector<Person> &list, int left, int right){
         sortByBirth(list, i, right);
     }
 }
+
+void Sorter::sortByDeath(vector<Person> &list, int left, int right){
+    int i = left, j = right;
+    Person tmp;
+    QDate pivot = list[(left + right) / 2].death;
+
+    while (i <= j){
+        while(list[i].death < pivot){
+            i++;
+        }
+        while(list[j].death > pivot){
+            j--;
+        }
+        if(i <= j){
+            tmp = list[i];
+            list[i] = list[j];
+            list[j] = tmp;
+            i++;
+            j--;
+        }
+    };
+
+    if(left < j){
+        sortByDeath(list, left, j);
+    }
+    if(i < right){
+        sortByDeath(list, i, right);
+    }
+}
