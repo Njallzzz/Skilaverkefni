@@ -18,3 +18,4 @@ Person addPerson();
 int deletePerson(vector<Person>& list);
 int sortList();
 bool keepSorted();
+Person modify( Person temp );

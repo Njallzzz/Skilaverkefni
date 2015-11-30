@@ -74,13 +74,11 @@ int main(int argc, char *argv[]) {
 
 
 
-
-
     if( database.ReadDatabase( list ) )                         // Example of how to read from 'database.xml'
         qDebug() << "Unable to read file 'database.xml'" << endl;
 
-    int choice =0;
-    while(choice != 6)
+    int choice = 0;
+    while(choice != 8)
     {
         choice  = menu();
         if(choice == 1)
@@ -128,12 +126,24 @@ int main(int argc, char *argv[]) {
             }
         }
 
+        if( choice == 6 ){
+            int index;
+
+            display(list);
+            cout << "Select index of entry to modify: ";
+            cin >> index;
+            cout << endl;
+
+            Person mod = modify( list[index-1] );
+            database.ModifyEntry( index-1, mod );
+        }
+
+        if( choice == 7 ){
+            return 0;
+        }
+
         database.ReadDatabase(list);
     }
-
-
-
-
 
 
 
@@ -150,10 +160,3 @@ int main(int argc, char *argv[]) {
         }
     return 0;
 }
-
-
-
-
-
-
-

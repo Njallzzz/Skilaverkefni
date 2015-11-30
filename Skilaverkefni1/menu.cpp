@@ -9,15 +9,16 @@ int menu()
     cout << "   3. Remove from list" << endl;
     cout << "   4. Search list" << endl;
     cout << "   5. Sort list" << endl;
-    cout << "   6. Quit" << endl;
+    cout << "   6. Modify list entry" << endl;
+    cout << "   7. Quit" << endl;
 
     do{
     cin >> x;
-    if(x < 49 || x > 54)                //makes sure input is correct
+    if(x < 49 || x > 55)                //makes sure input is correct
     {
         cout << "Not a valid option!" << endl;
     }
-    }while(x < 49 || x > 54);
+    }while(x < 49 || x > 55);
 
     int y = x-48;
     return y;
@@ -176,4 +177,62 @@ bool keepSorted()
 
 }
 
+Person modify( Person temp ){
+    QTextStream in(stdin);
+    string gender;
+    QString birth, death, name;
+    char modify;
+
+    cout << "  1. Name\n" <<
+            "  2. Gender\n" <<
+            "  3. Birth date\n" <<
+            "  4. Death date\n" <<
+            "  5. All" << endl;
+    cout << "What would you like to modify: ";
+    cin >> modify;
+
+    switch(modify){
+    case '1':                                   //To modify name only
+        temp.name = in.readLine();
+        cout << "Name: ";
+        name = in.readLine();
+        temp.name = name;
+        break;
+
+    case '2':                                   //To modify gender only
+        cout << "Gender: ";
+        do{
+            cin >> gender;
+            if(gender == "male" || gender == "Male")
+                temp.gender = 1;
+            else if(gender == "female" || gender == "Female")
+                temp.gender = 2;
+            else
+                cout << "Not a valid entry!";
+        }while(!(temp.gender == 1 || temp.gender == 2));
+        break;
+
+    case '3':                                   //To modify birth year only
+        cout << "Birth year(dd.MM.yyyy): ";
+        in >> birth;
+        temp.birth = QDate::fromString( birth, "dd.MM.yyyy" );
+        break;
+
+    case '4':                                   //To modify death year only
+        cout << "Death year(dd.MM.yyyy): ";
+        in >> death;
+        temp.death = QDate::fromString(death, "dd.MM.yyyy");
+        break;
+
+    case '5':                                   //To modify all
+        temp = addPerson();
+        break;
+
+    default:
+        cout << "Not a valid option" << endl;
+        break;
+    }
+    cout << endl;
+    return temp;
+}
 
