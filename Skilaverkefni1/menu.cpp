@@ -29,8 +29,7 @@ void display(vector<Person>& list)
     cout << "\tName\t\t\t\tGender\tBirth\t\tDeath" << endl;
     cout << "-------------------------------------------------------------------------------" << endl;
 
-    cout << "\tName\t\t\tGender\tBirth\t\tDeath" << endl;
-    cout << "---------------------------------------------------------------------" << endl;
+
 
     for(unsigned int i=0; i < list.size(); i++)
     {
@@ -72,6 +71,7 @@ void display(vector<Person>& list)
                 cout << list[i].birth.toString("dd.MM.yyyy").toUtf8().constData() << "\t";
                 cout << list[i].death.toString("dd.MM.yyyy").toUtf8().constData() << endl;
         }
+        cout << endl;
     }
 
 }
@@ -113,6 +113,26 @@ Person addPerson()
     temp.death = QDate::fromString(death, "dd.MM.yyyy");
 
     return temp;
+}
+
+int deletePerson(vector<Person>& list)
+{
+   int x;
+   char choice;
+   cout << "Select a person to delete(input the number displayed before the name): ";
+   cin >> x;
+   cout << "Are you sure you want to delete '" << list[x-1].name.toUtf8().constData() << "' from the list?(y/n)";
+   cin >> choice;
+   if(choice == 'y' )
+   {
+       return x;
+   }
+
+   else if (choice == 'n')
+   {
+       return 0;
+   }
+
 }
 
 

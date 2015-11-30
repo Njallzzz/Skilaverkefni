@@ -15,5 +15,5 @@ using namespace std;
 int menu();
 void display(vector<Person>& list);
 Person addPerson();
-void deletePerson();
+int deletePerson(vector<Person>& list);
 

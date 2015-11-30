@@ -61,7 +61,6 @@ int main(int argc, char *argv[]) {
 
     temp.name = "Alan Turing";                                  // Example of how to modify a single entry in 'database.xml'
     temp.gender = 1;
-
     temp.birth = QDate::fromString( "23.06.1912", "dd.MM.yyyy" );
     temp.death = QDate::fromString( "07.06.1954", "dd.MM.yyyy" );
     database.ModifyEntry( 4, temp );
@@ -73,7 +72,7 @@ int main(int argc, char *argv[]) {
     temp.death = QDate::fromString( "20.12.2100", "dd.MM.yyyy" );
     database.ModifyEntry( 0, temp );
 
-    database.AddEntry(temp);
+
 
 
 
@@ -83,21 +82,31 @@ int main(int argc, char *argv[]) {
     int choice =0;
     while(choice != 5)
     {
-
         choice  = menu();
         if(choice == 1)
         {
-            sorter.sortByBirth(list, 0, list.size() - 1);
             display(list);
         }
+
         if(choice == 2)
         {
             Person add = addPerson();
             database.AddEntry(add);
-
         }
+
+        if(choice == 3)
+        {   display(list);
+            int remove = deletePerson(list);
+            if(remove != 0)
+            {
+                 database.RemoveEntry(remove-1);
+            }
+        }
+
         database.ReadDatabase(list);
     }
+
+
 
 
 
