@@ -2,8 +2,11 @@
 #include <QDebug>
 #include "xmlparser.h"
 #include "person.h"
+#include "sorter.h"
 #include <iostream>
+
 #include "menu.h"
+
 
 
 using namespace std;
@@ -12,10 +15,11 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
-
     XMLParser database( "database.xml" );                       // Select database
 
     vector<Person> list;
+
+    Sorter sorter(list);
 
     Person temp;
 
@@ -51,6 +55,18 @@ int main(int argc, char *argv[]) {
     temp.death = QDate::fromString( "07.06.1954", "dd.MM.yyyy" );
     database.AddEntry( temp );
 
+    temp.name = "Alan";                                  // Example of how to modify single entry into 'database.xml'
+    temp.gender = 0;
+    temp.birth = QDate::fromString( "23.06.1900", "dd.MM.yyyy" );
+    temp.death = QDate::fromString( "07.06.1954", "dd.MM.yyyy" );
+    database.ModifyEntry( 4, temp );
+
+    temp.name = "Jonh Doe";                                  // Example of how to modify single entry into 'database.xml'
+    temp.gender = 0;
+    temp.birth = QDate::fromString( "01.01.2000", "dd.MM.yyyy" );
+    temp.death = QDate::fromString( "20.12.2100", "dd.MM.yyyy" );
+    database.ModifyEntry( 0, temp );
+
     if( database.ReadDatabase( list ) )                         // Example of how to read from 'database.xml'
         qDebug() << "Unable to read file 'database.xml'" << endl;
 
@@ -59,6 +75,7 @@ int main(int argc, char *argv[]) {
     int choice =0;
     while(choice != 5)
     {
+
         choice  = menu();
         if(choice == 1)
         {
@@ -74,26 +91,25 @@ int main(int argc, char *argv[]) {
     }
 
 
-    /*for(unsigned int x = 0; x < list.size(); x++) {
-        qDebug() << "Name: " << list[x].name;
-        if( list[x].gender )
-            qDebug() << "Gender: Female";
-        else
-            qDebug() << "Gender: Male";
-        qDebug() << "Birth Year: " << list[x].birth.toString("dd.MM.yyyy");
-
-        qDebug() << "Death Year: " << list[x].death.toString("dd.MM.yyyy") << endl;
-
-    }
-    if( database.RemoveEntry( "Ada Lovelace" ) )                     // Example of how to remove every person with name: 'Ada Lovelace'
-        qDebug() << "Unable to delete 'Ada Lovelace' from database" << endl;
-
-    if( database.RemoveEntry( 0 ) )                                 // Example of how to remove a single entry by index
-        qDebug() << "Unable to delete entry 1 from database" << endl;
 
 
-    qDebug() << "End of Program";
-    return a.exec(); */
+
+        sorter.sortByName(list, 0, list.size() - 1);
+        for(unsigned int x = 0; x < list.size(); x++) {
+            qDebug() << "Name: " << list[x].name;
+            if( list[x].gender )
+                qDebug() << "Gender: Female";
+            else
+                qDebug() << "Gender: Male";
+            qDebug() << "Birth Year: " << list[x].birth.toString("dd.MM.yyyy");
+
+            qDebug() << "Death Year: " << list[x].death.toString("dd.MM.yyyy") << endl;
+        }
+    return 0;
 }
+
+
+
+
 
 

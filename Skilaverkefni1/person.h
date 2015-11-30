@@ -2,6 +2,10 @@
 #define PERSON_H
 
 
+#include <QString>
+#include <QDate>
+
+
 struct Person {
     QString name;
     bool gender;        // 0 = Male, 1 = Female
