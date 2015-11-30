@@ -1,20 +1,16 @@
 #include <QCoreApplication>
-#include <QDebug>
 #include "xmlparser.h"
 #include "person.h"
 #include "sorter.h"
+#include "menu.h"
 #include <iostream>
 
-#include "menu.h"
-
-
+// Debug
+#include <QDebug>
 
 using namespace std;
 
-
-
 int main(int argc, char *argv[]) {
-    QCoreApplication a(argc, argv);
     XMLParser database( "database.xml" );                       // Select database
 
     vector<Person> list;
@@ -75,7 +71,7 @@ int main(int argc, char *argv[]) {
 
 
     if( database.ReadDatabase( list ) )                         // Example of how to read from 'database.xml'
-        qDebug() << "Unable to read file 'database.xml'" << endl;
+        cout << "Unable to read file 'database.xml'" << endl;
 
 
     int choice = 0;

@@ -1,8 +1,7 @@
 #include "menu.h"
-using namespace std;
 
-int menu()
-{   char x;
+int menu() {
+    char x;
     cout << "Choose an option" << endl;
     cout << "   1. Display list" << endl;
     cout << "   2. Add to list" << endl;
@@ -11,70 +10,47 @@ int menu()
     cout << "   5. Sort list" << endl;
     cout << "   6. Modify list entry" << endl;
     cout << "   7. Quit" << endl;
+    cout << "Your choice: ";
 
     do{
         cin >> x;
         if(x < 49 || x > 55)                //makes sure input is correct
             cout << "Not a valid option!" << endl;
     } while(x < 49 || x > 55);
-
+    cout << endl;
 
     int y = x - 48;
     return y;
 }
 
-void display(vector<Person>& list)
-{
+void display(vector<Person>& list) {
 
     cout << "\tName\t\t\t\tGender\tBirth\t\tDeath" << endl;
     cout << "-------------------------------------------------------------------------------" << endl;
 
-
-
-    for(unsigned int i=0; i < list.size(); i++)
-    {
-        if(list[i].gender == 1)
-        {
+    for(unsigned int i=0; i < list.size(); i++) {
+        if(list[i].gender == 1) {
             if(list[i].name.length() < 8 )  //if name is less than 8 letters, add a tab before gender
-            {
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\t\tMale\t";
-            }
             else if(list[i].name.length() > 16)
-            {
                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\tMale\t";
-            }
-
             else
-            {
                  cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\tMale\t";
-            }
-            cout << list[i].birth.toString("dd.MM.yyyy").toUtf8().constData() << "\t";
-            cout << list[i].death.toString("dd.MM.yyyy").toUtf8().constData() << endl;
-        }
-
-        else if(list[i].gender == 2)        // if name is less than 8 letters, add a tab before gender
-        {
+            cout << list[i].birth.toString("d.M.yyyy").toUtf8().constData() << "\t";
+            cout << list[i].death.toString("d.M.yyyy").toUtf8().constData();
+        } else if(list[i].gender == 2) {        // if name is less than 8 letters, add a tab before gender
             if(list[i].name.length() < 8 )
-            {
-
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\t\tFemale\t";
-            }
             else if(list[i].name.length() > 16)
-            {
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\tFemale\t";
-            }
-
             else
-            {
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\tFemale\t";
-
-            }
-                cout << list[i].birth.toString("dd.MM.yyyy").toUtf8().constData() << "\t";
-                cout << list[i].death.toString("dd.MM.yyyy").toUtf8().constData() << endl;
+            cout << list[i].birth.toString("d.M.yyyy").toUtf8().constData() << "\t";
+            cout << list[i].death.toString("d.M.yyyy").toUtf8().constData();
         }
         cout << endl;
     }
-
+    cout << endl;
 }
 
 Person addPerson() {
@@ -91,7 +67,7 @@ Person addPerson() {
     temp.name = name;
 
 
-    cout << "Gender: ";
+    cout << "Gender(male/female): ";
     do{
         cin >> gender;
         if(gender == "male" || gender == "Male")
@@ -102,33 +78,33 @@ Person addPerson() {
             cout << "Not a valid entry!";
     }while(!(temp.gender == 1 || temp.gender == 2));
 
-    cout << "Birth year(dd.MM.yyyy): ";
+    cout << "Birth year(dd.mm.yyyy): ";
     in >> birth;
     temp.birth = QDate::fromString( birth, "dd.MM.yyyy" );
 
-    cout << "Death year(dd.MM.yyyy): ";
+    cout << "Death year(dd.mm.yyyy): ";
     in >> death;
     temp.death = QDate::fromString(death, "dd.MM.yyyy");
-
+    cout << endl;
     return temp;
 }
 
 int deletePerson(vector<Person>& list) {
-   int x;
-   char choice;
-   while( x < 1 || x >= int(list.size()) ) {
-       cout << "Select a person to delete(input the number displayed before the name): ";
-       cin >> x;
-   }
-   while( choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N' ) {
-       cout << "Are you sure you want to delete '" << list[x-1].name.toUtf8().constData() << "' from the list?(y/n)";
-       cin >> choice;
-   }
-
-   if(choice == 'y'|| choice == 'Y' )
+    int x;
+    char choice;
+    while( x < 1 || x >= int(list.size()) ) {
+        cout << "Select a person to delete(input the number displayed before the name): ";
+        cin >> x;
+    }
+    while( choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N' ) {
+        cout << "Are you sure you want to delete '" << list[x-1].name.toUtf8().constData() << "' from the list?(y/n)";
+        cin >> choice;
+    }
+    cout << endl;
+    if(choice == 'y'|| choice == 'Y' )
        return x;
 
-   return 0;
+    return 0;
 }
 
 Person SearchMenu() {       // Get search paramters from user
@@ -155,13 +131,13 @@ Person SearchMenu() {       // Get search paramters from user
         if( !temp.birth.isValid() )         // If wildcard
             cout << "any)" << endl;
         else                                // if user specified
-            cout << temp.birth.toString("dd.MM.yyyy").toUtf8().constData() << ")" << endl;  // Write current birth parameters
+            cout << temp.birth.toString("d.M.yyyy").toUtf8().constData() << ")" << endl;  // Write current birth parameters
 
         cout << "\t4. Search by death(";
         if( !temp.death.isValid() )         // If wildcard
             cout << "any)" << endl;
         else                                // if user specified
-            cout << temp.death.toString("dd.MM.yyyy").toUtf8().constData() << ")" << endl;  // Write current death parameters
+            cout << temp.death.toString("d.M.yyyy").toUtf8().constData() << ")" << endl;  // Write current death parameters
         cout << "\t5. Search" << endl;
 
         cout << "Your choice: ";
@@ -198,7 +174,7 @@ Person SearchMenu() {       // Get search paramters from user
             }
         }
     }
-
+    cout << endl;
     return temp;        // Returns template for person to search for
 }
 
@@ -243,6 +219,7 @@ int sortList() {
         if(x < 49 || x > 52)                //makes sure input is correct
             cout << "Not a valid option! Please choose a number from 1 to 4" << endl;
     } while(x < 49 || x > 52);
+    cout << endl;
 
     int y = x - 48;
     return y;
@@ -252,16 +229,17 @@ int sortList() {
 bool keepSorted() {
     char x;
     while( x != 'y' && x != 'Y' && x != 'n' && x != 'N' ) {
-        cout << "Do you want to keep the list sorted?(y/n)";
+        cout << "Do you want to keep the list sorted(y/n)?: ";
         cin >> x;
     }
+    cout << endl;
     if ( x == 'y' || x == 'Y' )
         return true;
 
     return false;
 }
 
-Person modify( Person temp ){
+Person modify( Person temp ) {
     QTextStream in(stdin);
     string gender;
     QString birth, death, name;
@@ -277,14 +255,12 @@ Person modify( Person temp ){
 
     switch(modify){
     case '1':                                   //To modify name only
-        temp.name = in.readLine();
         cout << "Name: ";
-        name = in.readLine();
-        temp.name = name;
+        temp.name = in.readLine();
         break;
 
     case '2':                                   //To modify gender only
-        cout << "Gender: ";
+        cout << "Gender(male/female): ";
         do{
             cin >> gender;
             if(gender == "male" || gender == "Male")
@@ -297,13 +273,13 @@ Person modify( Person temp ){
         break;
 
     case '3':                                   //To modify birth year only
-        cout << "Birth year(dd.MM.yyyy): ";
+        cout << "Birth year(dd.mm.yyyy): ";
         in >> birth;
         temp.birth = QDate::fromString( birth, "dd.MM.yyyy" );
         break;
 
     case '4':                                   //To modify death year only
-        cout << "Death year(dd.MM.yyyy): ";
+        cout << "Death year(dd.mm.yyyy): ";
         in >> death;
         temp.death = QDate::fromString(death, "dd.MM.yyyy");
         break;
