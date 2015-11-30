@@ -47,11 +47,14 @@ void display(vector<Person>& list)
         {
             if(list[i].name.length() < 8 )
             {
+
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\t\tFemale\t";
             }
+
             else
             {
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\tFemale\t";
+
             }
                 cout << list[i].birth.toString("dd.MM.yyyy").toUtf8().constData() << "\t";
                 cout << list[i].death.toString("dd.MM.yyyy").toUtf8().constData() << endl;
