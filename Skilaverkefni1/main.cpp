@@ -4,10 +4,13 @@
 #include "person.h"
 #include "sorter.h"
 #include <iostream>
-#include <string>
+
+#include "menu.h"
+
+
 
 using namespace std;
-int menu();
+
 
 
 int main(int argc, char *argv[]) {
@@ -67,10 +70,30 @@ int main(int argc, char *argv[]) {
     if( database.ReadDatabase( list ) )                         // Example of how to read from 'database.xml'
         qDebug() << "Unable to read file 'database.xml'" << endl;
 
-    int choice = menu();
 
-    if(choice == 1)
+
+    int choice =0;
+    while(choice != 5)
     {
+
+        choice  = menu();
+        if(choice == 1)
+        {
+            display(list);
+        }
+        if(choice == 2)
+        {
+            Person add = addPerson();
+            database.AddEntry(add);
+
+        }
+        database.ReadDatabase(list);
+    }
+
+
+
+
+
         sorter.sortByName(list, 0, list.size() - 1);
         for(unsigned int x = 0; x < list.size(); x++) {
             qDebug() << "Name: " << list[x].name;
@@ -82,30 +105,12 @@ int main(int argc, char *argv[]) {
 
             qDebug() << "Death Year: " << list[x].death.toString("dd.MM.yyyy") << endl;
         }
-    }
-
-    database.WriteDatabase( list );
-    if( database.RemoveEntry( "Ada Lovelace" ) )                     // Example of how to remove every person with name: 'Ada Lovelace'
-        qDebug() << "Unable to delete 'Ada Lovelace' from database" << endl;
-
-    if( database.RemoveEntry( 0 ) )                                 // Example of how to remove a single entry by index
-        qDebug() << "Unable to delete entry 1 from database" << endl;
-
-    qDebug() << "End of Program";
-    return a.exec();
+    return 0;
 }
 
-int menu()
-{   int x;
 
-    qDebug() << "<<<<<<<<FAMOUS COMPUTER SCIENTISTS>>>>>>>>" << endl << endl;
-    qDebug() << "Choose an option: " << endl;
-    qDebug() << "   1. Display list" << endl;
-    qDebug() << "   2. Add an entry" << endl;
-    qDebug() << "   3. Remove an entry" << endl;
-    qDebug() << "   4. Search list" << endl;
-    qDebug() << "   5. Quit" << endl;
 
-    cin >> x;
-    return x;
-}
+
+
+
+
