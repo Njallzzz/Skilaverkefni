@@ -169,3 +169,24 @@ int XMLParser::WriteEmpty() {                       // Writes a empty database f
     container.close();                              // Close file handler
     return 0;                                       // Return success
 }
+
+int XMLParser::ModifyEntry( int index, Person person ) {
+    if( file == "" )
+        return 1;
+    vector<Person> temp;
+    int error = 0;
+    error = this->ReadDatabase( temp );
+    if(error)
+        return error;
+
+    if( index >= 0 && index < int(temp.size()) )
+            temp.erase( temp.begin() + index );
+    else
+        return 2;
+    temp.insert(temp.begin() + index, person);
+
+    error = this->WriteDatabase( temp );
+    if(error)
+        return error;
+    return 0;
+}

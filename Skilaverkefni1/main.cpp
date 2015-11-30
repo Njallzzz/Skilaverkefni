@@ -3,6 +3,7 @@
 #include "xmlparser.h"
 #include "person.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 int menu();
@@ -10,7 +11,6 @@ int menu();
 
 int main(int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
-
     XMLParser database( "database.xml" );                       // Select database
 
     vector<Person> list;
@@ -49,6 +49,12 @@ int main(int argc, char *argv[]) {
     temp.death = QDate::fromString( "07.06.1954", "dd.MM.yyyy" );
     database.AddEntry( temp );
 
+    temp.name = "Alan";                                  // Example of how to modify single entry into 'database.xml'
+    temp.gender = 0;
+    temp.birth = QDate::fromString( "23.06.1900", "dd.MM.yyyy" );
+    temp.death = QDate::fromString( "07.06.1954", "dd.MM.yyyy" );
+    database.ModifyEntry( 4, temp );
+
     if( database.ReadDatabase( list ) )                         // Example of how to read from 'database.xml'
         qDebug() << "Unable to read file 'database.xml'" << endl;
 
@@ -56,23 +62,24 @@ int main(int argc, char *argv[]) {
 
     if(choice == 1)
     {
-    for(unsigned int x = 0; x < list.size(); x++) {
-        qDebug() << "Name: " << list[x].name;
-        if( list[x].gender )
-            qDebug() << "Gender: Female";
-        else
-            qDebug() << "Gender: Male";
-        qDebug() << "Birth Year: " << list[x].birth.toString("dd.MM.yyyy");
+        for(unsigned int x = 0; x < list.size(); x++) {
+            qDebug() << "Name: " << list[x].name;
+            if( list[x].gender )
+                qDebug() << "Gender: Female";
+            else
+                qDebug() << "Gender: Male";
+            qDebug() << "Birth Year: " << list[x].birth.toString("dd.MM.yyyy");
 
-        qDebug() << "Death Year: " << list[x].death.toString("dd.MM.yyyy") << endl;
+            qDebug() << "Death Year: " << list[x].death.toString("dd.MM.yyyy") << endl;
+        }
     }
-    }
+
+
     if( database.RemoveEntry( "Ada Lovelace" ) )                     // Example of how to remove every person with name: 'Ada Lovelace'
         qDebug() << "Unable to delete 'Ada Lovelace' from database" << endl;
 
     if( database.RemoveEntry( 0 ) )                                 // Example of how to remove a single entry by index
         qDebug() << "Unable to delete entry 1 from database" << endl;
-
 
     qDebug() << "End of Program";
     return a.exec();
