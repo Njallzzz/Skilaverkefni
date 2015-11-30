@@ -25,6 +25,7 @@ int menu()
 
 void display(vector<Person>& list)
 {
+
     cout << "\tName\t\t\tGender\tBirth\t\tDeath" << endl;
     cout << "---------------------------------------------------------------------" << endl;
     for(unsigned int i=0; i < list.size(); i++)
