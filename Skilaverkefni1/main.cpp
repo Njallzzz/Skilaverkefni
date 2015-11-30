@@ -91,9 +91,9 @@ int main(int argc, char *argv[]) {
     if( database.RemoveEntry( 0 ) )                                 // Example of how to remove a single entry by index
         qDebug() << "Unable to delete entry 1 from database" << endl;
 
-    */
+
     qDebug() << "End of Program";
-    return a.exec();
+    return a.exec(); */
 }
 
 
