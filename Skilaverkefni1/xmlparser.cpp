@@ -31,6 +31,7 @@ int XMLParser::ReadDatabase( vector<Person> & list ) {      // Read all entries 
         bool finished[4] = {false, false, false, false};    //
         Person temp;
 
+
         while( !stream.atEnd() && !stream.hasError() && !(finished[0] && finished[1] && finished[2] && finished[3]) ) {
             stream.readNext();
 
@@ -43,10 +44,11 @@ int XMLParser::ReadDatabase( vector<Person> & list ) {      // Read all entries 
                 temp.name = stream.readElementText();
                 finished[0] = true;
             } else if( stream.name().toString() == "Gender" ) {
-                if( stream.readElementText() == "Male" )
-                    temp.gender = 0;
-                else
+                QString stringTemp = stream.readElementText();
+                if( stringTemp == "Male" )
                     temp.gender = 1;
+                else if ( stringTemp == "Female" )
+                    temp.gender = 2;
                 finished[1] = true;
             } else if( stream.name().toString() == "Birth" ) {
                 temp.birth = QDate::fromString( stream.readElementText(), "dd.MM.yyyy" );
@@ -85,10 +87,10 @@ int XMLParser::WriteDatabase( vector<Person> & list ) {     // Write all entries
     for(unsigned int x = 0; x < list.size(); x++) {         // Loop for all 'Person' Entry in vector
         stream.writeStartElement( "Person" );               // Write start of new element 'Person'
         stream.writeTextElement( "Name", list[x].name );    // Write name of person
-        if( list[x].gender )                                // if gender = female then
-            stream.writeTextElement( "Gender", "Female" );
-        else                                                // else is male
-            stream.writeTextElement("Gender", "Male");
+        if( list[x].gender == 1)                                // if gender = female then
+            stream.writeTextElement( "Gender", "Male" );
+        else if( list[x].gender == 2)                                          // else is male
+            stream.writeTextElement("Gender", "Female");
         if( !list[x].death.isNull() )                       // If death of person is specified write date of death
             stream.writeTextElement( "Death", list[x].death.toString("dd.MM.yyyy") );
         stream.writeTextElement( "Birth", list[x].birth.toString("dd.MM.yyyy") );       // Write birth of person

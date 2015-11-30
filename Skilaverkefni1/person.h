@@ -3,7 +3,7 @@
 
 struct Person {
     QString name;
-    bool gender;        // 0 = Male, 1 = Female
+    int gender;        // 0 = Male, 1 = Female
     QDate birth;
     QDate death;        // if QDate() = empty
 };
