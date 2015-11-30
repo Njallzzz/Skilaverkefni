@@ -2,6 +2,7 @@
 #include <QDebug>
 #include "xmlparser.h"
 #include "person.h"
+#include "sorter.h"
 #include <iostream>
 #include <string>
 
@@ -14,6 +15,8 @@ int main(int argc, char *argv[]) {
     XMLParser database( "database.xml" );                       // Select database
 
     vector<Person> list;
+
+    Sorter sorter(list);
 
     Person temp;
 
@@ -68,6 +71,7 @@ int main(int argc, char *argv[]) {
 
     if(choice == 1)
     {
+        sorter.sortByName(list, 0, list.size() - 1);
         for(unsigned int x = 0; x < list.size(); x++) {
             qDebug() << "Name: " << list[x].name;
             if( list[x].gender )

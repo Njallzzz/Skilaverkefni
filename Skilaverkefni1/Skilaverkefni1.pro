@@ -8,9 +8,11 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    xmlparser.cpp
+    xmlparser.cpp \
+    sorter.cpp
 
 HEADERS += \
     xmlparser.h \
-    person.h
+    person.h \
+    sorter.h
 
