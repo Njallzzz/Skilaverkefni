@@ -35,3 +35,32 @@ void Sorter::sortByName(vector<Person> & list, int left, int right){
         sortByName(list, i, right);
     }
 }
+
+void Sorter::sortByBirth(vector<Person> &list, int left, int right){
+    int i = left, j = right;
+    Person tmp;
+    QDate pivot = list[(left + right) / 2].birth;
+
+    while (i <= j){
+        while(list[i].birth < pivot){
+            i++;
+        }
+        while(list[j].birth > pivot){
+            j--;
+        }
+        if(i <= j){
+            tmp = list[i];
+            list[i] = list[j];
+            list[j] = tmp;
+            i++;
+            j--;
+        }
+    };
+
+    if(left < j){
+        sortByBirth(list, left, j);
+    }
+    if(i < right){
+        sortByBirth(list, i, right);
+    }
+}
