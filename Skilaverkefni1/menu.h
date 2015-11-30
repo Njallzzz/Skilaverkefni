@@ -7,7 +7,6 @@
 #include <vector>
 #include <iostream>
 #include "person.h"
-#include "xmlparser.h"
 #include <string>
 #include <QTextStream>
 
@@ -16,4 +15,5 @@ using namespace std;
 int menu();
 void display(vector<Person>& list);
 Person addPerson();
+void deletePerson();
 

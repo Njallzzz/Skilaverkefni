@@ -25,33 +25,33 @@ int menu()
 
 void display(vector<Person>& list)
 {
-    cout << "\tName\t\t\tGender\tBirth\t\tDeath" << endl;
-    cout << "---------------------------------------------------------------------" << endl;
+    cout << "\tName\t\t\t\tGender\tBirth\t\tDeath" << endl;
+    cout << "-------------------------------------------------------------------------------" << endl;
     for(unsigned int i=0; i < list.size(); i++)
     {
-        if(list[i].gender == 0)
+        if(list[i].gender == 1)
         {
             if(list[i].name.length() < 8 )  //if name is less than 8 letters, add a tab before gender
             {
-                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\tMale\t";
+                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\t\tMale\t";
             }
             else
             {
-                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\tMale\t";
+                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\tMale\t";
             }
             cout << list[i].birth.toString("dd.MM.yyyy").toUtf8().constData() << "\t";
             cout << list[i].death.toString("dd.MM.yyyy").toUtf8().constData() << endl;
         }
 
-        else if(list[i].gender == 1)        // if name is less than 8 letters, add a tab before gender
+        else if(list[i].gender == 2)        // if name is less than 8 letters, add a tab before gender
         {
             if(list[i].name.length() < 8 )
             {
-                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\tMale\t";
+                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\t\tFemale\t";
             }
             else
             {
-                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\tMale\t";
+                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\tFemale\t";
             }
                 cout << list[i].birth.toString("dd.MM.yyyy").toUtf8().constData() << "\t";
                 cout << list[i].death.toString("dd.MM.yyyy").toUtf8().constData() << endl;
@@ -81,12 +81,12 @@ Person addPerson()
     do{
         cin >> gender;
         if(gender == "male" || gender == "Male")
-            temp.gender = 0;
-        else if(gender == "female" || gender == "Female")
             temp.gender = 1;
+        else if(gender == "female" || gender == "Female")
+            temp.gender = 2;
         else
             cout << "Not a valid entry!";
-    }while(!(temp.gender == 0 || temp.gender == 1));
+    }while(!(temp.gender == 1 || temp.gender == 2));
 
     cout << "Birth year(dd.MM.yyyy): ";
     in >> birth;
@@ -98,3 +98,7 @@ Person addPerson()
 
     return temp;
 }
+
+
+
+
