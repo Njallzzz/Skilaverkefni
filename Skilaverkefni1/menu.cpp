@@ -35,6 +35,10 @@ void display(vector<Person>& list)
             {
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\t\tMale\t";
             }
+            else if(list[i].name.length() > 16)
+            {
+               cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\tMale\t";
+            }
             else
             {
                  cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\tMale\t";
@@ -49,6 +53,10 @@ void display(vector<Person>& list)
             {
 
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\t\tFemale\t";
+            }
+            else if(list[i].name.length() > 16)
+            {
+                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\tFemale\t";
             }
 
             else
