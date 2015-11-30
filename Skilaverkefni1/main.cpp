@@ -74,58 +74,40 @@ int main(int argc, char *argv[]) {
 
 
 
-
-
     if( database.ReadDatabase( list ) )                         // Example of how to read from 'database.xml'
         qDebug() << "Unable to read file 'database.xml'" << endl;
 
     int choice =0;
-    while(choice != 6)
-    {
+    while(choice != 6) {
         choice  = menu();
-        if(choice == 1)
-        {
+        if(choice == 1) {
             display(list);
-        }
-
-        if(choice == 2)
-        {
+        } else if(choice == 2) {
             Person add = addPerson();
             database.AddEntry(add);
-        }
-
-        if(choice == 3)
-        {   display(list);
+        } else if(choice == 3) {
+            display(list);
             int remove = deletePerson(list);
             if(remove != 0)
-            {
                  database.RemoveEntry(remove-1);
-            }
-        }
-
-        if(choice == 5)
-        {
+        } else if( choice == 4 ) {
+            Person temp = SearchMenu();
+            Search( list, temp );
+        } else if(choice == 5) {
             int sort = sortList();
             if(sort == 1)
-            {
                 sorter.sortByName(list, 0, list.size() - 1);
-            }
-            if(sort == 2)
-            {
+            else if(sort == 2)
                 sorter.sortByBirth(list, 0, list.size() - 1);
-            }
-            if(sort == 3)
-            {
+            else if(sort == 3)
                 sorter.sortByDeath(list, 0, list.size() - 1);
-            }
+
             display(list);
 
             //her kemur sort by gender
 
             if(keepSorted())
-            {
                 database.WriteDatabase(list);
-            }
         }
 
         database.ReadDatabase(list);
@@ -136,8 +118,8 @@ int main(int argc, char *argv[]) {
 
 
 
-
-        sorter.sortByDeath(list, 0, list.size() - 1);
+        // Sample Code
+        /*sorter.sortByDeath(list, 0, list.size() - 1);
         for(unsigned int x = 0; x < list.size(); x++) {
             qDebug() << "Name: " << list[x].name;
             if ( list[x].gender  == 1)
@@ -147,7 +129,7 @@ int main(int argc, char *argv[]) {
             qDebug() << "Birth Year: " << list[x].birth.toString("dd.MM.yyyy");
 
             qDebug() << "Death Year: " << list[x].death.toString("dd.MM.yyyy") << endl;
-        }
+        }*/
     return 0;
 }
 

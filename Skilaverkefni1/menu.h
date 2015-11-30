@@ -10,11 +10,14 @@
 #include <string>
 #include <QTextStream>
 
-
 using namespace std;
+
+
 int menu();
 void display(vector<Person>& list);
 Person addPerson();
 int deletePerson(vector<Person>& list);
+Person SearchMenu();
+void Search( vector<Person> & list, Person p );
 int sortList();
 bool keepSorted();
