@@ -21,3 +21,4 @@ Person SearchMenu();
 void Search( vector<Person> & list, Person p );
 int sortList();
 bool keepSorted();
+Person modify( Person temp );
