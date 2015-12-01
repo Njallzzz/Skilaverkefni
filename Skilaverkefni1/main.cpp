@@ -1,25 +1,33 @@
 #include <QCoreApplication>
 #include "xmlparser.h"
 #include "person.h"
-#include "sorter.cpp"
+#include "sorter.h"
 #include "menu.h"
 #include <iostream>
-
-// Debug
-#include <QDebug>
 
 using namespace std;
 
 int main() {
-    XMLParser database( "database.xml" );                       // Select database
-
     vector<Person> list;
 
-    if( database.ReadDatabase( list ) )                         // Example of how to read from 'database.xml'
+    XMLParser database( "database.xml" );                       // Select database
+    if( database.ReadDatabase( list ) )                         // Reads all entries from 'database.xml'
         cout << "Unable to read file 'database.xml'" << endl;
 
+    for(int x = 10; x < 32; x++) {
+        Person temp; QString name;
+        for(int y = 0; y < x; y++) {
+            name = name + "x";
+        }
+        temp.name = name;
+        temp.gender = 1;
+        temp.birth = QDate::currentDate();
+        temp.death = QDate::currentDate();
+        list.push_back(temp);
+    }
+
     int choice, sort, remove, index;
-    Person add,search, mod;
+    Person add, search, mod;
 
     while(choice != 7)
     {
