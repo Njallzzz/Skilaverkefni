@@ -1,7 +1,7 @@
 #include <QCoreApplication>
 #include "xmlparser.h"
 #include "person.h"
-#include "sorter.h"
+#include "sorter.cpp"
 #include "menu.h"
 #include <iostream>
 
@@ -14,8 +14,6 @@ int main(int argc, char *argv[]) {
     XMLParser database( "database.xml" );                       // Select database
 
     vector<Person> list;
-
-    Sorter sorter(list);
 
     Person temp;
 
@@ -93,11 +91,13 @@ int main(int argc, char *argv[]) {
         } else if(choice == 5) {
             int sort = sortList();
             if(sort == 1)
-                sorter.sortByName(list, 0, list.size() - 1);
+                sortByName(list);
             else if(sort == 2)
-                sorter.sortByBirth(list, 0, list.size() - 1);
+                sortByBirth(list);
             else if(sort == 3)
-                sorter.sortByDeath(list, 0, list.size() - 1);
+                sortByDeath(list);
+            else if(sort == 4)
+                genderSort(list, 0, list.size() - 1);
 
             display(list);
 

@@ -14,8 +14,6 @@ SOURCES += main.cpp \
 
     menu.cpp
 
-    sorter.cpp
-
 
 HEADERS += \
     xmlparser.h \
@@ -24,7 +22,5 @@ HEADERS += \
     sorter.h
 
     menu.h
-
-    sorter.h
 
 
