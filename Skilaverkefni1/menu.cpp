@@ -143,6 +143,10 @@ Person addPerson() {
 int deletePerson(vector<Person>& list) {
     int x = 0;
     char choice = 0;
+    if( list.size() == 0 ) {
+        cout << "The database is empty" << endl << endl;
+        return 0;
+    }
     while( x < 1 || x > int(list.size()) ) {
         cout << "Select a person to delete(input the number displayed before the name): ";
         cin >> x;
@@ -204,9 +208,17 @@ Person SearchMenu() {       // Get search paramters from user
         } else if( key == '2' ) {   // Set user gender search parameter
             temp.gender = -1;
             while( (temp.gender < 0) || (temp.gender > 2) ) {
-                cout << "Insert gender to search for(0 for any, 1 for male, 2 for female): ";
-                cin >> temp.gender;
-                cin.ignore();
+                QString gender;
+                cout << "Insert gender to search for(any/male/female): ";
+                gender = in.readLine();
+                if( gender == "any" || gender == "Any" )
+                    temp.gender = 0;
+                else if( gender == "male" || gender == "Male" )
+                    temp.gender = 1;
+                else if( gender == "female" || gender == "Female" )
+                    temp.gender = 2;
+                else
+                    cout << "Please enter a valid gender" << endl;
             }
         } else if( key == '3' ) {   // Set user birth search parameter
             QString birthstring = "";
@@ -259,7 +271,7 @@ void Search( vector<Person> & list, Person p ) {        // Search for members in
     display( SearchList );              // Display search results
 }
 
-int sortList() {
+int sortList() {        // Gets the method of which the user wants to sort the list
     char x;
     cout << "Choose how you want to sort the list" << endl;
     cout << "\t1. Sort by name" << endl;
@@ -268,23 +280,24 @@ int sortList() {
     cout << "\t4. Sort by gender" << endl;
 
     cout << "Your choice: " ;
-    do{
+    do{                         // Error check user input
         cin >> x;
+        cin.ignore();
         if(x < 49 || x > 52)                //makes sure input is correct
             cout << "Not a valid option! Please choose a number from 1 to 4" << endl;
     } while(x < 49 || x > 52);
     cout << endl;
 
-    int y = x - 48;
-    return y;
-
+    int y = x - 48;         // Convert the character the the numerical equivalent
+    return y;               // Return input
 }
 
-bool keepSorted() {
-    char x;
-    while( x != 'y' && x != 'Y' && x != 'n' && x != 'N' ) {
+bool keepSorted() {     // Ask whether the user wants to keep the list sorted
+    char x = 0;
+    while( x != 'y' && x != 'Y' && x != 'n' && x != 'N' ) {     // While there is no valid input
         cout << "Do you want to keep the list sorted(y/n)?: ";
         cin >> x;
+        cin.ignore();
     }
     cout << endl;
     if ( x == 'y' || x == 'Y' )
@@ -293,7 +306,7 @@ bool keepSorted() {
     return false;
 }
 
-Person modify( Person temp ) {
+Person modify( Person temp ) {      // User menu that changes a persons template for the modify person operation
     QTextStream in(stdin);
     string gender;
     QString birth, death, name;

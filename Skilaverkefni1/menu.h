@@ -5,9 +5,9 @@
 #include <QString>
 #include <vector>
 #include <iostream>
-#include "person.h"
 #include <string>
 #include <QTextStream>
+#include "person.h"
 
 using namespace std;
 

@@ -14,18 +14,6 @@ int main() {
     if( database.ReadDatabase( list ) )                         // Reads all entries from 'database.xml'
         cout << "Unable to read file 'database.xml'" << endl;
 
-    for(int x = 10; x < 32; x++) {
-        Person temp; QString name;
-        for(int y = 0; y < x; y++) {
-            name = name + "x";
-        }
-        temp.name = name;
-        temp.gender = 1;
-        temp.birth = QDate::currentDate();
-        temp.death = QDate::currentDate();
-        list.push_back(temp);
-    }
-
     int choice, sort, remove, index;
     Person add, search, mod;
 
@@ -43,6 +31,10 @@ int main() {
                 break;
 
             case 3 :               //3. Remove a person to the list
+                if( list.size() == 0 ) {        // Check if the database is empty
+                    cout << "The database is empty" << endl << endl;
+                    break;
+                }
                 display(list);      //display the list
                 remove = deletePerson(list);    //ask for index to be removed, returns 0 if no person is chosen
                 if(remove != 0)
@@ -52,11 +44,19 @@ int main() {
                 break;
 
             case 4 :                    //4. Search List
+                if( list.size() == 0 ) {        // Check if the database is empty
+                    cout << "The database is empty" << endl << endl;
+                    break;
+                }
                 search = SearchMenu();  // get search parameters
                 Search(list, search);   // displays search results
                 break;
 
             case 5 :                    //5. Sort the list
+                if( list.size() == 0 ) {        // Check if the database is empty
+                    cout << "The database is empty" << endl << endl;
+                    break;
+                }
                 sort = sortList();      // asks the user how to sort the list
                 if(sort == 1)
                     sortByName(list);   // sorts the list by name
@@ -73,6 +73,10 @@ int main() {
                 break;
 
             case 6 :                    //6. Modify the list
+                if( list.size() == 0 ) {        // Check if the database is empty
+                    cout << "The database is empty" << endl << endl;
+                    break;
+                }
                 display(list);
                 cout << "Select index of entry to modify: ";
                 cin >> index;
