@@ -116,9 +116,13 @@ Person addPerson() {
     }while(!(temp.birth.isValid()));
 
     do{
-    cout << "Death year(dd.mm.yyyy): ";
+    cout << "Death year(dd.mm.yyyy, enter 0 if person is still alive): ";
     in >> death;
     temp.death = QDate::fromString(death, "dd.MM.yyyy");
+    if(death == "0")
+    {
+        break;
+    }
     if(!(temp.birth.isValid()))
     {
         cout <<"Not a valid date!" << endl;
@@ -313,15 +317,32 @@ Person modify( Person temp ) {
         break;
 
     case '3':                                   //To modify birth year only
+        do{
         cout << "Birth year(dd.mm.yyyy): ";
         in >> birth;
+
         temp.birth = QDate::fromString( birth, "dd.MM.yyyy" );
+        if(!(temp.birth.isValid()))
+        {
+            cout <<"Not a valid date!"<< endl;
+        }
+        }while(!(temp.birth.isValid()));
         break;
 
     case '4':                                   //To modify death year only
+        do{
         cout << "Death year(dd.mm.yyyy): ";
         in >> death;
         temp.death = QDate::fromString(death, "dd.MM.yyyy");
+        if(death == "0")
+        {
+            break;
+        }
+        if(!(temp.birth.isValid()))
+        {
+            cout <<"Not a valid date!" << endl;
+        }
+        }while(!(temp.death.isValid()));
         break;
 
     case '5':                                   //To modify all
