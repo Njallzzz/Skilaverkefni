@@ -32,7 +32,7 @@ void display(vector<Person>& list) {
         if(list[i].gender == 1) {
             if(list[i].name.length() < 8 )  //if name is less than 8 letters, add a tab before gender
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\t\tMale\t";
-            else if(list[i].name.length() > 16)
+            else if(list[i].name.length() >= 16)
                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\tMale\t";
             else
                  cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\tMale\t";
@@ -41,7 +41,7 @@ void display(vector<Person>& list) {
         } else if(list[i].gender == 2) {        // if name is less than 8 letters, add a tab before gender
             if(list[i].name.length() < 8 )
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\t\tFemale\t";
-            else if(list[i].name.length() > 16)
+            else if(list[i].name.length() >= 16)
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\tFemale\t";
             else
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData() << "\t\t\tFemale\t";
@@ -63,6 +63,7 @@ Person addPerson() {
     cout << "Add a person to the list" << endl;
 
     cout << "Name: ";
+    cin.ignore();
     name = in.readLine();
     temp.name = name;
 
@@ -92,7 +93,7 @@ Person addPerson() {
 int deletePerson(vector<Person>& list) {
     int x;
     char choice;
-    while( x < 1 || x >= int(list.size()) ) {
+    while( x < 1 || x > int(list.size()) ) {
         cout << "Select a person to delete(input the number displayed before the name): ";
         cin >> x;
     }
