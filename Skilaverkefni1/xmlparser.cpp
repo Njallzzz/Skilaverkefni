@@ -32,34 +32,32 @@ int XMLParser::ReadDatabase( vector<Person> & list ) {      // Read all entries 
         Person temp;
 
 
-        while( !stream.atEnd() && !stream.hasError() && !(finished[0] && finished[1] && finished[2] && finished[3]) ) {
-            stream.readNext();
+        while( !stream.atEnd() && !stream.hasError() && !(finished[0] && finished[1] && finished[2] && finished[3]) ) { // Loops until end of file, error comes up or
+            stream.readNext();         // Read next line in file                                                        // all values for a computer scientist have been gathered
 
-            if( finished[0] && finished[1] && finished[2] )
+            if( finished[0] && finished[1] && finished[2] )     // If death doesn't exist for current element ignore
                 finished[3] = true;
-            //if( stream.name().toString() == "Person"  )
-            //    finished[3] = true;
 
-            if( stream.name().toString() == "Name" ) {
+            if( stream.name().toString() == "Name" ) {          // Get name of computer scientist
                 temp.name = stream.readElementText();
                 finished[0] = true;
-            } else if( stream.name().toString() == "Gender" ) {
+            } else if( stream.name().toString() == "Gender" ) { // Get gender of computer scientist
                 QString stringTemp = stream.readElementText();
-                if( stringTemp == "Male" )
+                if( stringTemp == "Male" )                      // If Male
                     temp.gender = 1;
-                else if ( stringTemp == "Female" )
+                else if ( stringTemp == "Female" )              // If Female
                     temp.gender = 2;
                 finished[1] = true;
-            } else if( stream.name().toString() == "Birth" ) {
+            } else if( stream.name().toString() == "Birth" ) {  // Get birth of computer scientist
                 temp.birth = QDate::fromString( stream.readElementText(), "dd.MM.yyyy" );
                 finished[2] = true;
-            } else if( stream.name().toString() == "Death" ) {
+            } else if( stream.name().toString() == "Death" ) {  // Get death of computer scientist
                 temp.death = QDate::fromString( stream.readElementText(), "dd.MM.yyyy" );
                 finished[3] = true;
             }
         }
 
-        if( finished[0] ) {
+        if( finished[0] ) {         // If the person is valid, add them to the list
             list.push_back(temp);
         }
     }
@@ -132,9 +130,9 @@ int XMLParser::RemoveEntry( QString name ) {            // Remove entry in datab
             temp.erase( temp.begin() + x );          // delete entry if it matches
     }
     error = this->WriteDatabase( temp );                // Write all entries in vector to database
-    if(error)
+    if(error)                                           // If error return error message
         return error;
-    return 0;
+    return 0;                                           // Return success
 }
 
 int XMLParser::RemoveEntry( int index ) {
@@ -150,9 +148,9 @@ int XMLParser::RemoveEntry( int index ) {
     else                                                // If the index is invalid return error 2
         return 2;
     error = this->WriteDatabase( temp );                // Write all entries in vector to database
-    if(error)
+    if(error)                                           // If error return error message
         return error;
-    return 0;
+    return 0;                                           // Return success
 }
 
 int XMLParser::WriteEmpty() {                       // Writes a empty database folder
@@ -172,7 +170,7 @@ int XMLParser::WriteEmpty() {                       // Writes a empty database f
     return 0;                                       // Return success
 }
 
-int XMLParser::ModifyEntry( int index, Person person ) {
+int XMLParser::ModifyEntry( int index, Person person ) {        // Change the entry of a person in the database
     if( file == "" )                                // If database has not been specified return error 1
         return 1;
     vector<Person> temp;                            // Create temporary vector
@@ -187,7 +185,7 @@ int XMLParser::ModifyEntry( int index, Person person ) {
         return 2;                                   // If the index is invalid return error 2
 
     error = this->WriteDatabase( temp );            // Write all entries in vector to database
-    if(error)
+    if(error)                                       // If error return error message
         return error;
-    return 0;
+    return 0;                                       // Return success
 }

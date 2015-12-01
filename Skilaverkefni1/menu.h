@@ -1,7 +1,6 @@
 #ifndef MENU
 #define MENU
 
-#endif // MENU
 #include <QDate>
 #include <QString>
 #include <vector>
@@ -12,13 +11,14 @@
 
 using namespace std;
 
+int menu();                             // Display main menu
+void display(vector<Person>& list);     // Display all values in list
+Person addPerson();                     // User menu to create person
+int deletePerson(vector<Person>& list); // User menu to get index of person to delete
+Person SearchMenu();                    // Search User Menu
+void Search( vector<Person> & list, Person p ); // Search algorithm
+int sortList();                         // Sort menu
+bool keepSorted();                      // Asks whether or not the changes should be permanent
+Person modify( Person temp );           // Menu to alter a person already in the database
 
-int menu();
-void display(vector<Person>& list);
-Person addPerson();
-int deletePerson(vector<Person>& list);
-Person SearchMenu();
-void Search( vector<Person> & list, Person p );
-int sortList();
-bool keepSorted();
-Person modify( Person temp );
+#endif // MENU
