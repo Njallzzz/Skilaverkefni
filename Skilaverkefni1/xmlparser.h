@@ -10,8 +10,6 @@
 #include <vector>
 #include "person.h"
 
-// Debug
-#include <QDebug>
 using namespace std;
 
 class XMLParser {                               // XML Database Class
@@ -27,7 +25,7 @@ public:
     int AddEntry( Person person );              // Adds a single entry into database
     int RemoveEntry( QString name );            // Remove entries from database by name
     int RemoveEntry( int index );               // Remove a single entry from database by index
-    int ModifyEntry( int index, Person person );
+    int ModifyEntry( int index, Person person );// Change the entry of a person in the database
 private:
     int WriteEmpty();                           // Writes a empty database folder
 

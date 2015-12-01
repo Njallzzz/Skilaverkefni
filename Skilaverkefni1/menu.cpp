@@ -81,9 +81,8 @@ void display(vector<Person>& list) {
 
 Person addPerson() {
     Person temp;
-    string gender;
     QString birth, death;
-    QString name;
+    QString name, gender;
     QTextStream in(stdin);
 
     cout << "Add a person to the list" << endl;
@@ -93,25 +92,32 @@ Person addPerson() {
     name = in.readLine();
     temp.name = name;
 
-
-    cout << "Gender(male/female): ";
     do{
-        cin >> gender;
+        cout << "Gender(male/female): ";
+        gender = in.readLine();
         if(gender == "male" || gender == "Male")
             temp.gender = 1;
         else if(gender == "female" || gender == "Female")
             temp.gender = 2;
         else
-            cout << "Not a valid entry!";
+            cout << "Not a valid entry!" << endl;
     }while(!(temp.gender == 1 || temp.gender == 2));
 
-    cout << "Birth year(dd.mm.yyyy): ";
-    in >> birth;
-    temp.birth = QDate::fromString( birth, "dd.MM.yyyy" );
+    while( !temp.birth.isValid() ) {
+        cout << "Birth year(dd.mm.yyyy): ";
+        in >> birth;
+        temp.birth = QDate::fromString( birth, "dd.MM.yyyy" );
+        if( !temp.birth.isValid() )
+            cout << "Please type in a valid date" << endl;
+    }
 
-    cout << "Death year(dd.mm.yyyy): ";
-    in >> death;
-    temp.death = QDate::fromString(death, "dd.MM.yyyy");
+    while( !temp.death.isValid() && death != "00.00.0000" ) {
+        cout << "Death year(dd.mm.yyyy, 00.00.0000 for not applicapable): ";
+        in >> death;
+        temp.death = QDate::fromString(death, "dd.MM.yyyy");
+        if( !temp.death.isValid() && death != "00.00.0000" )
+            cout << "Please type in a valid date" << endl;
+    }
     cout << endl;
     return temp;
 }
@@ -122,6 +128,9 @@ int deletePerson(vector<Person>& list) {
     while( x < 1 || x > int(list.size()) ) {
         cout << "Select a person to delete(input the number displayed before the name): ";
         cin >> x;
+        cin.ignore();
+        if( x < 1 || x > int(list.size()) )
+            cout << "Please enter a valid index" << endl;
     }
     while( choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N' ) {
         cout << "Are you sure you want to delete '" << list[x-1].name.toUtf8().constData() << "' from the list?(y/n)";
@@ -185,7 +194,7 @@ Person SearchMenu() {       // Get search paramters from user
             QString birthstring = "";
             temp.birth = QDate();   // Set empty date (Also used as wildcard)
             while( birthstring != "00.00.0000" && !temp.birth.isValid() ) {
-                cout << "Insert birth date(format: dd.mm.yyyy, 00.00.0000 for any): ";
+                cout << "Insert birth date(dd.mm.yyyy, 00.00.0000 for any): ";
                 birthstring = in.readLine();
                 if( birthstring != "00.00.0000" )
                     temp.birth = QDate::fromString( birthstring, "dd.MM.yyyy" );
@@ -194,7 +203,7 @@ Person SearchMenu() {       // Get search paramters from user
             QString deathstring = "";
             temp.death = QDate();   // Set empty date (Also used as wildcard)
             while( deathstring != "00.00.0000" && !temp.death.isValid() ) {
-                cout << "Insert death date(format: dd.mm.yyyy, 00.00.0000 for any): ";
+                cout << "Insert death date(dd.mm.yyyy, 00.00.0000 for any): ";
                 deathstring = in.readLine();
                 if( deathstring != "00.00.0000" )
                     temp.death = QDate::fromString( deathstring, "dd.MM.yyyy" );

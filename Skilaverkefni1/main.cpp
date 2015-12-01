@@ -76,7 +76,7 @@ int main() {
 
     while(choice != 7)
     {
-        choice =menu();
+        choice = menu();
         switch(choice){
             case 1 :                //1. Display the list
                 display(list);
@@ -131,20 +131,5 @@ int main() {
         database.ReadDatabase(list);    // reads the database if it has changed
     }
 
-
-
-
-        // Sample Code
-        /*sorter.sortByDeath(list, 0, list.size() - 1);
-        for(unsigned int x = 0; x < list.size(); x++) {
-            qDebug() << "Name: " << list[x].name;
-            if ( list[x].gender  == 1)
-                qDebug() << "Gender: Male";
-            else if( list[x].gender  == 2)
-                qDebug() << "Gender: Female";
-            qDebug() << "Birth Year: " << list[x].birth.toString("dd.MM.yyyy");
-
-            qDebug() << "Death Year: " << list[x].death.toString("dd.MM.yyyy") << endl;
-        }*/
     return 0;
 }
