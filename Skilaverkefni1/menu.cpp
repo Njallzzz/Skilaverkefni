@@ -91,7 +91,7 @@ Person addPerson() {
 }
 
 int deletePerson(vector<Person>& list) {
-    int x;
+    int x = 0;
     char choice;
     while( x < 1 || x > int(list.size()) ) {
         cout << "Select a person to delete(input the number displayed before the name): ";
@@ -109,7 +109,7 @@ int deletePerson(vector<Person>& list) {
 }
 
 Person SearchMenu() {       // Get search paramters from user
-    Person temp;    char key;   QTextStream in(stdin);
+    Person temp;    char key = 0;   QTextStream in(stdin);
     temp.name = "";
     temp.gender = 0;
     while( key != '5' ) {           // while looping while inserting search parameters
