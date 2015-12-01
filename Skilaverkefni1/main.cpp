@@ -1,9 +1,11 @@
-#include <QCoreApplication>
+#include <QString>
+#include <vector>
+#include <QTextStream>
+#include <iostream>
 #include "xmlparser.h"
 #include "person.h"
 #include "sorter.h"
 #include "menu.h"
-#include <iostream>
 
 using namespace std;
 
@@ -16,6 +18,7 @@ int main() {
 
     int choice, sort, remove, index;
     Person add, search, mod;
+    QTextStream in(stdin);
 
     while(choice != 7)
     {
@@ -78,8 +81,13 @@ int main() {
                     break;
                 }
                 display(list);
-                cout << "Select index of entry to modify: ";
-                cin >> index;
+                QString indexString;
+                while( !( index = indexString.toInt() ) ) {
+                    cout << "Select index of entry to modify: ";
+                    indexString = in.readLine();
+                    if( !indexString.toInt() )
+                        cout << "Invalid entry!" << endl;
+                }
                 cout << endl;
 
                 mod = modify( list[index-1] );

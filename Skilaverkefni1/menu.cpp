@@ -10,9 +10,9 @@ int menu() {
     cout << "   5. Sort list" << endl;
     cout << "   6. Modify list entry" << endl;
     cout << "   7. Quit" << endl;
-    cout << "Your choice: ";
 
     do{
+        cout << "Your choice: ";
         cin >> x;
         if(x < 49 || x > 55)                //makes sure input is correct
             cout << "Not a valid option!" << endl;
@@ -143,19 +143,22 @@ Person addPerson() {
 int deletePerson(vector<Person>& list) {
     int x = 0;
     char choice = 0;
+    QString index;
+    QTextStream in(stdin);
+
     if( list.size() == 0 ) {
         cout << "The database is empty" << endl << endl;
         return 0;
     }
     while( x < 1 || x > int(list.size()) ) {
         cout << "Select a person to delete(input the number displayed before the name): ";
-        cin >> x;
-        cin.ignore();
+        index = in.readLine();
+        x = index.toInt();
         if( x < 1 || x > int(list.size()) )
             cout << "Please enter a valid index" << endl;
     }
     while( choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N' ) {
-        cout << "Are you sure you want to delete '" << list[x-1].name.toUtf8().constData() << "' from the list?(y/n)";
+        cout << "Are you sure you want to delete '" << list[x-1].name.toUtf8().constData() << "' from the list(y/n)?: ";
         cin >> choice;
     }
     cout << endl;
@@ -223,19 +226,19 @@ Person SearchMenu() {       // Get search paramters from user
         } else if( key == '3' ) {   // Set user birth search parameter
             QString birthstring = "";
             temp.birth = QDate();   // Set empty date (Also used as wildcard)
-            while( birthstring != "00.00.0000" && !temp.birth.isValid() ) {
-                cout << "Insert birth date(dd.mm.yyyy, 00.00.0000 for any): ";
+            while( birthstring != "0" && !temp.birth.isValid() ) {
+                cout << "Insert birth date(dd.mm.yyyy, 0 for any): ";
                 birthstring = in.readLine();
-                if( birthstring != "00.00.0000" )
+                if( birthstring != "0" )
                     temp.birth = QDate::fromString( birthstring, "dd.MM.yyyy" );
             }
         } else if( key == '4' ) {   // Set user death search parameter
             QString deathstring = "";
             temp.death = QDate();   // Set empty date (Also used as wildcard)
-            while( deathstring != "00.00.0000" && !temp.death.isValid() ) {
-                cout << "Insert death date(dd.mm.yyyy, 00.00.0000 for any): ";
+            while( deathstring != "0" && !temp.death.isValid() ) {
+                cout << "Insert death date(dd.mm.yyyy, 0 for any): ";
                 deathstring = in.readLine();
-                if( deathstring != "00.00.0000" )
+                if( deathstring != "0" )
                     temp.death = QDate::fromString( deathstring, "dd.MM.yyyy" );
             }
         }
@@ -279,8 +282,8 @@ int sortList() {        // Gets the method of which the user wants to sort the l
     cout << "\t3. Sort by death year" << endl;
     cout << "\t4. Sort by gender" << endl;
 
-    cout << "Your choice: " ;
     do{                         // Error check user input
+        cout << "Your choice: " ;
         cin >> x;
         cin.ignore();
         if(x < 49 || x > 52)                //makes sure input is correct
@@ -331,19 +334,20 @@ Person modify( Person temp ) {      // User menu that changes a persons template
         cout << "Gender(male/female): ";
         do{
             cin >> gender;
+            cin.ignore();
             if(gender == "male" || gender == "Male")
                 temp.gender = 1;
             else if(gender == "female" || gender == "Female")
                 temp.gender = 2;
             else
                 cout << "Not a valid entry!";
-        }while(!(temp.gender == 1 || temp.gender == 2));
+        } while( !(temp.gender == 1 || temp.gender == 2) );
         break;
 
     case '3':                                   //To modify birth year only
         do{
         cout << "Birth year(dd.mm.yyyy): ";
-        in >> birth;
+        birth = in.readLine();
 
         temp.birth = QDate::fromString( birth, "dd.MM.yyyy" );
         if(!(temp.birth.isValid()))
@@ -355,8 +359,8 @@ Person modify( Person temp ) {      // User menu that changes a persons template
 
     case '4':                                   //To modify death year only
         do{
-        cout << "Death year(dd.mm.yyyy): ";
-        in >> death;
+        cout << "Death year(dd.mm.yyyy, enter 0 if person is still alive): ";
+        death = in.readLine();
         temp.death = QDate::fromString(death, "dd.MM.yyyy");
         if(death == "0")
         {
