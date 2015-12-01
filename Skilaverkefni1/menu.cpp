@@ -256,6 +256,7 @@ Person modify( Person temp ) {
     switch(modify){
     case '1':                                   //To modify name only
         cout << "Name: ";
+        cin.ignore();
         temp.name = in.readLine();
         break;
 

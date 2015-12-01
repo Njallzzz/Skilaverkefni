@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     vector<Person> list;
 
     Person temp;
-
+    /*
     temp.name = "Grace Hopper";
     temp.gender = 2;
     temp.birth = QDate::fromString( "09.12.1906", "dd.MM.yyyy" );
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
     temp.birth = QDate::fromString( "01.01.2000", "dd.MM.yyyy" );
     temp.death = QDate::fromString( "20.12.2100", "dd.MM.yyyy" );
     database.ModifyEntry( 0, temp );
-
+    */
 
 
     if( database.ReadDatabase( list ) )                         // Example of how to read from 'database.xml'
@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
 
             display(list);
 
-            //her kemur sort by gender
+
 
             if(keepSorted())
                 database.WriteDatabase(list);
