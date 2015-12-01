@@ -103,28 +103,36 @@ Person addPerson() {
             cout << "Not a valid entry!" << endl;
     }while(!(temp.gender == 1 || temp.gender == 2));
 
-    while( !temp.birth.isValid() ) {
+    do{
         cout << "Birth year(dd.mm.yyyy): ";
         in >> birth;
         temp.birth = QDate::fromString( birth, "dd.MM.yyyy" );
-        if( !temp.birth.isValid() )
-            cout << "Please type in a valid date" << endl;
-    }
+        if(!(temp.birth.isValid()))
+        {
+            cout <<"Not a valid date!"<< endl;
+        }
+    }while(!(temp.birth.isValid()));
 
-    while( !temp.death.isValid() && death != "00.00.0000" ) {
-        cout << "Death year(dd.mm.yyyy, 00.00.0000 for not applicapable): ";
+    do{
+        cout << "Death year(dd.mm.yyyy, enter 0 if person is still alive): ";
         in >> death;
         temp.death = QDate::fromString(death, "dd.MM.yyyy");
-        if( !temp.death.isValid() && death != "00.00.0000" )
-            cout << "Please type in a valid date" << endl;
-    }
+        if(death == "0")
+        {
+            break;
+        }
+        if(!(temp.birth.isValid()))
+        {
+            cout <<"Not a valid date!" << endl;
+        }
+    }while(!(temp.death.isValid()));
     cout << endl;
     return temp;
 }
 
 int deletePerson(vector<Person>& list) {
     int x = 0;
-    char choice;
+    char choice = 0;
     while( x < 1 || x > int(list.size()) ) {
         cout << "Select a person to delete(input the number displayed before the name): ";
         cin >> x;
@@ -310,15 +318,32 @@ Person modify( Person temp ) {
         break;
 
     case '3':                                   //To modify birth year only
+        do{
         cout << "Birth year(dd.mm.yyyy): ";
         in >> birth;
+
         temp.birth = QDate::fromString( birth, "dd.MM.yyyy" );
+        if(!(temp.birth.isValid()))
+        {
+            cout <<"Not a valid date!"<< endl;
+        }
+        }while(!(temp.birth.isValid()));
         break;
 
     case '4':                                   //To modify death year only
+        do{
         cout << "Death year(dd.mm.yyyy): ";
         in >> death;
         temp.death = QDate::fromString(death, "dd.MM.yyyy");
+        if(death == "0")
+        {
+            break;
+        }
+        if(!(temp.birth.isValid()))
+        {
+            cout <<"Not a valid date!" << endl;
+        }
+        }while(!(temp.death.isValid()));
         break;
 
     case '5':                                   //To modify all
