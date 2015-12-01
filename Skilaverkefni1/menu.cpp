@@ -105,20 +105,32 @@ Person addPerson() {
             cout << "Not a valid entry!";
     }while(!(temp.gender == 1 || temp.gender == 2));
 
+    do{
     cout << "Birth year(dd.mm.yyyy): ";
     in >> birth;
     temp.birth = QDate::fromString( birth, "dd.MM.yyyy" );
+    if(!(temp.birth.isValid()))
+    {
+        cout <<"Not a valid date!"<< endl;
+    }
+    }while(!(temp.birth.isValid()));
 
+    do{
     cout << "Death year(dd.mm.yyyy): ";
     in >> death;
     temp.death = QDate::fromString(death, "dd.MM.yyyy");
+    if(!(temp.birth.isValid()))
+    {
+        cout <<"Not a valid date!" << endl;
+    }
+    }while(!(temp.death.isValid()));
     cout << endl;
     return temp;
 }
 
 int deletePerson(vector<Person>& list) {
     int x = 0;
-    char choice;
+    char choice = 0;
     while( x < 1 || x > int(list.size()) ) {
         cout << "Select a person to delete(input the number displayed before the name): ";
         cin >> x;
