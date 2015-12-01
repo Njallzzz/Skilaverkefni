@@ -13,10 +13,12 @@ void sortByDeath(vector<Person> & list);
 void deathSort(vector<Person> & list, int left, int right);
 void genderSort(vector<Person> & list, int left, int right);
 
+//Sort a list by name
 void sortByName(vector<Person> & list){
-    nameSort(list, 0, list.size() - 1);
+    nameSort(list, 0, list.size() - 1);         //Call the sorting function
 }
 
+//Recursive algorithm that sorts a list by name
 void nameSort(vector<Person> & list, int left, int right){
     int i = left, j = right;
     Person tmp;
@@ -38,6 +40,7 @@ void nameSort(vector<Person> & list, int left, int right){
         }
     };
 
+    //Recursive step
     if(left < j){
         nameSort(list, left, j);
     }
@@ -46,10 +49,12 @@ void nameSort(vector<Person> & list, int left, int right){
     }
 }
 
+//Sort a list by Birth date
 void sortByBirth(vector<Person> & list){
     birthSort(list, 0, list.size() - 1);
 }
 
+//Recursive algorithm that sorts a list by Birthday
 void birthSort(vector<Person> &list, int left, int right){
     int i = left, j = right;
     Person tmp;
@@ -71,6 +76,7 @@ void birthSort(vector<Person> &list, int left, int right){
         }
     };
 
+    //Recursive step
     if(left < j){
         birthSort(list, left, j);
     }
@@ -79,10 +85,12 @@ void birthSort(vector<Person> &list, int left, int right){
     }
 }
 
+//Sort a list by death date
 void sortByDeath(vector<Person> & list){
     deathSort(list, 0, list.size() - 1);
 }
 
+//Recursive algorithm that sorts a list by deathdate
 void deathSort(vector<Person> &list, int left, int right){
     int i = left, j = right;
     Person tmp;
@@ -104,6 +112,7 @@ void deathSort(vector<Person> &list, int left, int right){
         }
     };
 
+    //Recursive step
     if(left < j){
         deathSort(list, left, j);
     }
@@ -112,6 +121,7 @@ void deathSort(vector<Person> &list, int left, int right){
     }
 }
 
+//Sort a list by gender
 void genderSort(vector<Person> & list, int left, int right){
     int i = left, j = right;
     Person tmp;
