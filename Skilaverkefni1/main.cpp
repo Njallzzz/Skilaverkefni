@@ -72,118 +72,66 @@ int main() {
         cout << "Unable to read file 'database.xml'" << endl;
 
     int choice, sort, remove, index;
-    Person add,search;
+    Person add,search, mod;
 
     while(choice != 7)
     {
         choice =menu();
         switch(choice){
-            case 1 :
+            case 1 :                //1. Display the list
                 display(list);
                 break;
 
-            case 2 :
+            case 2 :                //2. Add a person to the list
                 add = addPerson();
                 database.AddEntry(add);
                 break;
 
-            case 3 :
-                display(list);
-                remove = deletePerson(list);
+            case 3 :               //3. Remove a person to the list
+                display(list);      //display the list
+                remove = deletePerson(list);    //ask for index to be removed, returns 0 if no person is chosen
                 if(remove != 0)
                 {
                     database.RemoveEntry(remove-1);
                 }
                 break;
 
-            case 4 :
-                search = SearchMenu();
-                Search(list, search);
+            case 4 :                    //4. Search List
+                search = SearchMenu();  // get search parameters
+                Search(list, search);   // displays search results
                 break;
 
-            case 5 :
-                sort = sortList();
+            case 5 :                    //5. Sort the list
+                sort = sortList();      // asks the user how to sort the list
                 if(sort == 1)
-                    sortByName(list);
+                    sortByName(list);   // sorts the list by name
                 else if(sort == 2)
-                    sortByBirth(list);
+                    sortByBirth(list);  // sorts the list by birth date
                 else if(sort == 3)
-                    sortByDeath(list);
+                    sortByDeath(list);  // sorts the list by death date
                 else if(sort == 4)
-                    genderSort(list, 0, list.size() - 1);
+                    genderSort(list, 0, list.size() - 1);   // sorts the list by gender
 
                 display(list);
-                if(keepSorted())
+                if(keepSorted())                // asks the user if he/she wants to keep the list sorted
                         database.WriteDatabase(list);
                 break;
 
-            case 6 :
+            case 6 :                    //6. Modify the list
                 display(list);
                 cout << "Select index of entry to modify: ";
                 cin >> index;
                 cout << endl;
 
-                Person mod = modify( list[index-1] );
+                mod = modify( list[index-1] );
                 database.ModifyEntry( index-1, mod );
                 break;
 
         }
-        database.ReadDatabase(list);
+        database.ReadDatabase(list);    // reads the database if it has changed
     }
 
-    /*int choice = 0;
-    while(choice != 8) {
-        choice  = menu();
-        if(choice == 1) {
-            display(list);
-        } else if(choice == 2) {
-            Person add = addPerson();
-            database.AddEntry(add);
-        } else if(choice == 3) {
-            display(list);
-            int remove = deletePerson(list);
-            if(remove != 0)
-                 database.RemoveEntry(remove-1);
-        } else if( choice == 4 ) {
-            Person temp = SearchMenu();
-            Search( list, temp );
-        } else if(choice == 5) {
-            int sort = sortList();
-            if(sort == 1)
-                sortByName(list);
-            else if(sort == 2)
-                sortByBirth(list);
-            else if(sort == 3)
-                sortByDeath(list);
-            else if(sort == 4)
-                genderSort(list, 0, list.size() - 1);
 
-            display(list);
-
-
-
-            if(keepSorted())
-                database.WriteDatabase(list);
-        }
-
-        if( choice == 6 ){
-            int index;
-
-            display(list);
-            cout << "Select index of entry to modify: ";
-            cin >> index;
-            cout << endl;
-
-            Person mod = modify( list[index-1] );
-            database.ModifyEntry( index-1, mod );
-        }
-
-        if( choice == 7 ){
-            return 0;
-        }
-
-        database.ReadDatabase(list);
-    }   */
 
 
         // Sample Code
