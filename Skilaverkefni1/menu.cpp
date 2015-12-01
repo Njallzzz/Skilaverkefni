@@ -36,7 +36,7 @@ void display(vector<Person>& list) {
                 cout<< "\t\t\t\tMale\t";
             }
 
-            else if(list[i].name.length() >= 16)            // if name is 16 or more letters remove a tab before gender
+            else if(list[i].name.length() >= 16 && list[i].name.length() < 24)            // if name is 16 or more letters remove a tab before gender
             {
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData();
                 cout << "\t\tMale\t";
@@ -44,7 +44,7 @@ void display(vector<Person>& list) {
             else if(list[i].name.length() >=24)             // if name is 24 letters or more remove 2 tabs before gender
             {
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData();
-                cout << "\t\tMale\t";
+                cout << "\tMale\t";
             }
             else
             {
@@ -64,7 +64,7 @@ void display(vector<Person>& list) {
                  cout << "\t\t\t\tFemale\t";
              }
 
-            else if(list[i].name.length() >= 16)        // if name is 16 letters or more, remove a tab before gender
+            else if(list[i].name.length() >= 16  && list[i].name.length() < 24)        // if name is 16 letters or more, remove a tab before gender
             {
                  cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData();
                  cout << "\t\tFemale\t";
@@ -73,7 +73,7 @@ void display(vector<Person>& list) {
             else if(list[i].name.length() >=24)        // if name is 24 letters or more, remove 2 tabs before gender
             {
                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData();
-                cout << "\t\tFemale\t";
+                cout << "\tFemale\t";
             }
 
             else
