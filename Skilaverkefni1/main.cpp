@@ -10,7 +10,7 @@
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main() {
     XMLParser database( "database.xml" );                       // Select database
 
     vector<Person> list;
@@ -71,8 +71,67 @@ int main(int argc, char *argv[]) {
     if( database.ReadDatabase( list ) )                         // Example of how to read from 'database.xml'
         cout << "Unable to read file 'database.xml'" << endl;
 
+    int choice, sort, remove, index;
+    Person add,search;
 
-    int choice = 0;
+    while(choice != 7)
+    {
+        choice =menu();
+        switch(choice){
+            case 1 :
+                display(list);
+                break;
+
+            case 2 :
+                add = addPerson();
+                database.AddEntry(add);
+                break;
+
+            case 3 :
+                display(list);
+                remove = deletePerson(list);
+                if(remove != 0)
+                {
+                    database.RemoveEntry(remove-1);
+                }
+                break;
+
+            case 4 :
+                search = SearchMenu();
+                Search(list, search);
+                break;
+
+            case 5 :
+                sort = sortList();
+                if(sort == 1)
+                    sortByName(list);
+                else if(sort == 2)
+                    sortByBirth(list);
+                else if(sort == 3)
+                    sortByDeath(list);
+                else if(sort == 4)
+                    genderSort(list, 0, list.size() - 1);
+
+                display(list);
+                if(keepSorted())
+                        database.WriteDatabase(list);
+                break;
+
+            case 6 :
+                display(list);
+                cout << "Select index of entry to modify: ";
+                cin >> index;
+                cout << endl;
+
+                Person mod = modify( list[index-1] );
+                database.ModifyEntry( index-1, mod );
+                break;
+
+        }
+        database.ReadDatabase(list);
+    }
+
+    /*int choice = 0;
     while(choice != 8) {
         choice  = menu();
         if(choice == 1) {
@@ -124,7 +183,7 @@ int main(int argc, char *argv[]) {
         }
 
         database.ReadDatabase(list);
-    }
+    }   */
 
 
         // Sample Code
