@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     xmlparser.cpp \
     menu.cpp \
     sorter.cpp \
-    sqlitehandler.cpp
+    sqlitehandler.cpp \
+    computer.cpp
 
     menu.cpp
 
@@ -21,7 +22,8 @@ HEADERS += \
     person.h \
     menu.h \
     sorter.h \
-    sqlitehandler.h
+    sqlitehandler.h \
+    computer.h
 
     menu.h
 
