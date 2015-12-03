@@ -1,4 +1,4 @@
-QT += core
+QT += core sql
 QT -= gui
 
 TARGET = Skilaverkefni1
@@ -10,7 +10,8 @@ TEMPLATE = app
 SOURCES += main.cpp \
     xmlparser.cpp \
     menu.cpp \
-    sorter.cpp
+    sorter.cpp \
+    sqlitehandler.cpp
 
     menu.cpp
 
@@ -19,7 +20,8 @@ HEADERS += \
     xmlparser.h \
     person.h \
     menu.h \
-    sorter.h
+    sorter.h \
+    sqlitehandler.h
 
     menu.h
 
