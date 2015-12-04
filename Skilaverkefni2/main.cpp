@@ -6,13 +6,37 @@
 #include "person.h"
 #include "sorter.h"
 #include "menu.h"
+#include "sqlitehandler.h"
 
 using namespace std;
 
 int main() {
-    vector<Person> list;
+    vector<Computer> comps;
+    SQLITEHandler db("Database.db");
+    if( db.connect() ) {
+        cout << "Unable to connect to database" << endl;
+        return 1;
+    }
 
-    XMLParser database( "database.xml" );                       // Select database
+    for( int x = 0; x < 5; x++ ) {
+        Computer t;
+        cin >> t;
+        db.addEntry( t );
+    }
+
+    if( db.readDatabase( comps, NAME_ASC ) ) {
+        cout << "Unable to read from database" << endl;
+        return 2;
+    }
+
+    for( unsigned int x = 0; x < comps.size(); x++ ) {
+        cout << x << ".\t" << comps[x] << endl;
+    }
+
+    //return 0;
+
+    vector<Person> list;
+    /*XMLParser database( "database.xml" );                       // Select database
     if( database.ReadDatabase( list ) )                         // Reads all entries from 'database.xml'
         cout << "Unable to read file 'database.xml'" << endl;
 
@@ -96,7 +120,7 @@ int main() {
 
         }
         database.ReadDatabase(list);    // reads the database if it has changed
-    }
+    } // */
 
     return 0;
 }
