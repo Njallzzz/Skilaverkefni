@@ -18,11 +18,11 @@ int main() {
         return 1;
     }
 
-    for( int x = 0; x < 5; x++ ) {
+    /*for( int x = 0; x < 5; x++ ) {
         Computer t;
         cin >> t;
         db.addEntry( t );
-    }
+    }*/
 
     if( db.readDatabase( comps, NAME_ASC ) ) {
         cout << "Unable to read from database" << endl;
