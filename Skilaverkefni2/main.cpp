@@ -35,6 +35,8 @@ int main() {
 
     //return 0;
 
+    db.disconnect();
+
     vector<Person> list;
     /*XMLParser database( "database.xml" );                       // Select database
     if( database.ReadDatabase( list ) )                         // Reads all entries from 'database.xml'

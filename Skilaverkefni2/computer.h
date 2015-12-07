@@ -15,7 +15,7 @@ public:
     Computer(int ID, QString theName, QDate year, QString theType, bool built);
 
     //Getters
-    int getID();
+    int getId();
     QString getName();
     QString getYear();
     QString getType();

@@ -40,7 +40,7 @@ int SQLITEHandler::disconnect() {
     return 1;
 }
 
-int SQLITEHandler::readDatabase( vector<Person> & people, sorting s1, sorting s2 ) {
+int SQLITEHandler::readDatabase( vector<Person> & people, sorting s1, sorting s2 ) {        // Yet to add sorting for s2
     if( !status )
         return 1;
     if( s1 == NAME_ASC )
@@ -81,6 +81,18 @@ int SQLITEHandler::readDatabase( vector<Person> & people, sorting s1, sorting s2
         Person p( id, name, gender, birth, death  );
         people.push_back( p );
     }
+
+    for(unsigned int x = 0; x < people.size(); x++) {
+        q.prepare("SELECT * FROM relation WHERE person = (:id)");
+        q.bindValue( ":id", people[x].getId() );
+        if( !q.exec() )
+            return 4;
+        int ref = q.record().indexOf("computer");
+        while( q.next() ) {
+            people[x].add_relation( q.value( ref ).toInt() );
+        }
+    }
+
     return 0;
 }
 
@@ -128,14 +140,14 @@ int SQLITEHandler::readDatabase( std::vector<Computer> & computers, sorting s1, 
     return 0;
 }
 
-int SQLITEHandler::addEntry( Computer comp ) {
+int SQLITEHandler::addEntry( Computer c ) {
     if( !status )
         return 1;
     q.prepare( "INSERT INTO computers (name, creation, type, constructed) VALUES (:name, :creation, :type, :constructed)" );
-    q.bindValue( ":name", comp.getName() );
-    q.bindValue( ":creation", comp.getYear() );
-    q.bindValue( ":type", comp.getType() );
-    q.bindValue( ":constructed", comp.getWasBuilt() );
+    q.bindValue( ":name", c.getName() );
+    q.bindValue( ":creation", c.getYear() );
+    q.bindValue( ":type", c.getType() );
+    q.bindValue( ":constructed", c.getWasBuilt() );
     if( !q.exec() )
         return 1;
     return 0;
@@ -158,18 +170,18 @@ int SQLITEHandler::addEntry( Person p ) {
     return 0;
 }
 
-int SQLITEHandler::removeEntry( Computer comp ) {
+int SQLITEHandler::removeEntry( Computer c ) {
     if( !status )
         return 1;
     q.prepare( "DELETE FROM computers WHERE id = (:id)" );      // Delete computer
-    q.bindValue( ":id", comp.getID() );
-    if( !q.exec() )
-        return 1;
-
-    q.prepare( "DELETE FROM relation WHERE computer = (:id)" ); // Delete relations
-    q.bindValue( ":id", comp.getID() );
+    q.bindValue( ":id", c.getId() );
     if( !q.exec() )
         return 2;
+
+    q.prepare( "DELETE FROM relation WHERE computer = (:id)" ); // Delete relations
+    q.bindValue( ":id", c.getId() );
+    if( !q.exec() )
+        return 3;
 
     return 0;
 }
@@ -180,27 +192,27 @@ int SQLITEHandler::removeEntry( Person p ) {
     q.prepare( "DELETE FROM people WHERE id = (:id)" );      // Delete person
     q.bindValue( ":id", p.getId() );
     if( !q.exec() )
-        return 1;
+        return 2;
 
     q.prepare( "DELETE FROM relation WHERE person = (:id)" ); // Delete relations
     q.bindValue( ":id", p.getId() );
     if( !q.exec() )
-        return 2;
+        return 3;
 
     return 0;
 }
 
-int SQLITEHandler::modifyEntry( Computer comp ) {
+int SQLITEHandler::modifyEntry( Computer c ) {
     if( !status )
         return 1;
     q.prepare( "UPDATE computers SET name = (:name), creation = (:creation), type = (:type), constructed = (:constructed) WHERE id = (:id)" );
-    q.bindValue( ":id", comp.getID() );
-    q.bindValue( ":name", comp.getName() );
-    q.bindValue( ":creation", comp.getYear() );
-    q.bindValue( ":type", comp.getType() );
-    q.bindValue( ":constructed", comp.getWasBuilt() );
+    q.bindValue( ":id", c.getId() );
+    q.bindValue( ":name", c.getName() );
+    q.bindValue( ":creation", c.getYear() );
+    q.bindValue( ":type", c.getType() );
+    q.bindValue( ":constructed", c.getWasBuilt() );
     if( !q.exec() )
-        return 1;
+        return 2;
     return 0;
 }
 
@@ -214,6 +226,28 @@ int SQLITEHandler::modifyEntry( Person p ) {
     q.bindValue( ":birth", p.getBirth().toString("yyyy-mm-dd") );
     q.bindValue( ":death", p.getBirth().toString("yyyy-mm-dd") );
     if( !q.exec() )
+        return 2;
+    return 0;
+}
+
+int SQLITEHandler::addRelation( Person p, Computer c ) {
+    if( !status )
         return 1;
+    q.prepare( "INSERT INTO relation (person, computer) VALUES (:person, :computer)" );
+    q.bindValue( ":person", p.getId() );
+    q.bindValue( ":computer", c.getId() );
+    if( !q.exec() )
+        return 2;
+    return 0;
+}
+
+int SQLITEHandler::deleteRelation( Person p, Computer c ) {
+    if( !status )
+        return 1;
+    q.prepare( "DELETE FROM relation WHERE person = (:person) AND computer = (:computer)" );      // Delete person
+    q.bindValue( ":person", p.getId() );
+    q.bindValue( ":computer", c.getId() );
+    if( !q.exec() )
+        return 2;
     return 0;
 }

@@ -8,7 +8,7 @@ Computer::Computer( int ID, QString theName, QDate year, QString theType, bool b
     id = ID;
 }
 
-int Computer::getID() {
+int Computer::getId() {
     return id;
 }
 QString Computer::getName() {

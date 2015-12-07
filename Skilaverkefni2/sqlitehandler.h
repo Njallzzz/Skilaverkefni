@@ -44,9 +44,9 @@ public:
     int readDatabase( vector<Computer> & computers, sorting s1, sorting s2 = NAME_ASC );
 
     // Computer table related functions
-    int addEntry( Computer comp );
-    int removeEntry( Computer comp );
-    int modifyEntry( Computer comp );
+    int addEntry( Computer c );
+    int removeEntry( Computer c );
+    int modifyEntry( Computer c );
 
     // People table related functions
     int addEntry( Person p );
@@ -54,8 +54,8 @@ public:
     int modifyEntry( Person p );
 
     // Relation table  related functions
-    // int addRelation( Person p, Computer comp );
-    // ?
+    int addRelation( Person p, Computer c );
+    int deleteRelation( Person p, Computer c );
 
 private:
     QString file;
