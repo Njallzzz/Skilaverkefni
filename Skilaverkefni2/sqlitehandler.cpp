@@ -73,11 +73,15 @@ int SQLITEHandler::readDatabase( vector<Person> & people, sorting s1, sorting s2
 
     while( q.next() ) {
         int id = q.value( ref[0] ).toInt(),
-            gender = q.value( ref[2] ).toInt();
-        QString name = q.value( ref[1] ).toString();
-        QDate birth = QDate::fromString( q.value( ref[3] ).toString(), "yyyy-mm-dd" ),
-              death = QDate::fromString( q.value( ref[4] ).toString(), "yyyy-mm-dd" );
-
+            gender = 0;
+        QString name = q.value( ref[1] ).toString(),
+                genderString = q.value( ref[2] ).toString();
+        QDate birth = QDate::fromString( q.value( ref[3] ).toString(), "yyyy-MM-dd" ),
+              death = QDate::fromString( q.value( ref[4] ).toString(), "yyyy-MM-dd" );
+        if( genderString == "Male" )
+            gender = 1;
+        else if( genderString == "Female" )
+            gender = 2;
         Person p( id, name, gender, birth, death  );
         people.push_back( p );
     }
@@ -162,8 +166,8 @@ int SQLITEHandler::addEntry( Person p ) {
         q.bindValue( ":gender", "Male" );
     else if( p.getGender() == 2 )
         q.bindValue( ":gender", "Female" );
-    q.bindValue( ":birth", p.getBirth().toString("yyyy-mm-dd") );
-    q.bindValue( ":death", p.getDeath().toString("yyyy-mm-dd") );
+    q.bindValue( ":birth", p.getBirth().toString("yyyy-MM-dd") );
+    q.bindValue( ":death", p.getDeath().toString("yyyy-MM-dd") );
 
     if( !q.exec() )
         return 1;
@@ -223,8 +227,8 @@ int SQLITEHandler::modifyEntry( Person p ) {
     q.bindValue( ":id", p.getId() );
     q.bindValue( ":name", p.getName() );
     q.bindValue( ":gender", p.getGender() );
-    q.bindValue( ":birth", p.getBirth().toString("yyyy-mm-dd") );
-    q.bindValue( ":death", p.getBirth().toString("yyyy-mm-dd") );
+    q.bindValue( ":birth", p.getBirth().toString("yyyy-MM-dd") );
+    q.bindValue( ":death", p.getBirth().toString("yyyy-MM-dd") );
     if( !q.exec() )
         return 2;
     return 0;
@@ -233,11 +237,13 @@ int SQLITEHandler::modifyEntry( Person p ) {
 int SQLITEHandler::addRelation( Person p, Computer c ) {
     if( !status )
         return 1;
+    if( p.isRelated( c ) )
+        return 2;
     q.prepare( "INSERT INTO relation (person, computer) VALUES (:person, :computer)" );
     q.bindValue( ":person", p.getId() );
     q.bindValue( ":computer", c.getId() );
     if( !q.exec() )
-        return 2;
+        return 3;
     return 0;
 }
 

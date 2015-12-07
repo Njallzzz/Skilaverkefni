@@ -6,6 +6,7 @@
 #include <QTextStream>
 #include <vector>
 #include <iostream>
+#include "computer.h"
 
 using namespace std;
 
@@ -27,9 +28,12 @@ public:
     void setBirth(QDate birth);
     void setDeath(QDate death);
 
-    void add_relation( int id );
+    void add_relation( int id );        // Add a relation to this person
+
+    bool isRelated( Computer c );       // Check if this person is related with a computer
 
     friend std::istream& operator>>(std::istream& is, Person& p);
+    friend std::ostream& operator<<(std::ostream& os, const Person& p);
 
     int id;
     QString name;       // Name of a individual

@@ -10,6 +10,7 @@ using namespace std;
 
 int main() {
     vector<Computer> comps;
+    vector<Person> people;
     SQLITEHandler db("Database.db");
     if( db.connect() ) {
         cout << "Unable to connect to database" << endl;
@@ -17,7 +18,7 @@ int main() {
     }
 
     /*for( int x = 0; x < 5; x++ ) {
-        Computer t;
+        Person t;
         cin >> t;
         db.addEntry( t );
     }*/
@@ -26,11 +27,19 @@ int main() {
         cout << "Unable to read from database" << endl;
         return 2;
     }
+    if( db.readDatabase( people, NAME_ASC ) ) {
+        cout << "Unable to read from database" << endl;
+        return 3;
+    }
 
 
 
     for( unsigned int x = 0; x < comps.size(); x++ ) {
         cout << x+1 << ".\t" << comps[x] << endl;
+    }
+
+    for( unsigned int x = 0; x < people.size(); x++ ) {
+        cout << x+1 << ".\t" << people[x] << endl;
     }
 
     //return 0;

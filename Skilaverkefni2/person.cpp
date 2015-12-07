@@ -51,6 +51,34 @@ void Person::add_relation( int id ) {
     computers.push_back( id );
 }
 
+bool Person::isRelated( Computer c ) {
+    bool related = false;
+    for( unsigned int x = 0; x < computers.size(); x++ ) {
+        if( computers[x] == c.getId() )
+            related = true;
+    }
+    return related;
+}
+
+std::ostream& operator<<(std::ostream& os, const Person& p) {
+    os << p.name.toUtf8().constData();
+    if( p.name.length() < 8 )
+        os << "\t\t\t";
+    else if( p.name.length() >= 8 && p.name.length() < 16 )
+        os << "\t\t";
+    else
+        os << "\t";
+
+    if( p.gender == 1 )
+        os << "Male\t";
+    else if( p.gender == 2 )
+        os << "Female\t";
+
+    os << p.birth.toString("d.M.yyyy").toUtf8().constData();
+    os << "\t" << p.death.toString("d.M.yyyy").toUtf8().constData();
+    return os;
+}
+
 std::istream& operator>>(std::istream& is, Person& p) {
     QTextStream in(stdin);
     string gender;
@@ -79,13 +107,16 @@ std::istream& operator>>(std::istream& is, Person& p) {
     cout << "Birth year: ";
     p.birth = QDate();
     while( !p.birth.isValid() )
-        p.birth = QDate::fromString( in.readLine(), "dd.MM.yy" );
+        p.birth = QDate::fromString( in.readLine(), "dd.MM.yyyy" );
 
-    cout << "Death year: ";
+    cout << "Death year(0 for none): ";
     p.death = QDate();
-    while( !p.death.isValid())
-        p.death = QDate::fromString( in.readLine(), "dd.MM.yy");
-
+    QString death = "";
+    while( !p.death.isValid() && death != "0") {
+        death = in.readLine();
+        if( death != "0" )
+            p.death = QDate::fromString( death, "dd.MM.yyyy");
+    }
 
     return is;
 }
