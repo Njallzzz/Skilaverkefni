@@ -8,23 +8,16 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    xmlparser.cpp \
     menu.cpp \
-    sorter.cpp \
     sqlitehandler.cpp \
-    computer.cpp
+    computer.cpp \
+    person.cpp
 
-    menu.cpp
 
-
-HEADERS += \
-    xmlparser.h \
+HEADERS +=\
     person.h \
     menu.h \
-    sorter.h \
     sqlitehandler.h \
     computer.h
-
-    menu.h
 
 

@@ -2,9 +2,7 @@
 #include <vector>
 #include <QTextStream>
 #include <iostream>
-#include "xmlparser.h"
 #include "person.h"
-#include "sorter.h"
 #include "menu.h"
 #include "sqlitehandler.h"
 
