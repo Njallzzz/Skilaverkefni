@@ -4,6 +4,7 @@
 #include <QString>
 #include <QDate>
 #include <QTextStream>
+#include <vector>
 #include <iostream>
 
 using namespace std;
@@ -11,9 +12,11 @@ using namespace std;
 class Person {// Construct of a individual
 public:
     Person();
+    Person( int id, QString name, int gender, QDate birth, QDate death);
     Person(QString name, int gender, QDate birth, QDate death);
     Person(QString name, int gender, QDate birth);
 
+    int getId();
     QString getName();
     int getGender();
     QDate getBirth();
@@ -24,6 +27,8 @@ public:
     void setBirth(QDate birth);
     void setDeath(QDate death);
 
+    void add_relation( int id );
+
     friend std::istream& operator>>(std::istream& is, Person& p);
 
     int id;
@@ -31,6 +36,7 @@ public:
     int gender;         // 0 = Unspecified, 1 = Male, 2 = Female
     QDate birth;
     QDate death;        // if death = QDate() then Invalid
+    vector<int> computers;
 };
 
 #endif // PERSON_H

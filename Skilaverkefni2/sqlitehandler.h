@@ -5,6 +5,7 @@
 #include <QtSql>
 #include <QDate>
 #include "computer.h"
+#include "person.h"
 #include <vector>
 #include <iostream>
 
@@ -21,7 +22,13 @@ enum sorting {
     TYPE_ASC,
     TYPE_DESC,
     CONSTRUCTED_ASC,
-    CONSTRUCTED_DESC
+    CONSTRUCTED_DESC,
+    GENDER_ASC,
+    GENDER_DESC,
+    BIRTH_ASC,
+    BIRTH_DESC,
+    DEATH_ASC,
+    DEATH_DESC
 };
 
 class SQLITEHandler {
@@ -32,7 +39,8 @@ public:
     int disconnect();
     int SetDatabase( QString filename );
 
-    //int readDatabase( vector<Person> & people );
+    // Reads entire database into variables
+    int readDatabase( vector<Person> & people, sorting s1, sorting s2 = NAME_ASC );
     int readDatabase( vector<Computer> & computers, sorting s1, sorting s2 = NAME_ASC );
 
     // Computer table related functions
@@ -41,9 +49,9 @@ public:
     int modifyEntry( Computer comp );
 
     // People table related functions
-    //int addEntry( Person p );
-    //int removeEntry( Person p );
-    //int modifyEntry( Person p );
+    int addEntry( Person p );
+    int removeEntry( Person p );
+    int modifyEntry( Person p );
 
     // Relation table  related functions
     // int addRelation( Person p, Computer comp );

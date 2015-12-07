@@ -8,8 +8,15 @@ Person::Person()
 Person::Person(QString name, int gender, QDate birth, QDate death)
     : name(name), gender(gender), birth(birth), death(death){}
 
+Person::Person( int id, QString name, int gender, QDate birth, QDate death)
+    : id(id), name(name), gender(gender), birth(birth), death(death) {}
+
 Person::Person(QString name, int gender, QDate birth)
     : name(name), gender(gender), birth(birth){}
+
+int Person::getId(){
+    return id;
+}
 
 QString Person::getName(){
     return name;
@@ -38,6 +45,10 @@ void Person::setBirth(QDate birth){
 }
 void Person::setDeath(QDate death){
     this->death = death;
+}
+
+void Person::add_relation( int id ) {
+    computers.push_back( id );
 }
 
 std::istream& operator>>(std::istream& is, Person& p) {
