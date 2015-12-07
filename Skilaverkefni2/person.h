@@ -3,6 +3,10 @@
 
 #include <QString>
 #include <QDate>
+#include <QTextStream>
+#include <iostream>
+
+using namespace std;
 
 class Person {// Construct of a individual
 public:
@@ -19,7 +23,7 @@ public:
     void setGender(int gender);
     void setBirth(QDate birth);
     void setDeath(QDate death);
-
+    friend std::istream& operator>>(std::istream& is, Person& p);
 
     int id;
     QString name;       // Name of a individual

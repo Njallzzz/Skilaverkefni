@@ -40,3 +40,41 @@ void Person::setDeath(QDate death){
     this->death = death;
 }
 
+std::istream& operator>>(std::istream& is, Person& p) {
+    QTextStream in(stdin);
+    string gender;
+
+    cout << "Name: ";
+    p.name = "";
+    while( p.name == "" )
+            p.name = in.readLine();
+    do{
+    cout << "Gender(male/female): ";
+    cin >> gender;
+    if(gender == "male" || gender == "Male")
+    {
+        p.gender = 1;
+    }
+    else if(gender == "female" || gender == "Female")
+    {
+        p.gender = 2;
+    }
+    else
+        cout << "Invalid input!" << endl;
+    }while(p.gender != 1 && p.gender != 2);
+
+
+
+    cout << "Birth year: ";
+    p.birth = QDate();
+    while( !p.birth.isValid() )
+        p.birth = QDate::fromString( in.readLine(), "dd.MM.yy" );
+
+    cout << "Death year: ";
+    p.death = QDate();
+    while( !p.death.isValid())
+        p.death = QDate::fromString( in.readLine(), "dd.MM.yy");
+
+
+    return is;
+}

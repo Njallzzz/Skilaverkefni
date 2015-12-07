@@ -28,9 +28,7 @@ int main() {
     }
 
 
-    displayComputer(comps);
-    Computer temp = addComputer();
-    db.addEntry(temp);
+
     for( unsigned int x = 0; x < comps.size(); x++ ) {
         cout << x+1 << ".\t" << comps[x] << endl;
     }
