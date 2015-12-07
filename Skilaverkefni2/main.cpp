@@ -27,7 +27,10 @@ int main() {
         return 2;
     }
 
+
     displayComputer(comps);
+    Computer temp = addComputer();
+    db.addEntry(temp);
     for( unsigned int x = 0; x < comps.size(); x++ ) {
         cout << x+1 << ".\t" << comps[x] << endl;
     }
@@ -39,7 +42,7 @@ int main() {
     if( database.ReadDatabase( list ) )                         // Reads all entries from 'database.xml'
         cout << "Unable to read file 'database.xml'" << endl;
 
-    int choice, sort, remove, index;
+    int choice, addChoice, sort, remove, index;
     Person add, search, mod;
     QTextStream in(stdin);
 
@@ -52,9 +55,11 @@ int main() {
                 break;
 
             case 2 :                //2. Add a person to the list
-                add = addPerson();
-                database.AddEntry(add);
-                break;
+
+                        add = addPerson();
+                        database.AddEntry(add);
+
+                     break;
 
             case 3 :               //3. Remove a person to the list
                 if( list.size() == 0 ) {        // Check if the database is empty

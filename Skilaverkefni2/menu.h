@@ -14,8 +14,9 @@ using namespace std;
 
 int menu();                             // Display main menu
 void displayPerson(vector<Person>& list);     // Display all people in list
-void displayComputer(vector<Computer>& comps);
-Person addPerson();                     // User menu to create person
+void displayComputer(vector<Computer>& comps);// Display all computers in list
+Person addPerson();                     // User menu to add a person
+Computer addComputer();                 // User meno to add a computer
 int deletePerson(vector<Person>& list); // User menu to get index of person to delete
 Person SearchMenu();                    // Search User Menu
 void Search( vector<Person> & list, Person p ); // Search algorithm

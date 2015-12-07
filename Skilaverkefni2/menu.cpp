@@ -150,6 +150,13 @@ Person addPerson() {
     return temp;
 }
 
+Computer addComputer()
+{
+    Computer temp;
+    cout << "Add a computer to the list" << endl;
+    cin >> temp;
+    return temp;
+}
 int deletePerson(vector<Person>& list) {
     int x = 0;
     char choice = 0;
