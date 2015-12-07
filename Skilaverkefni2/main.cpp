@@ -27,8 +27,9 @@ int main() {
         return 2;
     }
 
+    displayComputer(comps);
     for( unsigned int x = 0; x < comps.size(); x++ ) {
-        cout << x << ".\t" << comps[x] << endl;
+        cout << x+1 << ".\t" << comps[x] << endl;
     }
 
     //return 0;
@@ -47,7 +48,7 @@ int main() {
         choice = menu();
         switch(choice){
             case 1 :                //1. Display the list
-                display(list);
+                displayPerson(list);
                 break;
 
             case 2 :                //2. Add a person to the list

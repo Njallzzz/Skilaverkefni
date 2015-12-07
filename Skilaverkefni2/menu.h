@@ -8,11 +8,13 @@
 #include <string>
 #include <QTextStream>
 #include "person.h"
+#include "computer.h"
 
 using namespace std;
 
 int menu();                             // Display main menu
-void display(vector<Person>& list);     // Display all values in list
+void displayPerson(vector<Person>& list);     // Display all people in list
+void displayComputer(vector<Computer>& comps);
 Person addPerson();                     // User menu to create person
 int deletePerson(vector<Person>& list); // User menu to get index of person to delete
 Person SearchMenu();                    // Search User Menu

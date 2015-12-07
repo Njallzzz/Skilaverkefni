@@ -23,7 +23,7 @@ int menu() {
     return y;
 }
 
-void display(vector<Person>& list) {
+void displayPerson(vector<Person>& list) {
 
     cout << "\tName\t\t\t\tGender\tBirth\t\tDeath" << endl;
     cout << "-------------------------------------------------------------------------------" << endl;
@@ -89,6 +89,16 @@ void display(vector<Person>& list) {
     cout << endl;
 }
 
+
+void displayComputer(vector<Computer>& comps)
+{
+    cout << "\tName\t\t\tCreated\t\tType\t\tBuilt" << endl;
+    cout << "-------------------------------------------------------------------------------" << endl;
+    for(unsigned int x =0; x < comps.size();x++)
+    {
+        cout << x+1 << ".\t" << comps[x] << endl;
+    }
+}
 Person addPerson() {
     Person temp;
     QString birth, death;
@@ -271,7 +281,7 @@ void Search( vector<Person> & list, Person p ) {        // Search for members in
         if(add)
             SearchList.push_back( list[x] );
     }
-    display( SearchList );              // Display search results
+    displayPerson( SearchList );              // Display search results
 }
 
 int sortList() {        // Gets the method of which the user wants to sort the list
