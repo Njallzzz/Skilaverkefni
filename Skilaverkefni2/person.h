@@ -23,6 +23,7 @@ public:
     void setGender(int gender);
     void setBirth(QDate birth);
     void setDeath(QDate death);
+
     friend std::istream& operator>>(std::istream& is, Person& p);
 
     int id;

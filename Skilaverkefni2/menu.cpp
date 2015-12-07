@@ -101,52 +101,8 @@ void displayComputer(vector<Computer>& comps)
 }
 Person addPerson() {
     Person temp;
-    QString birth, death;
-    QString name, gender;
-    QTextStream in(stdin);
-
     cout << "Add a person to the list" << endl;
-
-    cout << "Name: ";
-    cin.ignore();
-    name = in.readLine();
-    temp.name = name;
-
-    do{
-        cout << "Gender(male/female): ";
-        gender = in.readLine();
-        if(gender == "male" || gender == "Male")
-            temp.gender = 1;
-        else if(gender == "female" || gender == "Female")
-            temp.gender = 2;
-        else
-            cout << "Not a valid entry!" << endl;
-    }while(!(temp.gender == 1 || temp.gender == 2));
-
-    do{
-        cout << "Birth year(dd.mm.yyyy): ";
-        in >> birth;
-        temp.birth = QDate::fromString( birth, "dd.MM.yyyy" );
-        if(!(temp.birth.isValid()))
-        {
-            cout <<"Not a valid date!"<< endl;
-        }
-    }while(!(temp.birth.isValid()));
-
-    do{
-        cout << "Death year(dd.mm.yyyy, enter 0 if person is still alive): ";
-        in >> death;
-        temp.death = QDate::fromString(death, "dd.MM.yyyy");
-        if(death == "0")
-        {
-            break;
-        }
-        if(!(temp.birth.isValid()))
-        {
-            cout <<"Not a valid date!" << endl;
-        }
-    }while(!(temp.death.isValid()));
-    cout << endl;
+    cin >> temp;
     return temp;
 }
 
