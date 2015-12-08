@@ -33,6 +33,13 @@ QDate Person::getBirth(){
 QDate Person::getDeath(){
     return death;
 }
+int Person::getComputer(int i) {
+    return computers[i];
+}
+
+int Person::getSize() {
+    return computers.size();
+}
 
 void Person::setName(QString name){
     this->name = name;
@@ -60,7 +67,7 @@ bool Person::isRelated( Computer c ) {
     return related;
 }
 
-std::ostream& operator<<(std::ostream& os, const Person& p) {
+std::ostream& operator<<(std::ostream& os, Person& p) {
     os << p.name.toUtf8().constData();
     if( p.name.length() < 8 )
         os << "\t\t\t\t";
@@ -77,7 +84,10 @@ std::ostream& operator<<(std::ostream& os, const Person& p) {
         os << "Female\t";
 
     os << p.birth.toString("d.M.yyyy").toUtf8().constData();
-    os << "\t" << p.death.toString("d.M.yyyy").toUtf8().constData();
+    if( p.getDeath().isValid() )
+        os << "\t" << p.death.toString("d.M.yyyy").toUtf8().constData();
+    else
+        os << "\t\t";
     return os;
 }
 

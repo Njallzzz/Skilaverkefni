@@ -27,8 +27,6 @@ int main() {
         return 3;
     }
 
-
-
     /*for( unsigned int x = 0; x < comps.size(); x++ ) {
         cout << x+1 << ".\t" << comps[x] << endl;
     }

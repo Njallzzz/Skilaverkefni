@@ -23,21 +23,39 @@ int menu() {
     return y;
 }
 
-void display(vector<Person>& list, vector<Computer> comps)
-{
-    int choice = computersOrPeople(DISPLAY);
+void display(vector<Person>& list, vector<Computer> comps) {
+    cout << "\tName\t\t\t\tGender\tBirth\t\tDeath\t\tComputers" << endl;
+    cout << "--------------------------------------------------------------------------------------------" << endl;
+
+    for(unsigned int x = 0; x < list.size(); x++) {
+        cout << x+1 << ".\t" << list[x];
+        for(int y = 0; y < list[x].getSize(); y++) {
+            int id = 0;
+            for(unsigned int z = 0; z < comps.size(); z++) {
+                if( comps[z].getId() == list[x].getComputer(y) )
+                    id = z;
+            }
+            cout << "\t" << comps[ id ].getName().toUtf8().constData() << endl;
+            if( (list[x].getSize() - 1) != y )
+                cout << "\t\t\t\t\t\t\t\t\t";
+        }
+        if( list[x].getSize() == 0 )
+            cout << endl;
+    }
+
+    /*int choice = computersOrPeople(DISPLAY);
 
     if(choice == 1)
         displayPerson(list);
     else if(choice == 2)
-        displayComputer(comps);
+        displayComputer(comps);*/
 }
 void displayPerson(vector<Person>& list) {
 
     cout << "\tName\t\t\t\tGender\tBirth\t\tDeath" << endl;
     cout << "-------------------------------------------------------------------------------" << endl;
 
-    for(unsigned int x=0; x< list.size(); x++)
+    for(unsigned int x=0; x < list.size(); x++)
     {
         cout << x+1 << ".\t" << list[x] << endl;
     }

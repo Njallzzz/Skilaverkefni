@@ -22,6 +22,8 @@ public:
     int getGender();
     QDate getBirth();
     QDate getDeath();
+    int getSize();
+    int getComputer(int i);
 
     void setName(QString name);
     void setGender(int gender);
@@ -33,7 +35,7 @@ public:
     bool isRelated( Computer c );       // Check if this person is related with a computer
 
     friend std::istream& operator>>(std::istream& is, Person& p);
-    friend std::ostream& operator<<(std::ostream& os, const Person& p);
+    friend std::ostream& operator<<(std::ostream& os, Person& p);
 
     int id;
     QString name;       // Name of a individual
