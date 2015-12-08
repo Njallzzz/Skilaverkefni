@@ -70,13 +70,13 @@ bool Person::isRelated( Computer c ) {
 std::ostream& operator<<(std::ostream& os, Person& p) {
     os << p.name.toUtf8().constData();
     if( p.name.length() < 8 )
-        os << "\t\t\t\t";
-    else if( p.name.length() >= 8 && p.name.length() < 16 )
         os << "\t\t\t";
-    else if( p.name.length() >= 16 && p.name.length() < 24 )
+    else if( p.name.length() >= 8 && p.name.length() < 16 )
         os << "\t\t";
-    else
+    else if( p.name.length() >= 16 && p.name.length() < 24 )
         os << "\t";
+    else
+        os << "";
 
     if( p.gender == 1 )
         os << "Male\t";
