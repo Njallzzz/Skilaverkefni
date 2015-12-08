@@ -68,6 +68,13 @@ int main() {
             }
             case 3 : {
                 vector<int> relation = addRelation(people, comps);
+                if(people[relation[0]-1].isRelated(comps[relation[1]-1]))
+                {
+                    cout << "Already connected" << endl;
+
+                    break;
+                }
+                else
                 db.addRelation(people[relation[0]-1], comps[relation[1]-1]);
                 break;
             }

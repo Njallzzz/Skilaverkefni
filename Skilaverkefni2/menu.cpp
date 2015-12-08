@@ -176,15 +176,28 @@ int deleteComputer(vector<Computer>& list) {
 vector<int> addRelation(vector<Person>& p, vector<Computer>& c)
 {   vector<int> relation;
     int x, y;
+
     displayPerson(p);
+    do{
     cout <<"Select a person" << endl;
     cin >> x;
-    relation.push_back(x);
+    if(x > p.size())
+        cout << "Please choose a number from 1 to " << p.size() << endl;
+    else
+        relation.push_back(x);
+    }while(x > p.size());
+
 
     displayComputer(c);
-    cout << "Select a computer to connect to the chosen person" << endl;
-    cin >> y;
-    relation.push_back(y);
+    do{
+        cout << "Select a computer to connect to the chosen person" << endl;
+        cin >> y;
+        if(y > c.size())
+            cout << "Please choose a number from 1 to " << c.size() << endl;
+        else
+            relation.push_back(y);
+
+    }while(y > c.size());
 
     return relation;
 }
