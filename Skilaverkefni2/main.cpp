@@ -31,6 +31,17 @@ int main() {
 
 
 
+
+
+   db.deleteRelation(people[1],comps[1]);
+
+
+
+
+
+
+
+
     int choice = 0;
 
     while(choice != 9) {
@@ -53,6 +64,11 @@ int main() {
                 } else if(addChoice == 2) {
                     db.addEntry( addComputer() );
                 }
+                break;
+            }
+            case 3 : {
+                vector<int> relation = addRelation(people, comps);
+                db.addRelation(people[relation[0]-1], comps[relation[1]-1]);
                 break;
             }
 

@@ -173,6 +173,21 @@ int deleteComputer(vector<Computer>& list) {
     return 0;
 }
 
+vector<int> addRelation(vector<Person>& p, vector<Computer>& c)
+{   vector<int> relation;
+    int x, y;
+    displayPerson(p);
+    cout <<"Select a person" << endl;
+    cin >> x;
+    relation.push_back(x);
+
+    displayComputer(c);
+    cout << "Select a computer to connect to the chosen person" << endl;
+    cin >> y;
+    relation.push_back(y);
+
+    return relation;
+}
 
 Person SearchPersonMenu() {       // Get search paramters from user
     Person temp;    char key = 0;   QTextStream in(stdin);
