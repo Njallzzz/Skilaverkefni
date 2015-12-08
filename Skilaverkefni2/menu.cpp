@@ -202,6 +202,36 @@ vector<int> addRelation(vector<Person>& p, vector<Computer>& c)
     return relation;
 }
 
+vector<int> removeRelation(vector<Person>& p, vector<Computer>& c)
+{
+    vector<int> relation;
+    int x, y;
+
+    displayPerson(p);
+    do{
+        cout <<"Select a person" << endl;
+        cin >> x;
+        if(x > p.size())
+            cout << "Please choose a number from 1 to " << p.size() << endl;
+        else
+            relation.push_back(x);
+    }while(x > p.size());
+
+
+    displayComputer(c);
+    do{
+        cout << "Select a connected computer to remove from chosen person" << endl;
+        cin >> y;
+        if(y > c.size())
+            cout << "Please choose a number from 1 to " << c.size() << endl;
+        else
+            relation.push_back(y);
+
+    }while(y > c.size());
+
+    return relation;
+}
+
 Person SearchPersonMenu() {       // Get search paramters from user
     Person temp;    char key = 0;   QTextStream in(stdin);
     temp.setName("");

@@ -71,11 +71,10 @@ int main() {
                 if(people[relation[0]-1].isRelated(comps[relation[1]-1]))
                 {
                     cout << "Already connected" << endl;
-
                     break;
                 }
                 else
-                db.addRelation(people[relation[0]-1], comps[relation[1]-1]);
+                    db.addRelation(people[relation[0]-1], comps[relation[1]-1]);
                 break;
             }
 
@@ -102,6 +101,18 @@ int main() {
                 }
                 break;
             }
+            case 5 : {
+                vector<int> relation = removeRelation(people,comps);
+                if(!(people[relation[0]-1].isRelated(comps[relation[1]-1])))
+                {
+                    cout << "No connection between chosen person and computer" << endl;
+                    break;
+                }
+                else
+                    db.deleteRelation(people[relation[0]-1], comps[relation[1]-1]);
+                break;
+
+        }
             case 6 : {                    //4. Search List
                 int searchChoice = computersOrPeople( SEARCH );
                 if( searchChoice == 1 && people.size() == 0 ) {  // Check if the database is empty
