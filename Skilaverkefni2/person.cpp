@@ -41,6 +41,9 @@ int Person::getSize() {
     return computers.size();
 }
 
+void Person::setId(int id){
+    this->id = id;
+}
 void Person::setName(QString name){
     this->name = name;
 }
@@ -116,7 +119,7 @@ std::istream& operator>>(std::istream& is, Person& p) {
 
 
 
-    cout << "Birth date(dd.mm.yy): ";
+    cout << "Birth date(dd.mm.yyyy): ";
     cin.ignore();
     while( !p.birth.isValid() )
         p.birth = QDate::fromString( in.readLine(), "dd.MM.yyyy" );
@@ -129,7 +132,7 @@ std::istream& operator>>(std::istream& is, Person& p) {
     else if( stillAlive == 'n' || stillAlive == 'N')
     {
         do{
-        cout << "Death date(dd.mm.yy): ";
+        cout << "Death date(dd.mm.yyyy): ";
         p.death = QDate();
         QString death = "";
         cin.ignore();

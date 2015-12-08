@@ -22,6 +22,7 @@ public:
     int getWasBuilt();
 
     //Setters
+    void setId( int id );
     void setName(QString theName);
     void setYear(QString year);
     void setType(QString theType);

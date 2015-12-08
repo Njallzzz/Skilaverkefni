@@ -25,6 +25,7 @@ public:
     int getSize();
     int getComputer(int i);
 
+    void setId( int id );
     void setName(QString name);
     void setGender(int gender);
     void setBirth(QDate birth);
