@@ -47,6 +47,9 @@ int main() {
     db.disconnect();
 
     int choice=0;
+    int addChoice=0;
+    Person addP;
+    Computer addC;
 
     while(choice != 7)
     {
@@ -56,13 +59,22 @@ int main() {
                 display(people, comps);
                 break;
 
-           /* case 2 :                //2. Add a person to the list
-
-                        add = addPerson();
-                        database.AddEntry(add);
-
-                     break;
-
+            case 2 :                //2. Add a person to the list
+                cout << "1. Add a person to the list" << endl;
+                cout << "2. Add a computer to the list" << endl;
+                cin >> addChoice;
+                if(addChoice == 1)
+                {
+                    addP =addPerson();
+                    db.addEntry(addP);
+                }
+                else if(addChoice == 2)
+                {
+                    addC = addComputer();
+                    db.addEntry(addC);
+                }
+                break;
+            /*
             case 3 :               //3. Remove a person to the list
                 if( list.size() == 0 ) {        // Check if the database is empty
                     cout << "The database is empty" << endl << endl;
