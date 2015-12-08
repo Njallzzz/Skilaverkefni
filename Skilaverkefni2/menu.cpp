@@ -70,7 +70,7 @@ void displayComputer(vector<Computer>& comps)
 int computersOrPeople( action text ) {
     QTextStream in(stdin);
     QString input;
-    while( input != "1" && input != "2" && !( text == DISPLAY && input == "3" ) ) {
+    while( input != "1" && input != "2" && input != "3" ) {
         if( text == DISPLAY ) {
             cout << "1. Display combined" << endl;
             cout << "2. Display people" << endl;
@@ -78,24 +78,29 @@ int computersOrPeople( action text ) {
         } else if( text == ADD ) {
             cout << "1. Add a person to the list" << endl;
             cout << "2. Add a computer to the list" << endl;
+            cout << "3. Quit" << endl;
         } else if( text == REMOVE ) {
             cout << "1. Remove a person from the list" << endl;
             cout << "2. Remove a computer from the list" << endl;
+            cout << "3. Quit" << endl;
         } else if( text == MODIFY ) {
             cout << "1. Modify a person in the list" << endl;
             cout << "2. Modify a computer in the list" << endl;
+            cout << "3. Quit" << endl;
         } else if( text == SEARCH ) {
             cout << "1. Search for a person in the list" << endl;
             cout << "2. Search for a computer in the list" << endl;
+            cout << "3. Quit" << endl;
         } else if( text == SORT_MENU ) {
             cout << "1. Sort the list of people" << endl;
             cout << "2. Sort the list of computers" << endl;
+            cout << "3. Quit" << endl;
         }
 
         cout << "Your choice: ";
-        cin.ignore();
         input = in.readLine();
-        if( input != "1" && input != "2" && !( text == DISPLAY && input == "3" ) )
+        cout << input.toUtf8().constData() << endl;
+        if( input != "1" && input != "2" && input != "3" )
             cout << "Invalid input!" << endl;
     }
     return input.toInt();
@@ -173,49 +178,55 @@ int deleteComputer(vector<Computer>& list) {
     return 0;
 }
 
-vector<int> addRelation(vector<Person>& p, vector<Computer>& c)
-{   vector<int> relation;
+vector<int> addRelation(vector<Person>& p, vector<Computer>& c) {
+    QTextStream in(stdin);
+    vector<int> relation;
     unsigned int x, y;
+    QString value;
 
     displayPerson(p);
     do{
-    cout <<"Select a person" << endl;
-    cin >> x;
-    if(x > p.size())
-        cout << "Please choose a number from 1 to " << p.size() << endl;
-    else
-        relation.push_back(x);
-    }while(x > p.size());
+        cout <<"Select a person: ";
+        value = in.readLine();
+        x = value.toInt();
+        if( x > p.size() || x < 1 )
+            cout << "Please choose a number from 1 to " << p.size() << endl;
+        else
+            relation.push_back(x);
+    }while( x > p.size() || x < 1 );
 
 
     displayComputer(c);
     do{
-        cout << "Select a computer to connect to the chosen person" << endl;
-        cin >> y;
-        if(y > c.size())
+        cout << "Select a computer to connect to the chosen person: ";
+        value = in.readLine();
+        y = value.toInt();
+        if( y > c.size() || y < 1 )
             cout << "Please choose a number from 1 to " << c.size() << endl;
         else
             relation.push_back(y);
 
-    }while(y > c.size());
+    }while( y > c.size() || y < 1 );
 
     return relation;
 }
 
-vector<int> removeRelation(vector<Person>& p, vector<Computer>& c)
-{
+vector<int> removeRelation(vector<Person>& p, vector<Computer>& c) {
+    QTextStream in(stdin);
     vector<int> relation;
     unsigned int x, y;
+    QString value;
 
     displayPerson(p);
     do{
-        cout <<"Select a person" << endl;
-        cin >> x;
-        if(x > p.size())
+        cout <<"Select a person: ";
+        value = in.readLine();
+        x = value.toInt();
+        if(x > p.size() || x < 1)
             cout << "Please choose a number from 1 to " << p.size() << endl;
         else
-            relation.push_back(x);
-    }while(x > p.size());
+            relation.push_back(x - 1);
+    }while(x > p.size() || x < 1);
 
     Person pers = p[x - 1];
     vector<Computer> comps;
@@ -231,18 +242,21 @@ vector<int> removeRelation(vector<Person>& p, vector<Computer>& c)
 
     displayComputer(comps);
     do{
-        cout << "Select a connected computer to remove from chosen person" << endl;
-        cin >> y;
-        if(y > comps.size())
+        cout << "Select a connected computer to remove from chosen person: ";
+        value = in.readLine();
+        y = value.toInt();
+        if(y > comps.size() || y < 1)
             cout << "Please choose a number from 1 to " << comps.size() << endl;
         else{
             Computer comp = comps[y - 1];
-            cout << comp.getId();
-            relation.push_back(comp.getId());
+            int z = -1;
+            while( c[z].getId() != comp.getId() ) {
+                z++;
+                if( c[z].getId() == comp.getId() )
+                    relation.push_back(z);
+            }
         }
-
-
-    }while(y > c.size());
+    }while( y > c.size() || y < 1 );
 
     return relation;
 }

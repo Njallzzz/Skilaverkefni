@@ -28,20 +28,6 @@ int main() {
         return 3;
     }
 
-
-
-
-
-
-   db.deleteRelation(people[1],comps[1]);
-
-
-
-
-
-
-
-
     int choice = 0;
 
     while(choice != 9) {
@@ -103,13 +89,7 @@ int main() {
             }
             case 5 : {
                 vector<int> relation = removeRelation(people,comps);
-                if(!(people[relation[0]-1].isRelated(comps[relation[1]-1])))
-                {
-                    cout << "No connection between chosen person and computer" << endl;
-                    break;
-                }
-                else
-                    db.deleteRelation(people[relation[0]-1], comps[relation[1]-1]);
+                db.deleteRelation( people[ relation[0] ], comps[ relation[1] ] );
                 break;
 
         }
