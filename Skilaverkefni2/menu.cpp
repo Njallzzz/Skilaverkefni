@@ -175,7 +175,7 @@ int deleteComputer(vector<Computer>& list) {
 
 vector<int> addRelation(vector<Person>& p, vector<Computer>& c)
 {   vector<int> relation;
-    int x, y;
+    unsigned int x, y;
 
     displayPerson(p);
     do{
@@ -205,7 +205,7 @@ vector<int> addRelation(vector<Person>& p, vector<Computer>& c)
 vector<int> removeRelation(vector<Person>& p, vector<Computer>& c)
 {
     vector<int> relation;
-    int x, y;
+    unsigned int x, y;
 
     displayPerson(p);
     do{
@@ -217,15 +217,30 @@ vector<int> removeRelation(vector<Person>& p, vector<Computer>& c)
             relation.push_back(x);
     }while(x > p.size());
 
+    Person pers = p[x - 1];
+    vector<Computer> comps;
 
-    displayComputer(c);
+
+    for(int i = 0; i < pers.getSize(); i++){
+        for(unsigned int j = 0; j < c.size(); j++){
+            if(pers.getComputer(i) == c[j].getId()){
+                comps.push_back(c[j]);
+            }
+        }
+    }
+
+    displayComputer(comps);
     do{
         cout << "Select a connected computer to remove from chosen person" << endl;
         cin >> y;
-        if(y > c.size())
-            cout << "Please choose a number from 1 to " << c.size() << endl;
-        else
-            relation.push_back(y);
+        if(y > comps.size())
+            cout << "Please choose a number from 1 to " << comps.size() << endl;
+        else{
+            Computer comp = comps[y - 1];
+            cout << comp.getId();
+            relation.push_back(comp.getId());
+        }
+
 
     }while(y > c.size());
 
