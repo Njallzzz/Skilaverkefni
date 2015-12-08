@@ -12,7 +12,8 @@
 
 using namespace std;
 
-int menu();                             // Display main menu
+int menu();             // Display main menu
+void display(vector<Person>& list, vector<Computer> comps);
 void displayPerson(vector<Person>& list);     // Display all people in list
 void displayComputer(vector<Computer>& comps);// Display all computers in list
 Person addPerson();                     // User menu to add a person

@@ -46,24 +46,17 @@ int main() {
 
     db.disconnect();
 
-    vector<Person> list;
-    /*XMLParser database( "database.xml" );                       // Select database
-    if( database.ReadDatabase( list ) )                         // Reads all entries from 'database.xml'
-        cout << "Unable to read file 'database.xml'" << endl;
-
-    int choice, addChoice, sort, remove, index;
-    Person add, search, mod;
-    QTextStream in(stdin);
+    int choice=0;
 
     while(choice != 7)
     {
         choice = menu();
         switch(choice){
             case 1 :                //1. Display the list
-                displayPerson(list);
+                display(people, comps);
                 break;
 
-            case 2 :                //2. Add a person to the list
+           /* case 2 :                //2. Add a person to the list
 
                         add = addPerson();
                         database.AddEntry(add);
@@ -133,7 +126,8 @@ int main() {
 
         }
         database.ReadDatabase(list);    // reads the database if it has changed
-    } // */
+        */
+    }}
 
     return 0;
 }

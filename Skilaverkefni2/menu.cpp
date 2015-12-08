@@ -22,71 +22,33 @@ int menu() {
     int y = x - 48;
     return y;
 }
+void display(vector<Person>& list, vector<Computer> comps)
+{
+    int choice;
+    cout << "1. Display computers" << endl;
+    cout << "2. Display people" << endl;
+    cin >> choice;
 
+    if(choice == 1)
+    {
+        displayComputer(comps);
+    }
+    else if(choice == 2)
+    {
+        displayPerson(list);
+    }
+
+
+}
 void displayPerson(vector<Person>& list) {
 
     cout << "\tName\t\t\t\tGender\tBirth\t\tDeath" << endl;
     cout << "-------------------------------------------------------------------------------" << endl;
 
-    for(unsigned int i=0; i < list.size(); i++) {  // start of for loop
-        if(list[i].gender == 1) {                               // if gender is male
-            if(list[i].name.length() < 8 )                      //if name is less than 8 letters, add a tab before gender
-            {
-                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData();
-                cout<< "\t\t\t\tMale\t";
-            }
-
-            else if(list[i].name.length() >= 16 && list[i].name.length() < 24)            // if name is 16 or more letters remove a tab before gender
-            {
-                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData();
-                cout << "\t\tMale\t";
-            }
-            else if(list[i].name.length() >=24)             // if name is 24 letters or more remove 2 tabs before gender
-            {
-                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData();
-                cout << "\tMale\t";
-            }
-            else
-            {
-                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData();
-                cout << "\t\t\tMale\t";
-            }
-
-                cout << list[i].birth.toString("d.M.yyyy").toUtf8().constData() << "\t";
-                cout << list[i].death.toString("d.M.yyyy").toUtf8().constData();
-
-            }
-
-          else if(list[i].gender == 2) {                  // if gender is female
-            if(list[i].name.length() < 8 )               // if name is less than 8 letters add a tab before gender
-             {
-                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData();
-                 cout << "\t\t\t\tFemale\t";
-             }
-
-            else if(list[i].name.length() >= 16  && list[i].name.length() < 24)        // if name is 16 letters or more, remove a tab before gender
-            {
-                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData();
-                 cout << "\t\tFemale\t";
-            }
-
-            else if(list[i].name.length() >=24)        // if name is 24 letters or more, remove 2 tabs before gender
-            {
-                cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData();
-                cout << "\tFemale\t";
-            }
-
-            else
-            {
-                 cout << i+1<< "." <<"\t" << list[i].name.toUtf8().constData();
-                 cout << "\t\t\tFemale\t";
-            }
-                 cout << list[i].birth.toString("d.M.yyyy").toUtf8().constData() << "\t";
-                 cout << list[i].death.toString("d.M.yyyy").toUtf8().constData();
-        }
-        cout << endl;
-    }                       //end of for loop
-    cout << endl;
+    for(unsigned int x=0; x< list.size(); x++)
+    {
+        cout << x+1 << ".\t" << list[x] << endl;
+    }
 }
 
 
