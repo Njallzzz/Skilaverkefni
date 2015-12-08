@@ -174,30 +174,37 @@ int deleteComputer(vector<Computer>& list) {
 }
 
 vector<int> addRelation(vector<Person>& p, vector<Computer>& c)
-{   vector<int> relation;
+{
+    QTextStream in(stdin);
+
+    vector<int> relation;
     unsigned int x, y;
+    QString xstr, ystr;
 
     displayPerson(p);
     do{
     cout <<"Select a person" << endl;
-    cin >> x;
-    if(x > p.size())
+    xstr = in.readLine();
+    x = xstr.toInt();
+
+    if(x > p.size() || x <= 0)
         cout << "Please choose a number from 1 to " << p.size() << endl;
     else
         relation.push_back(x);
-    }while(x > p.size());
+    }while(x > p.size() || x <= 0);
 
 
     displayComputer(c);
     do{
         cout << "Select a computer to connect to the chosen person" << endl;
-        cin >> y;
-        if(y > c.size())
+        ystr = in.readLine();
+        y = ystr.toInt();
+        if(y > c.size() || y <= 0)
             cout << "Please choose a number from 1 to " << c.size() << endl;
         else
             relation.push_back(y);
 
-    }while(y > c.size());
+    }while(y > c.size() || y <= 0);
 
     return relation;
 }
