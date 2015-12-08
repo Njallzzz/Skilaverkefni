@@ -174,6 +174,86 @@ int deleteComputer(vector<Computer>& list) {
     return 0;
 }
 
+vector<int> addRelation(vector<Person>& p, vector<Computer>& c)
+{
+    QTextStream in(stdin);
+
+    vector<int> relation;
+    unsigned int x, y;
+    QString xstr, ystr;
+
+    displayPerson(p);
+    do{
+    cout <<"Select a person" << endl;
+    xstr = in.readLine();
+    x = xstr.toInt();
+
+    if(x > p.size() || x <= 0)
+        cout << "Please choose a number from 1 to " << p.size() << endl;
+    else
+        relation.push_back(x);
+    }while(x > p.size() || x <= 0);
+
+
+    displayComputer(c);
+    do{
+        cout << "Select a computer to connect to the chosen person" << endl;
+        ystr = in.readLine();
+        y = ystr.toInt();
+        if(y > c.size() || y <= 0)
+            cout << "Please choose a number from 1 to " << c.size() << endl;
+        else
+            relation.push_back(y);
+
+    }while(y > c.size() || y <= 0);
+
+    return relation;
+}
+
+vector<int> removeRelation(vector<Person>& p, vector<Computer>& c)
+{
+    vector<int> relation;
+    unsigned int x, y;
+
+    displayPerson(p);
+    do{
+        cout <<"Select a person" << endl;
+        cin >> x;
+        if(x > p.size())
+            cout << "Please choose a number from 1 to " << p.size() << endl;
+        else
+            relation.push_back(x);
+    }while(x > p.size());
+
+    Person pers = p[x - 1];
+    vector<Computer> comps;
+
+
+    for(int i = 0; i < pers.getSize(); i++){
+        for(unsigned int j = 0; j < c.size(); j++){
+            if(pers.getComputer(i) == c[j].getId()){
+                comps.push_back(c[j]);
+            }
+        }
+    }
+
+    displayComputer(comps);
+    do{
+        cout << "Select a connected computer to remove from chosen person" << endl;
+        cin >> y;
+        if(y > comps.size())
+            cout << "Please choose a number from 1 to " << comps.size() << endl;
+        else{
+            Computer comp = comps[y - 1];
+            cout << comp.getId();
+            relation.push_back(comp.getId());
+        }
+
+
+    }while(y > c.size());
+
+    return relation;
+}
 
 Person SearchPersonMenu() {       // Get search paramters from user
     Person temp;    char key = 0;   QTextStream in(stdin);

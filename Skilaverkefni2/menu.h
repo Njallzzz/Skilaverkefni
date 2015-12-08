@@ -28,6 +28,8 @@ void displayComputer(vector<Computer>& comps);// Display all computers in list
 int computersOrPeople( action text );                // User menu to want to check person or computer
 Person addPerson();                     // User menu to add a person
 Computer addComputer();                 // User meno to add a computer
+vector<int> addRelation(vector<Person>& p, vector<Computer>& c);
+vector<int> removeRelation(vector<Person>& p, vector<Computer>& c);
 int deletePerson(vector<Person>& list); // User menu to get index of person to delete
 int deleteComputer(vector<Computer>& list); // User menu to get index of person to delete
 Person SearchPersonMenu();                    // Search Person User Menu
