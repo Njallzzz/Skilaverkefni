@@ -131,6 +131,7 @@ int deletePerson(vector<Person>& list) {
         cout << "Select a person to delete(input the number displayed before the name): ";
         index = in.readLine();
         x = index.toInt();
+        cout << "ID: " << list[x-1].getId() << endl;
         if( x < 1 || x > int(list.size()) )
             cout << "Please enter a valid index" << endl;
     }
@@ -445,11 +446,21 @@ bool keepSorted() {     // Ask whether the user wants to keep the list sorted
     return false;
 }
 
-Person modify( Person temp ) {      // User menu that changes a persons template for the modify person operation
+Person modify( vector<Person>& people ) {      // User menu that changes a persons template for the modify person operation
     QTextStream in(stdin);
+    Person temp;
     string gender;
-    QString birth, death, name;
+    QString birth, death, name, numId;
     char modify;
+    int id = 0;
+
+    cout << "Select a person to modify(input the number displayed before the name): ";
+    while( !(id > 0 && id <= int( people.size() ) )) {
+        numId = in.readLine();
+        id = numId.toInt();
+    }
+
+    temp = people[id-1];
 
     cout << "  1. Name\n" <<
             "  2. Gender\n" <<
@@ -459,12 +470,14 @@ Person modify( Person temp ) {      // User menu that changes a persons template
     cout << "What would you like to modify: ";
     cin >> modify;
 
-    switch(modify){
+    switch( modify ) {
     case '1':                                   //To modify name only
         cout << "Name: ";
         cin.ignore();
-        name = in.readLine();
-        temp.setName(name);
+        name = "";
+        while( name == "" )
+                name = in.readLine();
+        temp.setName( name );
         break;
 
     case '2':                                   //To modify gender only
@@ -473,52 +486,123 @@ Person modify( Person temp ) {      // User menu that changes a persons template
             cin >> gender;
             cin.ignore();
             if(gender == "male" || gender == "Male")
-                temp.setGender(1);
+                temp.setGender( 1 );
             else if(gender == "female" || gender == "Female")
-                temp.setGender(2);
+                temp.setGender( 2 );
             else
                 cout << "Not a valid entry!";
-        } while( !(temp.getGender() == 1 || temp.getGender() == 2) );
+        } while( !(temp.getGender( ) == 1 || temp.getGender( ) == 2) );
         break;
 
     case '3':                                   //To modify birth year only
         do{
-        cout << "Birth year(dd.mm.yyyy): ";
-        birth = in.readLine();
+            cout << "Birth year(dd.mm.yyyy): ";
+            birth = in.readLine();
+            temp.setBirth( QDate::fromString( birth, "dd.MM.yyyy" ) );
+            if( !(temp.getBirth().isValid()) )
+                cout <<"Not a valid date!"<< endl;
 
-        temp.setBirth(QDate::fromString( birth, "dd.MM.yyyy" ));
-        if(!(temp.getBirth().isValid()))
-        {
-            cout <<"Not a valid date!"<< endl;
-        }
-        }while(!(temp.getBirth().isValid()));
+        }while( !(temp.getBirth().isValid()) );
         break;
 
     case '4':                                   //To modify death year only
         do{
-        cout << "Death year(dd.mm.yyyy, enter 0 if person is still alive): ";
-        death = in.readLine();
-        temp.setDeath(QDate::fromString(death, "dd.MM.yyyy"));
-        if(death == "0")
-        {
-            break;
-        }
-        if(!(temp.getBirth().isValid()))
-        {
-            cout <<"Not a valid date!" << endl;
-        }
-        }while(!(temp.getDeath().isValid()));
+            cout << "Death year(dd.mm.yyyy, enter 0 if person is still alive): ";
+            death = in.readLine();
+            temp.setDeath( QDate::fromString( death, "dd.MM.yyyy" ) );
+            if( death == "0" )
+                break;
+            if( !(temp.getDeath().isValid()) )
+                cout <<"Not a valid date!" << endl;
+        }while( !(temp.getDeath().isValid()) );
         break;
 
     case '5':                                   //To modify all
         temp = addPerson();
+
         break;
 
     default:
         cout << "Not a valid option" << endl;
         break;
     }
+
+    temp.setId( people[id-1].getId() );
+
     cout << endl;
     return temp;
 }
 
+Computer modify( vector<Computer>& comp ) {      // User menu that changes a persons template for the modify person operation
+    QTextStream in(stdin);
+    Computer temp;
+    QString text, name, numId;
+    QDate year;
+    char modify;
+    int id = 0;
+
+    cout << "Select a computer to modify(input the number displayed before the name): ";
+    while( !(id > 0 && id <= int( comp.size() ) )) {
+        numId = in.readLine();
+        id = numId.toInt();
+    }
+
+    temp = comp[id-1];
+
+    cout << "  1. Name\n" <<
+            "  2. Designed/Created\n" <<
+            "  3. Type\n" <<
+            "  4. Constructed\n" <<
+            "  5. All" << endl;
+    cout << "What would you like to modify: ";
+    cin >> modify;
+
+    switch( modify ) {
+    case '1':                                   //To modify name only
+        cout << "Name: ";
+        cin.ignore();
+        name = "";
+        while( name == "" )
+                name = in.readLine();
+        temp.setName( name );
+        break;
+
+    case '2':                                   //To modify date created only
+        cout << "Designed/Created(yyyy): ";
+        year = QDate();
+        while( !year.isValid() )
+            year = QDate::fromString( in.readLine(), "yyyy" );
+        temp.setType( year.toString("yyyy") );
+
+    case '3':                                   //To modify type only
+        cout << "Type: ";
+        temp.getType() = "";
+        while( temp.getType() == "" )
+            temp.setType( in.readLine() );
+        break;
+
+    case '4':                                   //To modify if construced only
+        cout << "Constructed(true/false): ";
+        while( text != "true" && text != "True" && text != "1" && text != "false" && text != "False" && text != "0" )
+            text = in.readLine();
+        if( text == "true" || text == "True" || text == "1" )
+            temp.setWasBuilt( true );
+        else
+            temp.setWasBuilt( false );
+        break;
+
+    case '5':                                   //To modify all
+        temp = addComputer();
+
+        break;
+
+    default:
+        cout << "Not a valid option" << endl;
+        break;
+    }
+
+    temp.setId( comp[id-1].getId() );
+
+    cout << endl;
+    return temp;
+}

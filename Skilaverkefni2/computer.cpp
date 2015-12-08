@@ -24,6 +24,9 @@ int Computer::getWasBuilt() {
     return wasBuilt;
 }
 
+void Computer::setId( int theId ) {
+    id = theId;
+}
 void Computer::setName(QString theName) {
     name = theName;
 }

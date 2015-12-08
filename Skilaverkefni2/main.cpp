@@ -66,6 +66,7 @@ int main() {
                     displayPerson( people );      //display the list
                     int remove = deletePerson( people );    //ask for index to be removed, returns 0 if no person is chosen
                     if(remove != 0)
+                        cout << "ID: " << people[remove-1].getId() << endl;
                         db.removeEntry( people[remove - 1] );
                 } else if( menuChoice == 2 ) {
                     if( comps.size() == 0 ) {
@@ -153,29 +154,24 @@ int main() {
 
                 break;
             }
-            /*
-            case 6 :                    //6. Modify the list
-                if( list.size() == 0 ) {        // Check if the database is empty
+
+            case 8 :                    //8. Modify the list
+                int modifyChoice = computersOrPeople( MODIFY );
+                if( people.size() == 0 ) {        // Check if the database is empty
                     cout << "The database is empty" << endl << endl;
                     break;
                 }
-                display(list);
-                QString indexString;
-                while( !( index = indexString.toInt() ) ) {
-                    cout << "Select index of entry to modify: ";
-                    indexString = in.readLine();
-                    if( !indexString.toInt() )
-                        cout << "Invalid entry!" << endl;
+                if( modifyChoice == 1 ) {
+                    displayPerson( people );
+                    Person p = modify( people );
+                    db.modifyEntry( p );
                 }
-                cout << endl;
-
-                mod = modify( list[index-1] );
-                database.ModifyEntry( index-1, mod );
+                else if ( modifyChoice == 2 ) {
+                    displayComputer( comps );
+                    Computer c = modify( comps );
+                    db.modifyEntry( c );
+                }
                 break;
-
-        }
-        */
-
         }
 
         if( db.readDatabase( comps, sortType ) ) {

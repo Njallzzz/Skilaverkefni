@@ -229,9 +229,12 @@ int SQLITEHandler::modifyEntry( Person p ) {        // Modify Person in database
     q.prepare( "UPDATE people SET name = (:name), gender = (:gender), birth = (:birth), death = (:death) WHERE id = (:id)" );
     q.bindValue( ":id", p.getId() );
     q.bindValue( ":name", p.getName() );
-    q.bindValue( ":gender", p.getGender() );
+    if( p.getGender() == 1 )
+        q.bindValue( ":gender", "Male" );
+    else if( p.getGender() == 2 )
+        q.bindValue( ":gender", "Female" );
     q.bindValue( ":birth", p.getBirth().toString("yyyy-MM-dd") );
-    q.bindValue( ":death", p.getBirth().toString("yyyy-MM-dd") );
+    q.bindValue( ":death", p.getDeath().toString("yyyy-MM-dd") );
     if( !q.exec() )                                 // Attempt to execute query
         return 2;
     return 0;                   // Return Success
