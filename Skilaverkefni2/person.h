@@ -37,6 +37,7 @@ public:
     friend std::istream& operator>>(std::istream& is, Person& p);
     friend std::ostream& operator<<(std::ostream& os, Person& p);
 
+private:
     int id;
     QString name;       // Name of a individual
     int gender;         // 0 = Unspecified, 1 = Male, 2 = Female
