@@ -116,20 +116,37 @@ std::istream& operator>>(std::istream& is, Person& p) {
 
 
 
-    cout << "Birth date: ";
+    cout << "Birth date(dd.mm.yy): ";
     cin.ignore();
     while( !p.birth.isValid() )
         p.birth = QDate::fromString( in.readLine(), "dd.MM.yyyy" );
 
-    cout << "Death (0 for none): ";
-    p.death = QDate();
-    QString death = "";
-    cin.ignore();
-    while( !p.death.isValid() && death != "0") {
-        death = in.readLine();
-        if( death != "0" )
-            p.death = QDate::fromString( death, "dd.MM.yyyy");
-    }
+    cout << "Is this person still alive(y/n)?";
+    char stillAlive;
+    cin >> stillAlive;
+    if(stillAlive == 'n' || stillAlive == 'N')
+        return is;
+    else if( stillAlive == 'y' || stillAlive == 'Y')
+    {
+        do{
+        cout << "Death date(dd.mm.yy) (0 for none): ";
+        p.death = QDate();
+        QString death = "";
+        cin.ignore();
+        while( !p.death.isValid() && death != "0") {
+            death = in.readLine();
+            if( death != "0" )
+                p.death = QDate::fromString( death, "dd.MM.yyyy");
+            else if(death == "0")
+                p.death =QDate::fromString(0);
 
+            if(p.death < p.birth)
+
+            {
+                cout << "A person can not die before it is born!" << endl;
+            }
+    }
+    }while(p.death < p.birth);
+    }
     return is;
 }
