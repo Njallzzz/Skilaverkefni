@@ -27,6 +27,7 @@ int main() {
         return 3;
     }
 
+
     /*for( unsigned int x = 0; x < comps.size(); x++ ) {
         cout << x+1 << ".\t" << comps[x] << endl;
     }
@@ -36,8 +37,9 @@ int main() {
     }*/
 
     int choice = 0;
+    int sort;
 
-    while(choice != 7)
+    while(choice != 9)
     {
         choice = menu();
         switch(choice) {
@@ -68,7 +70,7 @@ int main() {
                 }
                 break;*/
 
-            case 4 : {                    //4. Search List
+            case 6 : {                    //4. Search List
                 int searchChoice = computersOrPeople( SEARCH );
                 if( searchChoice == 1 && people.size() == 0 ) {  // Check if the database is empty
                     cout << "There are no people to search" << endl << endl;
@@ -88,27 +90,56 @@ int main() {
                 //Search(people, search);   // displays search results
                 break;
             }
-            /*
-            case 5 :                    //5. Sort the list
-                if( list.size() == 0 ) {        // Check if the database is empty
-                    cout << "The database is empty" << endl << endl;
-                    break;
+
+            case 7 : {                    //5. Sort the list
+
+                    int sortChoice = computersOrPeople(SORT);
+                    if(sortChoice ==1)
+                    {
+                    sort = sortPerson();
+                    if(sort == 1)
+                        db.readDatabase(people, NAME_ASC);
+                    else if(sort == 2)
+                        db.readDatabase(people, NAME_DESC);
+                    else if(sort == 3)
+                        db.readDatabase(people, BIRTH_ASC);
+                    else if(sort == 4)
+                        db.readDatabase(people, BIRTH_DESC);
+                    else if(sort == 5)
+                        db.readDatabase(people, DEATH_ASC);
+                    else if(sort == 6)
+                        db.readDatabase(people, DEATH_DESC);
+                    else if(sort == 7)
+                        db.readDatabase(people, GENDER_ASC);
+                    else if(sort == 8)
+                        db.readDatabase(people, GENDER_DESC);
+                    displayPerson(people);
+
                 }
-                sort = sortList();      // asks the user how to sort the list
-                if(sort == 1)
-                    sortByName(list);   // sorts the list by name
-                else if(sort == 2)
-                    sortByBirth(list);  // sorts the list by birth date
-                else if(sort == 3)
-                    sortByDeath(list);  // sorts the list by death date
-                else if(sort == 4)
-                    genderSort(list, 0, list.size() - 1);   // sorts the list by gender
+                else if(sortChoice == 2)
+                {
+                    sort = sortComputer();
+                    if(sort == 1)
+                        db.readDatabase(comps, NAME_ASC);
+                    else if(sort == 2)
+                        db.readDatabase(comps, NAME_DESC);
+                    else if(sort == 3)
+                        db.readDatabase(comps, CREATION_ASC);
+                    else if(sort == 4)
+                        db.readDatabase(comps, CREATION_DESC);
+                    else if(sort == 5)
+                        db.readDatabase(people, TYPE_ASC);
+                    else if(sort == 6)
+                        db.readDatabase(people, TYPE_DESC);
+                    else if(sort == 7)
+                        db.readDatabase(people, CONSTRUCTED_ASC);
+                    else if(sort == 8)
+                        db.readDatabase(people, CONSTRUCTED_DESC);
+                    displayComputer(comps);
+                }
 
-                display(list);
-                if(keepSorted())                // asks the user if he/she wants to keep the list sorted
-                        database.WriteDatabase(list);
                 break;
-
+            /*
             case 6 :                    //6. Modify the list
                 if( list.size() == 0 ) {        // Check if the database is empty
                     cout << "The database is empty" << endl << endl;
@@ -145,4 +176,4 @@ int main() {
     db.disconnect();
 
     return 0;
-}
+}}

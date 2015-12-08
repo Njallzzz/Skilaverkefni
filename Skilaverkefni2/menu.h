@@ -17,7 +17,8 @@ enum action {
     ADD,
     REMOVE,
     MODIFY,
-    SEARCH
+    SEARCH,
+    SORT
 };
 
 int menu();             // Display main menu
@@ -32,7 +33,8 @@ Person SearchPersonMenu();                    // Search Person User Menu
 Computer SearchComputerMenu();                // Search Computer User Menu
 void Search( vector<Person> & list, Person p );     // Search algorithm
 void Search( vector<Computer> & list, Computer c ); // Search algorithm
-int sortList();                         // Sort menu
+int sortPerson();                        // Sort menu
+int sortComputer();
 bool keepSorted();                      // Asks whether or not the changes should be permanent
 Person modify( Person temp );           // Menu to alter a person already in the database
 

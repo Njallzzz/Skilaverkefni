@@ -4,19 +4,21 @@ int menu() {
     char x;
     cout << "Choose an option" << endl;
     cout << "   1. Display list" << endl;
-    cout << "   2. Add to list" << endl;
-    cout << "   3. Remove from list" << endl;
-    cout << "   4. Search list" << endl;
-    cout << "   5. Sort list" << endl;
-    cout << "   6. Modify list entry" << endl;
-    cout << "   7. Quit" << endl;
+    cout << "   2. Add entry to list" << endl;
+    cout << "   3. Add a relation" << endl;
+    cout << "   4. Remove entry from list" << endl;
+    cout << "   5. Remove relation" << endl;
+    cout << "   6. Search list" << endl;
+    cout << "   7. Sort list" << endl;
+    cout << "   8. Modify list entry" << endl;
+    cout << "   9. Quit" << endl;
 
     do{
         cout << "Your choice: ";
         cin >> x;
-        if(x < 49 || x > 55)                //makes sure input is correct
+        if(x < 49 || x > 58)                //makes sure input is correct
             cout << "Not a valid option!" << endl;
-    } while(x < 49 || x > 55);      //do while loop runs while input is not correct
+    } while(x < 49 || x > 58);      //do while loop runs while input is not correct
     cout << endl;
 
     int y = x - 48;
@@ -91,7 +93,12 @@ int computersOrPeople( action text ) {
         } else if( text == SEARCH ) {
             cout << "1. Search for a person in the list" << endl;
             cout << "2. Search for a computer in the list" << endl;
+        } else if( text == SORT ) {
+            cout << "1. Sort the list of people" << endl;
+            cout << "2. Sort the list of computers" << endl;
         }
+
+
         cout << "Your choice: ";
         input = in.readLine();
         if( input != "1" && input != "2" )
@@ -114,6 +121,8 @@ Computer addComputer()
     cin >> temp;
     return temp;
 }
+
+
 int deletePerson(vector<Person>& list) {
     int x = 0;
     char choice = 0;
@@ -349,21 +358,50 @@ void Search( vector<Computer> & list, Computer p ) {        // Search for member
     displayComputer( SearchList );              // Display search results
 }
 
-int sortList() {        // Gets the method of which the user wants to sort the list
+int sortPerson() {        // Gets the method of which the user wants to sort the list
     char x;
     cout << "Choose how you want to sort the list" << endl;
-    cout << "\t1. Sort by name" << endl;
-    cout << "\t2. Sort by birth year" << endl;
-    cout << "\t3. Sort by death year" << endl;
-    cout << "\t4. Sort by gender" << endl;
+    cout << "\t1. Sort by name ascending(default)" << endl;
+    cout << "\t2. Sort by name descending" << endl;
+    cout << "\t3. Sort by birth ascending" << endl;
+    cout << "\t4. Sort by birth descending" << endl;
+    cout << "\t5. Sort by death ascending" << endl;
+    cout << "\t6. Sort by death descending" << endl;
+    cout << "\t7. Sort by gender ascending" << endl;
+    cout << "\t8. Sort by gender descending" << endl;
 
     do{                         // Error check user input
         cout << "Your choice: " ;
         cin >> x;
         cin.ignore();
-        if(x < 49 || x > 52)                //makes sure input is correct
-            cout << "Not a valid option! Please choose a number from 1 to 4" << endl;
-    } while(x < 49 || x > 52);
+        if(x < 49 || x > 56)                //makes sure input is correct
+            cout << "Not a valid option! Please choose a number from 1 to 7" << endl;
+    } while(x < 49 || x > 56);
+    cout << endl;
+
+    int y = x - 48;         // Convert the character the the numerical equivalent
+    return y;               // Return input
+}
+
+int sortComputer() {
+    char x;
+    cout << "Choose how you want to sort the list" << endl;
+    cout << "\t1. Sort by name ascending" << endl;
+    cout << "\t2. Sort by name descending" << endl;
+    cout << "\t3. Sort by year created ascending" << endl;
+    cout << "\t4. Sort by year created descending" << endl;
+    cout << "\t5. Sort by type ascending" << endl;
+    cout << "\t6. Sort by type descending" << endl;
+    cout << "\t7. Sort by built or not ascending" << endl;
+    cout << "\t8. Sorty by built or not descending" << endl;
+
+    do{                         // Error check user input
+        cout << "Your choice: " ;
+        cin >> x;
+        cin.ignore();
+        if(x < 49 || x > 56)                //makes sure input is correct
+            cout << "Not a valid option! Please choose a number from 1 to 7" << endl;
+    } while(x < 49 || x > 56);
     cout << endl;
 
     int y = x - 48;         // Convert the character the the numerical equivalent

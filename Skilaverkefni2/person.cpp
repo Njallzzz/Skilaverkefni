@@ -116,14 +116,15 @@ std::istream& operator>>(std::istream& is, Person& p) {
 
 
 
-    cout << "Birth year: ";
-    p.birth = QDate();
+    cout << "Birth date: ";
+    cin.ignore();
     while( !p.birth.isValid() )
         p.birth = QDate::fromString( in.readLine(), "dd.MM.yyyy" );
 
-    cout << "Death year(0 for none): ";
+    cout << "Death (0 for none): ";
     p.death = QDate();
     QString death = "";
+    cin.ignore();
     while( !p.death.isValid() && death != "0") {
         death = in.readLine();
         if( death != "0" )
