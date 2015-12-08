@@ -11,17 +11,12 @@ using namespace std;
 int main() {
     vector<Computer> comps;
     vector<Person> people;
+
     SQLITEHandler db("Database.db");
     if( db.connect() ) {
         cout << "Unable to connect to database" << endl;
         return 1;
     }
-
-    /*for( int x = 0; x < 5; x++ ) {
-        Person t;
-        cin >> t;
-        db.addEntry( t );
-    }*/
 
     if( db.readDatabase( comps, NAME_ASC ) ) {
         cout << "Unable to read from database" << endl;
@@ -34,48 +29,35 @@ int main() {
 
 
 
-    for( unsigned int x = 0; x < comps.size(); x++ ) {
+    /*for( unsigned int x = 0; x < comps.size(); x++ ) {
         cout << x+1 << ".\t" << comps[x] << endl;
     }
 
     for( unsigned int x = 0; x < people.size(); x++ ) {
         cout << x+1 << ".\t" << people[x] << endl;
-    }
+    }*/
 
-    //return 0;
-
-    db.disconnect();
-
-    int choice=0;
-    int addChoice=0;
-    Person addP;
-    Computer addC;
+    int choice = 0;
 
     while(choice != 7)
     {
         choice = menu();
-        switch(choice){
-            case 1 :                //1. Display the list
+        switch(choice) {
+            case 1 : {                //1. Display the list
                 display(people, comps);
                 break;
-
-            case 2 :                //2. Add a person to the list
-                cout << "1. Add a person to the list" << endl;
-                cout << "2. Add a computer to the list" << endl;
-                cin >> addChoice;
-                if(addChoice == 1)
-                {
-                    addP =addPerson();
-                    db.addEntry(addP);
-                }
-                else if(addChoice == 2)
-                {
-                    addC = addComputer();
-                    db.addEntry(addC);
+            }
+            case 2 : {                //2. Add a person to the list
+                int addChoice = computersOrPeople( ADD );
+                if(addChoice == 1) {
+                    db.addEntry( addPerson() );
+                } else if(addChoice == 2) {
+                    db.addEntry( addComputer() );
                 }
                 break;
-            /*
-            case 3 :               //3. Remove a person to the list
+            }
+
+            /*case 3 :               //3. Remove a person to the list
                 if( list.size() == 0 ) {        // Check if the database is empty
                     cout << "The database is empty" << endl << endl;
                     break;
@@ -86,17 +68,29 @@ int main() {
                 {
                     database.RemoveEntry(remove-1);
                 }
-                break;
+                break;*/
 
-            case 4 :                    //4. Search List
-                if( list.size() == 0 ) {        // Check if the database is empty
-                    cout << "The database is empty" << endl << endl;
+            case 4 : {                    //4. Search List
+                int searchChoice = computersOrPeople( SEARCH );
+                if( searchChoice == 1 && people.size() == 0 ) {  // Check if the database is empty
+                    cout << "There are no people to search" << endl << endl;
+                    break;
+                } else if( searchChoice == 2 && comps.size() == 0 ) {       // Check if the database is empty
+                    cout << "There are no computers to search" << endl << endl;
                     break;
                 }
-                search = SearchMenu();  // get search parameters
-                Search(list, search);   // displays search results
-                break;
+                if( searchChoice == 1 ) {
+                    Person search = SearchPersonMenu();  // get search parameters
+                    Search(people, search);              // displays search results
+                } else if( searchChoice == 2 ) {
+                    Computer search = SearchComputerMenu();  // get search parameters
+                    Search(comps, search);              // displays search results
+                }
 
+                //Search(people, search);   // displays search results
+                break;
+            }
+            /*
             case 5 :                    //5. Sort the list
                 if( list.size() == 0 ) {        // Check if the database is empty
                     cout << "The database is empty" << endl << endl;
@@ -137,9 +131,20 @@ int main() {
                 break;
 
         }
-        database.ReadDatabase(list);    // reads the database if it has changed
         */
-    }}
+
+        }
+
+        if( db.readDatabase( comps, NAME_ASC ) ) {
+            cout << "Unable to read from database" << endl;
+            return 2;
+        }
+        if( db.readDatabase( people, NAME_ASC ) ) {
+            cout << "Unable to read from database" << endl;
+            return 3;
+        }
+    }
+    db.disconnect();
 
     return 0;
 }

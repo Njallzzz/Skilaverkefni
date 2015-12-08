@@ -63,8 +63,10 @@ bool Person::isRelated( Computer c ) {
 std::ostream& operator<<(std::ostream& os, const Person& p) {
     os << p.name.toUtf8().constData();
     if( p.name.length() < 8 )
-        os << "\t\t\t";
+        os << "\t\t\t\t";
     else if( p.name.length() >= 8 && p.name.length() < 16 )
+        os << "\t\t\t";
+    else if( p.name.length() >= 16 && p.name.length() < 24 )
         os << "\t\t";
     else
         os << "\t";

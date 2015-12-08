@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Person {// Construct of a individual
+class Person {      // Construct of a individual
 public:
     Person();
     Person( int id, QString name, int gender, QDate birth, QDate death);

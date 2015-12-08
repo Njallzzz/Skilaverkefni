@@ -22,23 +22,15 @@ int menu() {
     int y = x - 48;
     return y;
 }
+
 void display(vector<Person>& list, vector<Computer> comps)
 {
-    int choice;
-    cout << "1. Display computers" << endl;
-    cout << "2. Display people" << endl;
-    cin >> choice;
+    int choice = computersOrPeople(DISPLAY);
 
     if(choice == 1)
-    {
-        displayComputer(comps);
-    }
-    else if(choice == 2)
-    {
         displayPerson(list);
-    }
-
-
+    else if(choice == 2)
+        displayComputer(comps);
 }
 void displayPerson(vector<Person>& list) {
 
@@ -54,13 +46,42 @@ void displayPerson(vector<Person>& list) {
 
 void displayComputer(vector<Computer>& comps)
 {
-    cout << "\tName\t\t\tCreated\t\tType\t\tBuilt" << endl;
+    cout << "\tName\t\t\tCreated\t\tType\t\t\tBuilt" << endl;
     cout << "-------------------------------------------------------------------------------" << endl;
     for(unsigned int x =0; x < comps.size();x++)
     {
         cout << x+1 << ".\t" << comps[x] << endl;
     }
 }
+
+int computersOrPeople( action text ) {
+    QTextStream in(stdin);
+    QString input;
+    while( input != "1" && input != "2" ) {
+        if( text == DISPLAY ) {
+            cout << "1. Display people" << endl;
+            cout << "2. Display computers" << endl;
+        } else if( text == ADD ) {
+            cout << "1. Add a person to the list" << endl;
+            cout << "2. Add a computer to the list" << endl;
+        } else if( text == REMOVE ) {
+            cout << "1. Remove a person from the list" << endl;
+            cout << "2. Remove a computer from the list" << endl;
+        } else if( text == MODIFY ) {
+            cout << "1. Modify a person in the list" << endl;
+            cout << "2. Modify a computer in the list" << endl;
+        } else if( text == SEARCH ) {
+            cout << "1. Search for a person in the list" << endl;
+            cout << "2. Search for a computer in the list" << endl;
+        }
+        cout << "Your choice: ";
+        input = in.readLine();
+        if( input != "1" && input != "2" )
+            cout << "Invalid input!" << endl;
+    }
+    return input.toInt();
+}
+
 Person addPerson() {
     Person temp;
     cout << "Add a person to the list" << endl;
@@ -103,37 +124,37 @@ int deletePerson(vector<Person>& list) {
     return 0;
 }
 
-Person SearchMenu() {       // Get search paramters from user
+Person SearchPersonMenu() {       // Get search paramters from user
     Person temp;    char key = 0;   QTextStream in(stdin);
-    temp.name = "";
-    temp.gender = 0;
+    temp.setName("");
+    temp.setGender(0);
     while( key != '5' ) {           // while looping while inserting search parameters
         cout << "Please specify search parameters" << endl;
         cout << "\t1. Search by name(";
-        if( temp.name == "" )               // If wildcard
+        if( temp.getName() == "" )               // If wildcard
             cout << "any)" << endl;
         else                                // if user specified
-            cout << temp.name.toUtf8().constData() << ")" << endl;     // Write current name parameters
+            cout << temp.getName().toUtf8().constData() << ")" << endl;     // Write current name parameters
 
         cout << "\t2. Search by gender(";
-        if( temp.gender == 0 )              // If wildcard
+        if( temp.getGender() == 0 )              // If wildcard
             cout << "any)" << endl;
-        else if( temp.gender == 1 )         // if user specified
+        else if( temp.getGender() == 1 )         // if user specified
             cout << "male)" << endl;
-        else if( temp.gender == 2 )         // if user specified
+        else if( temp.getGender() == 2 )         // if user specified
             cout << "female)" << endl;
 
         cout << "\t3. Search by birth(";
-        if( !temp.birth.isValid() )         // If wildcard
+        if( !temp.getBirth().isValid() )         // If wildcard
             cout << "any)" << endl;
         else                                // if user specified
-            cout << temp.birth.toString("d.M.yyyy").toUtf8().constData() << ")" << endl;  // Write current birth parameters
+            cout << temp.getBirth().toString("d.M.yyyy").toUtf8().constData() << ")" << endl;  // Write current birth parameters
 
         cout << "\t4. Search by death(";
-        if( !temp.death.isValid() )         // If wildcard
+        if( !temp.getDeath().isValid() )         // If wildcard
             cout << "any)" << endl;
         else                                // if user specified
-            cout << temp.death.toString("d.M.yyyy").toUtf8().constData() << ")" << endl;  // Write current death parameters
+            cout << temp.getDeath().toString("d.M.yyyy").toUtf8().constData() << ")" << endl;  // Write current death parameters
         cout << "\t5. Search" << endl;
 
         cout << "Your choice: ";
@@ -142,39 +163,113 @@ Person SearchMenu() {       // Get search paramters from user
 
         if( key == '1' ) {          // Set user name search parameter
             cout << "Insert name to search for: ";
-            temp.name = in.readLine();
+            temp.setName( in.readLine() );
         } else if( key == '2' ) {   // Set user gender search parameter
-            temp.gender = -1;
-            while( (temp.gender < 0) || (temp.gender > 2) ) {
+            temp.setGender( -1 );
+            while( (temp.getGender() < 0) || (temp.getGender() > 2) ) {
                 QString gender;
                 cout << "Insert gender to search for(any/male/female): ";
                 gender = in.readLine();
                 if( gender == "any" || gender == "Any" )
-                    temp.gender = 0;
+                    temp.setGender( 0 );
                 else if( gender == "male" || gender == "Male" )
-                    temp.gender = 1;
+                    temp.setGender( 1 );
                 else if( gender == "female" || gender == "Female" )
-                    temp.gender = 2;
+                    temp.setGender( 2 );
                 else
                     cout << "Please enter a valid gender" << endl;
             }
         } else if( key == '3' ) {   // Set user birth search parameter
             QString birthstring = "";
-            temp.birth = QDate();   // Set empty date (Also used as wildcard)
-            while( birthstring != "0" && !temp.birth.isValid() ) {
+            temp.setBirth( QDate() );   // Set empty date (Also used as wildcard)
+            while( birthstring != "0" && !temp.getBirth().isValid() ) {
                 cout << "Insert birth date(dd.mm.yyyy, 0 for any): ";
                 birthstring = in.readLine();
                 if( birthstring != "0" )
-                    temp.birth = QDate::fromString( birthstring, "dd.MM.yyyy" );
+                    temp.setBirth( QDate::fromString( birthstring, "dd.MM.yyyy" ) );
             }
         } else if( key == '4' ) {   // Set user death search parameter
             QString deathstring = "";
-            temp.death = QDate();   // Set empty date (Also used as wildcard)
-            while( deathstring != "0" && !temp.death.isValid() ) {
+            temp.setDeath( QDate() );   // Set empty date (Also used as wildcard)
+            while( deathstring != "0" && !temp.getDeath().isValid() ) {
                 cout << "Insert death date(dd.mm.yyyy, 0 for any): ";
                 deathstring = in.readLine();
                 if( deathstring != "0" )
-                    temp.death = QDate::fromString( deathstring, "dd.MM.yyyy" );
+                    temp.setDeath( QDate::fromString( deathstring, "dd.MM.yyyy" ) );
+            }
+        }
+    }
+    cout << endl;
+    return temp;        // Returns template for person to search for
+}
+
+Computer SearchComputerMenu() {
+    Computer temp;    char key = 0;   QTextStream in(stdin);
+    temp.setName("");
+    temp.setType("");
+    temp.setWasBuilt(2);
+    while( key != '5' ) {           // while looping while inserting search parameters
+        cout << "Please specify search parameters" << endl;
+        cout << "\t1. Search by name(";
+        if( temp.getName() == "" )               // If wildcard
+            cout << "any)" << endl;
+        else                                // if user specified
+            cout << temp.getName().toUtf8().constData() << ")" << endl;     // Write current name parameters
+
+        cout << "\t2. Search by type(";
+        if( temp.getType() == "" )              // If wildcard
+            cout << "any)" << endl;
+        else
+            cout << temp.getType().toUtf8().constData() << ")" << endl;     // Write current type parameters
+
+        cout << "\t3. Search by built(";
+        if( temp.getWasBuilt() == 2 )         // If wildcard
+            cout << "any)" << endl;
+        else if( temp.getWasBuilt() == 0 )                               // if user specified
+            cout << "not built)" << endl;  // Write current birth parameters
+        else if( temp.getWasBuilt() == 1 )
+            cout << "built)" << endl;  // Write current birth parameters
+
+        cout << "\t4. Search by year(";
+        if( temp.getYear() == "" )         // If wildcard
+            cout << "any)" << endl;
+        else                                // if user specified
+            cout << temp.getYear().toUtf8().constData() << ")" << endl;  // Write current death parameters
+        cout << "\t5. Search" << endl;
+
+        cout << "Your choice: ";
+        cin >> key;                 // Get user input for next action, 1: name parameter, 2: gender parameter, 3: birth parameter, 4: death parameter and 5: Search
+        cin.ignore();
+
+        if( key == '1' ) {          // Set user name search parameter
+            cout << "Insert name to search for: ";
+            temp.setName( in.readLine() );
+        } else if( key == '2' ) {   // Set user type search parameter
+            cout << "Insert type to search for: ";
+            temp.setType( in.readLine() );
+        } else if( key == '3' ) {   // Set user birth search parameter
+            temp.setWasBuilt( -1 );
+            while( (temp.getWasBuilt() < 0) || (temp.getWasBuilt() > 2) ) {
+                QString built;
+                cout << "Insert built or not to search for(any/built/not built): ";
+                built = in.readLine();
+                if( built == "any" || built == "Any" )
+                    temp.setWasBuilt( 2 );
+                else if( built == "not built" || built == "Not built" || built == "not Built" || built == "Not Built" )
+                    temp.setWasBuilt( 0 );
+                else if( built == "built" || built == "Built" )
+                    temp.setWasBuilt( 1 );
+                else
+                    cout << "Invalid input!" << endl;
+            }
+        } else if( key == '4' ) {   // Set user death search parameter
+            QString deathstring = "";
+            temp.setYear( "" );   // Set empty date (Also used as wildcard)
+            while( deathstring != "0" && temp.getYear() == "" ) {
+                cout << "Insert death date(dd.mm.yyyy, 0 for any): ";
+                deathstring = in.readLine();
+                if( deathstring != "0" )
+                    temp.setYear( deathstring );
             }
         }
     }
@@ -187,26 +282,53 @@ void Search( vector<Person> & list, Person p ) {        // Search for members in
 
     for( unsigned int x = 0; x < list.size(); x++) {    // Search each entry of list
         bool add = true;                                    // We say the entry should be added by default then exclude it based on the template person
-        if( p.name != "" )
-            if( !list[x].name.contains( p.name, Qt::CaseInsensitive ) )
+        if( p.getName() != "" )
+            if( !list[x].getName().contains( p.getName(), Qt::CaseInsensitive ) )
                 add = false;
 
-        if( p.gender != 0 )
-            if( !(list[x].gender == p.gender) )
+        if( p.getGender() != 0 )
+            if( !(list[x].getGender() == p.getGender() ) )
                 add = false;
 
-        if( p.birth.isValid() )
-            if( !(list[x].birth == p.birth) )
+        if( p.getBirth().isValid() )
+            if( !(list[x].getBirth() == p.getBirth() ) )
                 add = false;
 
-        if( p.death.isValid() )
-            if( !(list[x].death == p.death) )
+        if( p.getDeath().isValid() )
+            if( !(list[x].getDeath() == p.getDeath() ) )
                 add = false;
 
         if(add)
             SearchList.push_back( list[x] );
     }
     displayPerson( SearchList );              // Display search results
+}
+
+void Search( vector<Computer> & list, Computer p ) {        // Search for members in list based on template person p
+    vector<Computer> SearchList;                      // Create search result vector
+
+    for( unsigned int x = 0; x < list.size(); x++) {    // Search each entry of list
+        bool add = true;                                    // We say the entry should be added by default then exclude it based on the template person
+        if( p.getName() != "" )
+            if( !list[x].getName().contains( p.getName(), Qt::CaseInsensitive ) )
+                add = false;
+
+        if( p.getType() != "" )
+            if( !list[x].getType().contains( p.getType() , Qt::CaseInsensitive ) )
+                add = false;
+
+        if( p.getWasBuilt() != 2 )
+            if( !(list[x].getWasBuilt() == p.getWasBuilt() ) )
+                add = false;
+
+        if( p.getYear() != "" )
+            if( !(list[x].getYear() == p.getYear() ) )
+                add = false;
+
+        if(add)
+            SearchList.push_back( list[x] );
+    }
+    displayComputer( SearchList );              // Display search results
 }
 
 int sortList() {        // Gets the method of which the user wants to sort the list

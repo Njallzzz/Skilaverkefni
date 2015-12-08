@@ -19,13 +19,13 @@ public:
     QString getName();
     QString getYear();
     QString getType();
-    bool getWasBuilt();
+    int getWasBuilt();
 
     //Setters
     void setName(QString theName);
     void setYear(QString year);
     void setType(QString theType);
-    void setWasBuilt(bool built);
+    void setWasBuilt(int built);
 
     // Display
     friend std::ostream& operator<<(std::ostream& os, const Computer& c);
@@ -38,7 +38,7 @@ private:
     QString name;
     QDate yearOfBuild;
     QString type;
-    bool wasBuilt;
+    int wasBuilt;
 };
 
 #endif // COMPUTER_H

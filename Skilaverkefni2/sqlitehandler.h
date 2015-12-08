@@ -11,10 +11,7 @@
 
 using namespace std;
 
-// Debug
-#include <QDebug>
-
-enum sorting {
+enum sorting {      // Sorting type
     NAME_ASC,
     NAME_DESC,
     CREATION_ASC,
@@ -31,17 +28,20 @@ enum sorting {
     DEATH_DESC
 };
 
-class SQLITEHandler {
+class SQLITEHandler {       // Database handler
 public:
+    //Constructors
     SQLITEHandler( QString filename );
     ~SQLITEHandler();
+
+    // Connection related functions
     int connect();
     int disconnect();
     int SetDatabase( QString filename );
 
     // Reads entire database into variables
-    int readDatabase( vector<Person> & people, sorting s1, sorting s2 = NAME_ASC );
-    int readDatabase( vector<Computer> & computers, sorting s1, sorting s2 = NAME_ASC );
+    int readDatabase( vector<Person> & people, sorting s1 );
+    int readDatabase( vector<Computer> & computers, sorting s1 );
 
     // Computer table related functions
     int addEntry( Computer c );
@@ -58,10 +58,10 @@ public:
     int deleteRelation( Person p, Computer c );
 
 private:
-    QString file;
-    bool status;
-    QSqlDatabase db;
-    QSqlQuery q;
+    QString file;       // Filename
+    bool status;        // Whether connected or not
+    QSqlDatabase db;    // Database handler
+    QSqlQuery q;        // Query handler
 };
 
 #endif // SQLITEHANDLER_H

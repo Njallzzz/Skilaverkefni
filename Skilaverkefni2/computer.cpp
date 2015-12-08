@@ -20,7 +20,7 @@ QString Computer::getYear() {
 QString Computer::getType() {
     return type;
 }
-bool Computer::getWasBuilt() {
+int Computer::getWasBuilt() {
     return wasBuilt;
 }
 
@@ -33,7 +33,7 @@ void Computer::setYear(QString year) {
 void Computer::setType(QString theType) {
     type = theType;
 }
-void Computer::setWasBuilt(bool built) {
+void Computer::setWasBuilt(int built) {
     wasBuilt = built;
 }
 
@@ -47,7 +47,7 @@ std::ostream& operator<<(std::ostream& os, const Computer& c) {
         os << "\t";
 
     os << c.yearOfBuild.toString("yyyy").toUtf8().constData();
-    os << "\t" << c.type.toUtf8().constData();
+    os << "\t\t" << c.type.toUtf8().constData();
 
     os << "\t";
     if( c.type.length() < 8 )
