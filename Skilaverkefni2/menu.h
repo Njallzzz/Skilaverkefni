@@ -18,7 +18,7 @@ enum action {
     REMOVE,
     MODIFY,
     SEARCH,
-    SORT
+    SORT_MENU
 };
 
 int menu();             // Display main menu
@@ -29,6 +29,7 @@ int computersOrPeople( action text );                // User menu to want to che
 Person addPerson();                     // User menu to add a person
 Computer addComputer();                 // User meno to add a computer
 int deletePerson(vector<Person>& list); // User menu to get index of person to delete
+int deleteComputer(vector<Computer>& list); // User menu to get index of person to delete
 Person SearchPersonMenu();                    // Search Person User Menu
 Computer SearchComputerMenu();                // Search Computer User Menu
 void Search( vector<Person> & list, Person p );     // Search algorithm

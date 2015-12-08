@@ -18,33 +18,30 @@ int main() {
         return 1;
     }
 
-    if( db.readDatabase( comps, NAME_ASC ) ) {
+    sorting sortType = NAME_ASC;
+    if( db.readDatabase( comps, sortType ) ) {
         cout << "Unable to read from database" << endl;
         return 2;
     }
-    if( db.readDatabase( people, NAME_ASC ) ) {
+    if( db.readDatabase( people, sortType ) ) {
         cout << "Unable to read from database" << endl;
         return 3;
     }
 
 
-    /*for( unsigned int x = 0; x < comps.size(); x++ ) {
-        cout << x+1 << ".\t" << comps[x] << endl;
-    }
-
-    for( unsigned int x = 0; x < people.size(); x++ ) {
-        cout << x+1 << ".\t" << people[x] << endl;
-    }*/
-
     int choice = 0;
-    int sort;
 
-    while(choice != 9)
-    {
+    while(choice != 9) {
         choice = menu();
         switch(choice) {
             case 1 : {                //1. Display the list
-                display(people, comps);
+                int menuChoice = computersOrPeople( DISPLAY );
+                if ( menuChoice == 1 )
+                    display(people, comps);
+                else if( menuChoice == 2 )
+                    displayPerson( people );
+                else if( menuChoice == 3 )
+                    displayComputer( comps );
                 break;
             }
             case 2 : {                //2. Add a person to the list
@@ -57,19 +54,29 @@ int main() {
                 break;
             }
 
-            /*case 3 :               //3. Remove a person to the list
-                if( list.size() == 0 ) {        // Check if the database is empty
-                    cout << "The database is empty" << endl << endl;
-                    break;
+            case 4 : {              //3. Remove a person to the list
+                int menuChoice = computersOrPeople( REMOVE );
+                if( menuChoice == 1 ) {
+                    if( people.size() == 0 ) {
+                        cout << "The database is empty" << endl << endl;
+                        break;
+                    }
+                    displayPerson( people );      //display the list
+                    int remove = deletePerson( people );    //ask for index to be removed, returns 0 if no person is chosen
+                    if(remove != 0)
+                        db.removeEntry( people[remove - 1] );
+                } else if( menuChoice == 2 ) {
+                    if( comps.size() == 0 ) {
+                        cout << "The database is empty" << endl << endl;
+                        break;
+                    }
+                    displayComputer( comps );      //display the list
+                    int remove = deleteComputer( comps );    //ask for index to be removed, returns 0 if no person is chosen
+                    if(remove != 0)
+                        db.removeEntry( comps[remove - 1] );
                 }
-                display(list);      //display the list
-                remove = deletePerson(list);    //ask for index to be removed, returns 0 if no person is chosen
-                if(remove != 0)
-                {
-                    database.RemoveEntry(remove-1);
-                }
-                break;*/
-
+                break;
+            }
             case 6 : {                    //4. Search List
                 int searchChoice = computersOrPeople( SEARCH );
                 if( searchChoice == 1 && people.size() == 0 ) {  // Check if the database is empty
@@ -86,59 +93,64 @@ int main() {
                     Computer search = SearchComputerMenu();  // get search parameters
                     Search(comps, search);              // displays search results
                 }
-
-                //Search(people, search);   // displays search results
                 break;
             }
 
             case 7 : {                    //5. Sort the list
+                int sortChoice = computersOrPeople(SORT_MENU);
+                int sortAction;
+                if(sortChoice == 1) {
+                    sortAction = sortPerson();
+                    if(sortAction == 1)
+                        sortType = NAME_ASC;
+                    else if(sortAction == 2)
+                        sortType = NAME_DESC;
+                    else if(sortAction == 3)
+                        sortType = BIRTH_ASC;
+                    else if(sortAction == 4)
+                        sortType = BIRTH_DESC;
+                    else if(sortAction == 5)
+                        sortType = DEATH_ASC;
+                    else if(sortAction == 6)
+                        sortType = DEATH_DESC;
+                    else if(sortAction == 7)
+                        sortType = GENDER_ASC;
+                    else if(sortAction == 8)
+                        sortType = GENDER_DESC;
 
-                    int sortChoice = computersOrPeople(SORT);
-                    if(sortChoice ==1)
-                    {
-                    sort = sortPerson();
-                    if(sort == 1)
-                        db.readDatabase(people, NAME_ASC);
-                    else if(sort == 2)
-                        db.readDatabase(people, NAME_DESC);
-                    else if(sort == 3)
-                        db.readDatabase(people, BIRTH_ASC);
-                    else if(sort == 4)
-                        db.readDatabase(people, BIRTH_DESC);
-                    else if(sort == 5)
-                        db.readDatabase(people, DEATH_ASC);
-                    else if(sort == 6)
-                        db.readDatabase(people, DEATH_DESC);
-                    else if(sort == 7)
-                        db.readDatabase(people, GENDER_ASC);
-                    else if(sort == 8)
-                        db.readDatabase(people, GENDER_DESC);
-                    displayPerson(people);
+                    if( db.readDatabase( people, sortType ) ) {
+                        cout << "Unable to read from database" << endl;
+                        return 3;
+                    }
+                    displayPerson( people );
+                } else if(sortChoice == 2) {
+                    sortAction = sortComputer();
+                    if(sortAction == 1)
+                        sortType = NAME_ASC;
+                    else if(sortAction == 2)
+                        sortType = NAME_DESC;
+                    else if(sortAction == 3)
+                        sortType = CREATION_ASC;
+                    else if(sortAction == 4)
+                        sortType = CREATION_DESC;
+                    else if(sortAction == 5)
+                        sortType = TYPE_ASC;
+                    else if(sortAction == 6)
+                        sortType = TYPE_DESC;
+                    else if(sortAction == 7)
+                        sortType = CONSTRUCTED_ASC;
+                    else if(sortAction == 8)
+                        sortType = CONSTRUCTED_DESC;
 
-                }
-                else if(sortChoice == 2)
-                {
-                    sort = sortComputer();
-                    if(sort == 1)
-                        db.readDatabase(comps, NAME_ASC);
-                    else if(sort == 2)
-                        db.readDatabase(comps, NAME_DESC);
-                    else if(sort == 3)
-                        db.readDatabase(comps, CREATION_ASC);
-                    else if(sort == 4)
-                        db.readDatabase(comps, CREATION_DESC);
-                    else if(sort == 5)
-                        db.readDatabase(people, TYPE_ASC);
-                    else if(sort == 6)
-                        db.readDatabase(people, TYPE_DESC);
-                    else if(sort == 7)
-                        db.readDatabase(people, CONSTRUCTED_ASC);
-                    else if(sort == 8)
-                        db.readDatabase(people, CONSTRUCTED_DESC);
-                    displayComputer(comps);
+                    if( db.readDatabase( comps, sortType ) ) {
+                        cout << "Unable to read from database" << endl;
+                        return 2;
+                    }
+                    displayComputer( comps );
                 }
 
                 break;
+            }
             /*
             case 6 :                    //6. Modify the list
                 if( list.size() == 0 ) {        // Check if the database is empty
@@ -164,11 +176,11 @@ int main() {
 
         }
 
-        if( db.readDatabase( comps, NAME_ASC ) ) {
+        if( db.readDatabase( comps, sortType ) ) {
             cout << "Unable to read from database" << endl;
             return 2;
         }
-        if( db.readDatabase( people, NAME_ASC ) ) {
+        if( db.readDatabase( people, sortType ) ) {
             cout << "Unable to read from database" << endl;
             return 3;
         }
@@ -176,4 +188,4 @@ int main() {
     db.disconnect();
 
     return 0;
-}}
+}

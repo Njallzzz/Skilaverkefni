@@ -44,17 +44,10 @@ void display(vector<Person>& list, vector<Computer> comps) {
         if( list[x].getSize() == 0 )
             cout << endl;
     }
-
-    /*int choice = computersOrPeople(DISPLAY);
-
-    if(choice == 1)
-        displayPerson(list);
-    else if(choice == 2)
-        displayComputer(comps);*/
 }
 void displayPerson(vector<Person>& list) {
 
-    cout << "\tName\t\t\t\tGender\tBirth\t\tDeath" << endl;
+    cout << "\tName\t\t\tGender\tBirth\t\tDeath" << endl;
     cout << "-------------------------------------------------------------------------------" << endl;
 
     for(unsigned int x=0; x < list.size(); x++)
@@ -77,10 +70,11 @@ void displayComputer(vector<Computer>& comps)
 int computersOrPeople( action text ) {
     QTextStream in(stdin);
     QString input;
-    while( input != "1" && input != "2" ) {
+    while( input != "1" && input != "2" && !( text == DISPLAY && input == "3" ) ) {
         if( text == DISPLAY ) {
-            cout << "1. Display people" << endl;
-            cout << "2. Display computers" << endl;
+            cout << "1. Display combined" << endl;
+            cout << "2. Display people" << endl;
+            cout << "3. Display computers" << endl;
         } else if( text == ADD ) {
             cout << "1. Add a person to the list" << endl;
             cout << "2. Add a computer to the list" << endl;
@@ -93,15 +87,14 @@ int computersOrPeople( action text ) {
         } else if( text == SEARCH ) {
             cout << "1. Search for a person in the list" << endl;
             cout << "2. Search for a computer in the list" << endl;
-        } else if( text == SORT ) {
+        } else if( text == SORT_MENU ) {
             cout << "1. Sort the list of people" << endl;
             cout << "2. Sort the list of computers" << endl;
         }
 
-
         cout << "Your choice: ";
         input = in.readLine();
-        if( input != "1" && input != "2" )
+        if( input != "1" && input != "2" && !( text == DISPLAY && input == "3" ) )
             cout << "Invalid input!" << endl;
     }
     return input.toInt();
@@ -135,6 +128,34 @@ int deletePerson(vector<Person>& list) {
     }
     while( x < 1 || x > int(list.size()) ) {
         cout << "Select a person to delete(input the number displayed before the name): ";
+        index = in.readLine();
+        x = index.toInt();
+        if( x < 1 || x > int(list.size()) )
+            cout << "Please enter a valid index" << endl;
+    }
+    while( choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N' ) {
+        cout << "Are you sure you want to delete '" << list[x-1].getName().toUtf8().constData() << "' from the list(y/n)?: ";
+        cin >> choice;
+    }
+    cout << endl;
+    if(choice == 'y'|| choice == 'Y' )
+       return x;
+
+    return 0;
+}
+
+int deleteComputer(vector<Computer>& list) {
+    int x = 0;
+    char choice = 0;
+    QString index;
+    QTextStream in(stdin);
+    cout << "test" << endl;
+    if( list.size() == 0 ) {
+        cout << "The database is empty" << endl << endl;
+        return 0;
+    }
+    while( x < 1 || x > int(list.size()) ) {
+        cout << "Select a computer to delete(input the number displayed before the name): ";
         index = in.readLine();
         x = index.toInt();
         if( x < 1 || x > int(list.size()) )

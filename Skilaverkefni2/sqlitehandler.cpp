@@ -62,7 +62,7 @@ int SQLITEHandler::readDatabase( vector<Person> & people, sorting s1 ) {        
     else if( s1 == DEATH_DESC )
         q.prepare("SELECT * FROM people ORDER BY death COLLATE NOCASE DESC");
     else                                                                        // Invalid sorting type
-        return 2;
+        q.prepare("SELECT * FROM people ORDER BY name COLLATE NOCASE ASC");
     if( !q.exec() )                                                             // Attempt to execute query
         return 3;
 
@@ -123,7 +123,7 @@ int SQLITEHandler::readDatabase( std::vector<Computer> & computers, sorting s1 )
     else if( s1 == CONSTRUCTED_DESC )
         q.prepare("SELECT * FROM computers ORDER BY constructed COLLATE NOCASE DESC");
     else                                                                                // Invalid sorting type
-        return 2;
+        q.prepare("SELECT * FROM computers ORDER BY name COLLATE NOCASE ASC");
     if( !q.exec() )                                                                     // Attempt to execute query
         return 3;
 
