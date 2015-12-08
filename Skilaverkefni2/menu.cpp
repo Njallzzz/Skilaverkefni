@@ -24,7 +24,7 @@ int menu() {
 }
 
 void display(vector<Person>& list, vector<Computer> comps) {
-    cout << "\tName\t\t\t\tGender\tBirth\t\tDeath\t\tComputers" << endl;
+    cout << "\tName\t\t\tGender\tBirth\t\tDeath\t\tComputers" << endl;
     cout << "--------------------------------------------------------------------------------------------" << endl;
 
     for(unsigned int x = 0; x < list.size(); x++) {
@@ -37,7 +37,7 @@ void display(vector<Person>& list, vector<Computer> comps) {
             }
             cout << "\t" << comps[ id ].getName().toUtf8().constData() << endl;
             if( (list[x].getSize() - 1) != y )
-                cout << "\t\t\t\t\t\t\t\t\t";
+                cout << "\t\t\t\t\t\t\t\t";
         }
         if( list[x].getSize() == 0 )
             cout << endl;
