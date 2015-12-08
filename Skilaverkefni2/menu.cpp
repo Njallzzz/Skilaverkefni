@@ -131,7 +131,6 @@ int deletePerson(vector<Person>& list) {
         cout << "Select a person to delete(input the number displayed before the name): ";
         index = in.readLine();
         x = index.toInt();
-        cout << "ID: " << list[x-1].getId() << endl;
         if( x < 1 || x > int(list.size()) )
             cout << "Please enter a valid index" << endl;
     }

@@ -88,7 +88,6 @@ int main() {
                     displayPerson( people );      //display the list
                     int remove = deletePerson( people );    //ask for index to be removed, returns 0 if no person is chosen
                     if(remove != 0)
-                        cout << "ID: " << people[remove-1].getId() << endl;
                         db.removeEntry( people[remove - 1] );
                 } else if( menuChoice == 2 ) {
                     if( comps.size() == 0 ) {
