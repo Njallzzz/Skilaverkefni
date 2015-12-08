@@ -93,6 +93,7 @@ int computersOrPeople( action text ) {
         }
 
         cout << "Your choice: ";
+        cin.ignore();
         input = in.readLine();
         if( input != "1" && input != "2" && !( text == DISPLAY && input == "3" ) )
             cout << "Invalid input!" << endl;
@@ -171,6 +172,7 @@ int deleteComputer(vector<Computer>& list) {
 
     return 0;
 }
+
 
 Person SearchPersonMenu() {       // Get search paramters from user
     Person temp;    char key = 0;   QTextStream in(stdin);

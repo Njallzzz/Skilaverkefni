@@ -124,12 +124,12 @@ std::istream& operator>>(std::istream& is, Person& p) {
     cout << "Is this person still alive(y/n)?";
     char stillAlive;
     cin >> stillAlive;
-    if(stillAlive == 'n' || stillAlive == 'N')
+    if(stillAlive == 'y' || stillAlive == 'Y')
         return is;
-    else if( stillAlive == 'y' || stillAlive == 'Y')
+    else if( stillAlive == 'n' || stillAlive == 'N')
     {
         do{
-        cout << "Death date(dd.mm.yy) (0 for none): ";
+        cout << "Death date(dd.mm.yy): ";
         p.death = QDate();
         QString death = "";
         cin.ignore();
