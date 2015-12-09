@@ -1,9 +1,6 @@
 #include "person.h"
 
-Person::Person()
-{
-
-}
+Person::Person() {}
 
 Person::Person(QString name, int gender, QDate birth, QDate death)
     : name(name), gender(gender), birth(birth), death(death){}
@@ -117,39 +114,41 @@ std::istream& operator>>(std::istream& is, Person& p) {
         cout << "Invalid input!" << endl;
     }while(p.gender != 1 && p.gender != 2);
 
-
-
-    cout << "Birth date(dd.mm.yyyy): ";
     cin.ignore();
-    while( !p.birth.isValid() )
+    while( !p.birth.isValid() ) {
+        cout << "Birth date(dd.mm.yyyy): ";
         p.birth = QDate::fromString( in.readLine(), "dd.MM.yyyy" );
-
-    cout << "Is this person still alive(y/n)?";
-    char stillAlive;
-    cin >> stillAlive;
+        if( !p.birth.isValid() )
+            cout << "Invalid Date!" << endl;
+    }
+    char stillAlive = 'a';
+    while( stillAlive != 'n' && stillAlive != 'N' && stillAlive != 'y' && stillAlive != 'Y') {
+        cout << "Is this person still alive(y/n)?";
+        cin >> stillAlive;
+        cin.ignore();
+        if( stillAlive != 'n' && stillAlive != 'N' && stillAlive != 'y' && stillAlive != 'Y' )
+            cout << "Invalid input!" << endl;
+    }
     if(stillAlive == 'y' || stillAlive == 'Y')
         return is;
     else if( stillAlive == 'n' || stillAlive == 'N')
     {
         do{
-        cout << "Death date(dd.mm.yyyy): ";
-        p.death = QDate();
-        QString death = "";
-        cin.ignore();
-        while( !p.death.isValid() && death != "0") {
-            death = in.readLine();
-            if( death != "0" )
-                p.death = QDate::fromString( death, "dd.MM.yyyy");
-            else if(death == "0")
-                p.death =QDate::fromString(0);
+            p.death = QDate();
+            QString death = "";
+            while( !p.death.isValid() && death != "0") {
+                cout << "Death date(dd.mm.yyyy): ";
+                death = in.readLine();
+                if( death != "0" )
+                    p.death = QDate::fromString( death, "dd.MM.yyyy");
+                else if(death == "0")
+                    p.death = QDate::fromString(0);
 
-            if(p.death < p.birth)
-
-            {
-                cout << "A person can not die before it is born!" << endl;
+                if(p.death <= p.birth && p.death.isValid() ) {
+                    cout << "A person can not die before it is born!" << endl;
+                }
             }
-    }
-    }while(p.death < p.birth);
+        } while(p.death < p.birth);
     }
     return is;
 }

@@ -96,7 +96,6 @@ int computersOrPeople( action text ) {
         }
 
         cout << "Your choice: ";
-
         input = in.readLine();
         cout << input.toUtf8().constData() << endl;
         if( input != "1" && input != "2" && input != "3" )
@@ -193,7 +192,7 @@ vector<int> addRelation(vector<Person>& p, vector<Computer>& c) {
             cout << "Please choose a number from 1 to " << p.size() << endl;
         else
             relation.push_back(x);
-    }while( x > p.size() || x < 1 );
+    } while( x > p.size() || x < 1 );
 
     displayComputer(c);
     do{
@@ -204,7 +203,7 @@ vector<int> addRelation(vector<Person>& p, vector<Computer>& c) {
             cout << "Please choose a number from 1 to " << c.size() << endl;
         else
             relation.push_back(y);
-    }while( y > c.size() || y < 1 );
+    } while( y > c.size() || y < 1 );
 
     return relation;
 }
@@ -224,7 +223,7 @@ vector<int> removeRelation(vector<Person>& p, vector<Computer>& c) {
             cout << "Please choose a number from 1 to " << p.size() << endl;
         else
             relation.push_back(x - 1);
-    }while(x > p.size() || x < 1);
+    } while(x > p.size() || x < 1);
 
     Person pers = p[x - 1];
     vector<Computer> comps;
@@ -254,13 +253,15 @@ vector<int> removeRelation(vector<Person>& p, vector<Computer>& c) {
                     relation.push_back(z);
             }
         }
-    }while( y > c.size() || y < 1 );
+    } while( y > c.size() || y < 1 );
 
     return relation;
 }
 
 Person SearchPersonMenu() {       // Get search paramters from user
-    Person temp;    char key = 0;   QTextStream in(stdin);
+    Person temp;
+    char key = 0;
+    QTextStream in(stdin);
     temp.setName("");
     temp.setGender(0);
     while( key != '5' ) {           // while looping while inserting search parameters

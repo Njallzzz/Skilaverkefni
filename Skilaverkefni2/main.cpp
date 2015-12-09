@@ -65,7 +65,6 @@ int main() {
                     db.addRelation(people[relation[0]-1], comps[relation[1]-1]);
                 break;
             }
-
             case 4 : {              //3. Remove a person to the list
                 int menuChoice = computersOrPeople( REMOVE );
                 if( menuChoice == 1 ) {
@@ -94,7 +93,7 @@ int main() {
                 db.deleteRelation( people[ relation[0] ], comps[ relation[1] ] );
                 break;
 
-        }
+            }
             case 6 : {                    //4. Search List
                 int searchChoice = computersOrPeople( SEARCH );
                 if( searchChoice == 1 && people.size() == 0 ) {  // Check if the database is empty
@@ -113,7 +112,6 @@ int main() {
                 }
                 break;
             }
-
             case 7 : {                    //5. Sort the list
                 int sortChoice = computersOrPeople(SORT_MENU);
                 int sortAction;
@@ -169,8 +167,7 @@ int main() {
 
                 break;
             }
-
-            case 8 :                    //8. Modify the list
+            case 8 : {                   //8. Modify the list
                 int modifyChoice = computersOrPeople( MODIFY );
                 if( people.size() == 0 ) {        // Check if the database is empty
                     cout << "The database is empty" << endl << endl;
@@ -187,6 +184,7 @@ int main() {
                     db.modifyEntry( c );
                 }
                 break;
+            }
         }
 
         if( db.readDatabase( comps, sortType ) ) {
