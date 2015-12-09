@@ -31,7 +31,7 @@ void display(vector<Person>& list, vector<Computer> comps) {
 
     for(unsigned int x = 0; x < list.size(); x++) {
         cout << x+1 << ".\t" << list[x];
-        for(int y = 0; y < list[x].getSize(); y++) {
+        for(int y = 0; y < list[x].getSize(); y++) {        //for each person, show the computers linked to them
             int id = 0;
             for(unsigned int z = 0; z < comps.size(); z++) {
                 if( comps[z].getId() == list[x].getComputer(y) )
@@ -144,7 +144,7 @@ int deletePerson(vector<Person>& list) {
         cin >> choice;
     }
     cout << endl;
-    if(choice == 'y'|| choice == 'Y' )
+    if(choice == 'y'|| choice == 'Y' )      //if user says yes return the id of the person to delete, otherwise 0
        return x;
 
     return 0;

@@ -12,12 +12,13 @@ int main() {
     vector<Computer> comps;
     vector<Person> people;
 
-    SQLITEHandler db("Database.db");
+    SQLITEHandler db("Database.db");        //Connect to database
     if( db.connect() ) {
         cout << "Unable to connect to database" << endl;
         return 1;
     }
 
+    //Read from the database and sort it by name
     sorting sortType = NAME_ASC;
     if( db.readDatabase( comps, sortType ) ) {
         cout << "Unable to read from database" << endl;
@@ -30,6 +31,7 @@ int main() {
 
     int choice = 0;
 
+    //Action menu
     while(choice != 9) {
         choice = menu();
         switch(choice) {
