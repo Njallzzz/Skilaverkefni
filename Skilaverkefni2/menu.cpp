@@ -50,19 +50,17 @@ void displayPerson(vector<Person>& list) {
     cout << "\tName\t\t\tGender\tBirth\t\tDeath" << endl;
     cout << "-------------------------------------------------------------------------------" << endl;
 
-    for(unsigned int x=0; x < list.size(); x++)
-    {
+    for(unsigned int x=0; x < list.size(); x++) {
         cout << x+1 << ".\t" << list[x] << endl;
     }
 }
 
 
-void displayComputer(vector<Computer>& comps)
-{
+void displayComputer(vector<Computer>& comps) {
+
     cout << "\tName\t\t\tCreated\t\tType\t\t\tBuilt" << endl;
     cout << "-------------------------------------------------------------------------------" << endl;
-    for(unsigned int x =0; x < comps.size();x++)
-    {
+    for(unsigned int x =0; x < comps.size();x++) {
         cout << x+1 << ".\t" << comps[x] << endl;
     }
 }
@@ -98,6 +96,7 @@ int computersOrPeople( action text ) {
         }
 
         cout << "Your choice: ";
+        cin.ignore();
         input = in.readLine();
         cout << input.toUtf8().constData() << endl;
         if( input != "1" && input != "2" && input != "3" )
@@ -113,8 +112,7 @@ Person addPerson() {
     return temp;
 }
 
-Computer addComputer()
-{
+Computer addComputer() {
     Computer temp;
     cout << "Add a computer to the list" << endl;
     cin >> temp;
@@ -188,6 +186,7 @@ vector<int> addRelation(vector<Person>& p, vector<Computer>& c) {
     displayPerson(p);
     do{
         cout <<"Select a person: ";
+        cin.ignore();
         value = in.readLine();
         x = value.toInt();
         if( x > p.size() || x < 1 )
@@ -467,7 +466,7 @@ void Search( vector<Computer> & list, Computer p ) {        // Search for member
     displayComputer( SearchList );              // Display search results
 }
 
-int sortPerson() {        // Gets the method of which the user wants to sort the list
+int sortPerson() {        // Gets the method of which the user wants to sort the list of people
     char x;
     cout << "Choose how you want to sort the list" << endl;
     cout << "\t1. Sort by name ascending(default)" << endl;
@@ -492,7 +491,7 @@ int sortPerson() {        // Gets the method of which the user wants to sort the
     return y;               // Return input
 }
 
-int sortComputer() {
+int sortComputer() {        // Gets the method of which the user wants to sort the list of people
     char x;
     cout << "Choose how you want to sort the list" << endl;
     cout << "\t1. Sort by name ascending" << endl;
@@ -517,19 +516,7 @@ int sortComputer() {
     return y;               // Return input
 }
 
-bool keepSorted() {     // Ask whether the user wants to keep the list sorted
-    char x = 0;
-    while( x != 'y' && x != 'Y' && x != 'n' && x != 'N' ) {     // While there is no valid input
-        cout << "Do you want to keep the list sorted(y/n)?: ";
-        cin >> x;
-        cin.ignore();
-    }
-    cout << endl;
-    if ( x == 'y' || x == 'Y' )
-        return true;
 
-    return false;
-}
 
 Person modify( vector<Person>& people ) {      // User menu that changes a persons template for the modify person operation
     QTextStream in(stdin);
