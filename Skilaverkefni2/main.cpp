@@ -77,7 +77,7 @@ int main() {
                     int remove = deletePerson( people );    //ask for index to be removed, returns 0 if no person is chosen
                     if(remove != 0)
                         db.removeEntry( people[remove - 1] );
-                } else if( menuChoice == 2 ) {
+                  } else if( menuChoice == 2 ) {
                     if( comps.size() == 0 ) {
                         cout << "The database is empty" << endl << endl;
                         break;

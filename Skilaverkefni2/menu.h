@@ -38,7 +38,6 @@ void Search( vector<Person> & list, Person p );     // Search algorithm
 void Search( vector<Computer> & list, Computer c ); // Search algorithm
 int sortPerson();                        // Sort menu
 int sortComputer();
-bool keepSorted();                      // Asks whether or not the changes should be permanent
 Person modify( vector<Person>& people );           // Menu to alter a person already in the database
 Computer modify( vector<Computer>& comp );           // Menu to alter a computer already in the database
 
