@@ -96,7 +96,7 @@ int computersOrPeople( action text ) {
         }
 
         cout << "Your choice: ";
-        cin.ignore();
+
         input = in.readLine();
         cout << input.toUtf8().constData() << endl;
         if( input != "1" && input != "2" && input != "3" )
