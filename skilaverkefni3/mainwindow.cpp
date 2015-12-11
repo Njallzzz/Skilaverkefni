@@ -25,3 +25,9 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_actionCreate_Person_triggered()
+{
+    PersonWindow *pWindow = new PersonWindow;
+    pWindow->exec();
+}

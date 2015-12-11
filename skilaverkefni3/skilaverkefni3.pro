@@ -17,11 +17,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     computer.cpp \
     person.cpp \
-    sqlitehandler.cpp
+    sqlitehandler.cpp \
+    personwindow.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
     person.h \
-    sqlitehandler.h
+    sqlitehandler.h \
+    personwindow.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    personwindow.ui
