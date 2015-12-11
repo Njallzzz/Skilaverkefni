@@ -65,7 +65,7 @@ int main() {
                     db.addRelation(people[relation[0]-1], comps[relation[1]-1]);
                 break;
             }
-            case 4 : {              //3. Remove a person to the list
+            case 4 : {              //3. Remove a person from the list
                 int menuChoice = computersOrPeople( REMOVE );
                 if( menuChoice == 1 ) {
                     if( people.size() == 0 ) {
