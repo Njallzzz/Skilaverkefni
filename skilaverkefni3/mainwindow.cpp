@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         }
     }
 
-    ui->tableView->setModel(model);
+    ui->listView->setModel(model);
 }
 
 MainWindow::~MainWindow()

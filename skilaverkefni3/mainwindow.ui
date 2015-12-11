@@ -16,7 +16,26 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QTableView" name="tableView"/>
+     <widget class="QListView" name="listView">
+      <property name="midLineWidth">
+       <number>0</number>
+      </property>
+      <property name="gridSize">
+       <size>
+        <width>0</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <property name="modelColumn">
+       <number>0</number>
+      </property>
+      <property name="uniformItemSizes">
+       <bool>false</bool>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
