@@ -12,3 +12,9 @@ ComputerWindow::~ComputerWindow()
 {
     delete ui;
 }
+
+void ComputerWindow::on_radioButton_yes_toggled(bool checked)
+{
+ //   if(checked)
+
+}

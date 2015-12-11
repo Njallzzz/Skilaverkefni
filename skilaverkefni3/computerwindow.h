@@ -15,6 +15,9 @@ public:
     explicit ComputerWindow(QWidget *parent = 0);
     ~ComputerWindow();
 
+private slots:
+    void on_radioButton_yes_toggled(bool checked);
+
 private:
     Ui::ComputerWindow *ui;
 };
