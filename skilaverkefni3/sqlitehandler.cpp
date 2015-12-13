@@ -2,7 +2,6 @@
 
 SQLITEHandler::SQLITEHandler() {            //Constructors
     status = false;                         // Initalize variables
-    db = QSqlDatabase::addDatabase("QSQLITE");
 }
 
 SQLITEHandler::SQLITEHandler( QString filename ) {      //Constructors
@@ -18,6 +17,8 @@ SQLITEHandler::~SQLITEHandler() {                       //Constructors
 }
 
 int SQLITEHandler::SetDatabase( QString filename ) {    // Select a database file
+    if( file == "" )
+        db = QSqlDatabase::addDatabase("QSQLITE");
     if( status == true )                                // If already connected, fail
         return 1;
     file = filename;

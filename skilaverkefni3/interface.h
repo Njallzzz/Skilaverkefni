@@ -12,10 +12,16 @@ using namespace std;
 class Interface {
 public:
     Interface();
+    ~Interface();
     int Initialize();
 
-    int getPeople( vector<Person> & p, bool all = false );
-    int getComputers( vector<Computer> & c, bool all = false );
+    vector<Person> & getPeople( bool all = false );
+    vector<Computer> & getComputers( bool all = false );
+
+    int selectPerson( int index );
+
+    void deletePerson( int index );
+    void deleteComputer( int index );
 
     void peopleFilterName( QString name );
     void peopleFilterGender( QString gender );
@@ -28,8 +34,11 @@ public:
     void ComputerFilterBuilt( int built );
 
 private:
-    vector<Person> Filter( vector<Person> & p );
-    vector<Computer> Filter( vector<Computer> & c );
+    vector<Person> p;
+    vector<Computer> c;
+
+    vector<Person> Filter( vector<Person> & people );
+    vector<Computer> Filter( vector<Computer> & computers );
 
     sorting sortComputers;
     sorting sortPeople;
@@ -38,6 +47,7 @@ private:
 
     Person personSearch;
     Computer computerSearch;
+    int SelectedPerson;
 };
 
 #endif // INTERFACE_H

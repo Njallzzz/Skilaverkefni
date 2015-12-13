@@ -1,7 +1,7 @@
 #include "interface.h"
 
 Interface::Interface() {
-    db = SQLITEHandler( "Database.db" );
+    db.SetDatabase( "Database.db" );
     sortPeople = NAME_ASC;
     sortComputers = NAME_ASC;
 
@@ -11,6 +11,12 @@ Interface::Interface() {
 
     personSearch.setName("");
     personSearch.setGender(0);
+
+    SelectedPerson = -1;
+}
+
+Interface::~Interface() {
+    db.disconnect();
 }
 
 int Interface::Initialize() {
@@ -19,78 +25,114 @@ int Interface::Initialize() {
     return 0;
 }
 
-int Interface::getPeople( vector<Person> & p, bool all ) {
+vector<Person> & Interface::getPeople( bool all ) {
     p.clear();
 
     if( db.readDatabase( p, sortPeople ) )
-        return 1;
+        return p;
 
     if(!all)
         p = Filter(p);
 
-    return 0;
+    return p;
 }
 
-int Interface::getComputers( vector<Computer> & c, bool all ) {
+vector<Computer> & Interface::getComputers( bool all ) {
     c.clear();
 
     if( db.readDatabase( c, sortComputers ) )
-        return 1;
+        return c;
 
     if(!all)
         c = Filter(c);
 
-    return 0;
+    if( SelectedPerson != -1 ) {
+        int index = 0;
+        for(unsigned int x = 0; x < p.size(); x++) {
+            if( p[x].getId() == SelectedPerson )
+                index = x;
+        }
+
+        //qDebug() << "Total computers: " << c.size() << "  ID of person: " << index;
+        vector<int> ids;
+
+        /*for( unsigned int x = 0; x < c.size(); x++ ) {        // Unfinished person selection for computers
+            bool added = false;
+            for( unsigned int y = 0; y < ids.size(); y++ ) {
+                bool exclude = false;
+                for( int z = 0; z < p[index].getSize(); z++) {
+                    for( unsigned int i = 0; i < c.size(); i++ ) {
+                        if( p[index].getComputer(z) == c[i].getId() )
+                            exclude = true;
+                    }
+                }
+                if( (x == ids[y]) || exclude )
+                    added = true;
+            }
+            if(!added)
+                ids.push_back(x);
+        }*/
+
+        //qDebug() << "Total ids to remove: " << ids.size();
+
+        for(int x = int(ids.size()) - 1; x >= 0; x--) {
+            //qDebug() << c[ids[x]].getName();
+            c.erase( c.begin() + ids[x] );
+        }
+
+    }
+
+    return c;
 }
 
-vector<Person> Interface::Filter( vector<Person> & p ) {
+vector<Person> Interface::Filter( vector<Person> & people ) {
     vector<Person> results;
-    for( unsigned int x = 0; x < p.size(); x++) {    // Search each entry of list
+    for( unsigned int x = 0; x < people.size(); x++) {    // Search each entry of list
         bool add = true;                                    // We say the entry should be added by default then exclude it based on the template person
         if( personSearch.getName() != "" )
-            if( !p[x].getName().contains( personSearch.getName(), Qt::CaseInsensitive ) )
+            if( !people[x].getName().contains( personSearch.getName(), Qt::CaseInsensitive ) )
                 add = false;
 
         if( personSearch.getGender() != 0 )
-            if( !(p[x].getGender() == personSearch.getGender() ) )
+            if( !(people[x].getGender() == personSearch.getGender() ) )
                 add = false;
 
         if( personSearch.getBirth().isValid() )
-            if( !(p[x].getBirth() == personSearch.getBirth() ) )
+            if( !(people[x].getBirth() == personSearch.getBirth() ) )
                 add = false;
 
         if( personSearch.getDeath().isValid() )
-            if( !(p[x].getDeath() == personSearch.getDeath() ) )
+            if( !(people[x].getDeath() == personSearch.getDeath() ) )
                 add = false;
 
         if(add)
-            results.push_back( p[x] );
+            results.push_back( people[x] );
     }
     return results;
 }
 
-vector<Computer> Interface::Filter( vector<Computer> & c ) {
+vector<Computer> Interface::Filter( vector<Computer> & computers ) {
     vector<Computer> results;
-    for( unsigned int x = 0; x < c.size(); x++) {    // Search each entry of list
+    for( unsigned int x = 0; x < computers.size(); x++) {    // Search each entry of list
         bool add = true;                                    // We say the entry should be added by default then exclude it based on the template person
         if( computerSearch.getName() != "" )
-            if( !c[x].getName().contains( computerSearch.getName(), Qt::CaseInsensitive ) )
+            if( !computers[x].getName().contains( computerSearch.getName(), Qt::CaseInsensitive ) )
                 add = false;
 
         if( computerSearch.getType() != "" )
-            if( !c[x].getType().contains( computerSearch.getType() , Qt::CaseInsensitive ) )
+            if( !computers[x].getType().contains( computerSearch.getType() , Qt::CaseInsensitive ) )
                 add = false;
 
         if( computerSearch.getWasBuilt() != 2 )
-            if( !(c[x].getWasBuilt() == computerSearch.getWasBuilt() ) )
+            if( !(computers[x].getWasBuilt() == computerSearch.getWasBuilt() ) )
                 add = false;
 
         if( computerSearch.getYear() != "" )
-            if( !(c[x].getYear() == computerSearch.getYear() ) )
+            if( !(computers[x].getYear() == computerSearch.getYear() ) )
                 add = false;
 
         if(add)
-            results.push_back( c[x] );
+            results.push_back( computers[x] );
     }
     return results;
 }
@@ -135,4 +177,19 @@ void Interface::ComputerFilterBuilt( int built ) {
         computerSearch.setWasBuilt( 1 );
     else if( built == 2 )
         computerSearch.setWasBuilt( 0 );
+}
+
+int Interface::selectPerson( int index ) {
+    if( index < 0 || index >= int(p.size()) )
+        return 1;
+    SelectedPerson = p[index].getId();
+    return 0;
+}
+
+void Interface::deletePerson( int index ) {
+    db.removeEntry( p[index] );
+}
+
+void Interface::deleteComputer( int index ) {
+    db.removeEntry( c[index] );
 }
