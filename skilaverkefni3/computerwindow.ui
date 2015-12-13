@@ -7,38 +7,66 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>200</height>
+    <height>260</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>300</width>
-    <height>200</height>
+    <height>220</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>300</width>
-    <height>200</height>
+    <height>260</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Computer</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>20</y>
-     <width>281</width>
-     <height>161</height>
+     <x>0</x>
+     <y>0</y>
+     <width>280</width>
+     <height>230</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_3">
+   <property name="minimumSize">
+    <size>
+     <width>280</width>
+     <height>230</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>280</width>
+     <height>230</height>
+    </size>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_computer">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetFixedSize</enum>
+    </property>
+    <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+     <widget class="QLabel" name="label_new_person">
+      <property name="text">
+       <string>&lt;font size=&quot;5&quot;&gt;New Computer&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetFixedSize</enum>
+      </property>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
         <item alignment="Qt::AlignRight">
          <widget class="QLabel" name="label_computer_name">
           <property name="text">
@@ -71,20 +99,79 @@
       </item>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
         <item>
-         <widget class="QPlainTextEdit" name="plainTextEdit_name">
-          <property name="acceptDrops">
-           <bool>false</bool>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <property name="topMargin">
+           <number>2</number>
           </property>
-         </widget>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_computer_name">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_name_error_star">
+            <property name="text">
+             <string>*</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="plainTextEdit_type"/>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_computer_type">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_type_error_star">
+            <property name="text">
+             <string>*</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetFixedSize</enum>
+          </property>
+          <property name="topMargin">
+           <number>2</number>
+          </property>
           <item>
            <widget class="QDateEdit" name="dateEdit_year_built">
+            <property name="minimumSize">
+             <size>
+              <width>90</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>90</width>
+              <height>24</height>
+             </size>
+            </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
@@ -117,9 +204,22 @@
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="label_date_error_star">
+            <property name="text">
+             <string>&lt;font color=&quot;white&quot;&gt; Error &lt;/font&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -133,8 +233,17 @@
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetFixedSize</enum>
+          </property>
           <item alignment="Qt::AlignLeft">
            <widget class="QRadioButton" name="radioButton_yes">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
              <string>Yes</string>
             </property>
@@ -145,6 +254,12 @@
           </item>
           <item>
            <widget class="QRadioButton" name="radioButton_no">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
              <string>No</string>
             </property>
@@ -154,9 +269,22 @@
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="label_built_error_star">
+            <property name="text">
+             <string>&lt;font color=&quot;white&quot;&gt; Error &lt;/font&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -174,6 +302,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetFixedSize</enum>
+      </property>
       <item>
        <widget class="QPushButton" name="pushButton_computer_save">
         <property name="text">
@@ -198,6 +329,19 @@
      </layout>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="label_computer_error">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>220</y>
+     <width>271</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;font color='red'&gt;*All textboxes and buttons must be filled in&lt;br&gt;or checked&lt;/font&gt;</string>
+   </property>
   </widget>
  </widget>
  <resources/>
