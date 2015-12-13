@@ -6,6 +6,8 @@ PersonWindow::PersonWindow(QWidget *parent) :
     ui(new Ui::PersonWindow)
 {
     ui->setupUi(this);
+    ui->genderInput->addItem("Male");
+    ui->genderInput->addItem("Female");
 }
 
 PersonWindow::~PersonWindow()
