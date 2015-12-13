@@ -1,5 +1,10 @@
 #include "sqlitehandler.h"
 
+SQLITEHandler::SQLITEHandler() {            //Constructors
+    status = false;                         // Initalize variables
+    db = QSqlDatabase::addDatabase("QSQLITE");
+}
+
 SQLITEHandler::SQLITEHandler( QString filename ) {      //Constructors
     file = filename;                                    // Initalize variables
     status = false;

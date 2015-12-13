@@ -31,6 +31,7 @@ enum sorting {      // Sorting type
 class SQLITEHandler {       // Database handler
 public:
     //Constructors
+    SQLITEHandler();
     SQLITEHandler( QString filename );
     ~SQLITEHandler();
 
