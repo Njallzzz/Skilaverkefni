@@ -37,11 +37,12 @@ private slots:
     void on_date_death_p_dateChanged(const QDate &date);
     void on_filter_type_c_textEdited(const QString &arg1);
     void on_date_date_c_dateChanged(const QDate &date);
-
-
     void on_filter_built_c_activated(int index);
-
     void on_filter_gender_p_activated(const QString &arg1);
+    // DEBUG BUTTON FUNCTIONS HERE (REMEMBER TO REMOVE BEFORE RELEASE)
+    void on_pushButton_3_clicked();
+    void on_pushButton_2_clicked();
+    // ~DEBUG BUTTON FUNCTIONS HERE (REMEMBER TO REMOVE BEFORE RELEASE)
 
 private:
     void resizeEvent( QResizeEvent* event );
