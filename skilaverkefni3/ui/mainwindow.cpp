@@ -49,12 +49,14 @@ void MainWindow::on_actionCreate_Person_triggered()
 {
     PersonWindow *pWindow = new PersonWindow;
     pWindow->exec();
+    delete pWindow;
 }
 
 void MainWindow::on_actionCreate_Computer_triggered()
 {
     ComputerWindow *cWindow = new ComputerWindow;
     cWindow->exec();
+    delete cWindow;
 }
 
 void MainWindow::display() {
@@ -244,11 +246,13 @@ void MainWindow::on_filter_gender_p_activated(const QString &arg1) {
 void MainWindow::on_pushButton_3_clicked() {
     PersonWindow *pWindow = new PersonWindow;
     pWindow->exec();
+    delete pWindow;
 }
 
 void MainWindow::on_pushButton_2_clicked() {
     ComputerWindow *cWindow = new ComputerWindow;
     cWindow->exec();
+    delete cWindow;
 }
 // ~DEBUG BUTTON FUNCTIONS HERE (REMEMBER TO REMOVE BEFORE RELEASE)
 
@@ -299,4 +303,5 @@ void MainWindow::on_pushButton_clear_computer_clicked() {
 void MainWindow::on_actionAbout_triggered() {
     AboutWindow *aWindow = new AboutWindow;
     aWindow->show();
+    delete aWindow;
 }
