@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->computer_list->horizontalHeader()->setStretchLastSection( true );
     ui->computer_list->setSelectionBehavior( QAbstractItemView::SelectRows  );
 
+    aWindow = new AboutWindow;
+
     ui->pushButton_delete_computer->setEnabled(false);
     ui->pushButton_modify_computer->setEnabled(false);
     ui->pushButton_delete_person->setEnabled(false);
@@ -38,11 +40,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     display();
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
     delete model;
     delete handler;
+    delete aWindow;
 }
 
 void MainWindow::on_actionCreate_Person_triggered()
@@ -301,7 +303,5 @@ void MainWindow::on_pushButton_clear_computer_clicked() {
 }
 
 void MainWindow::on_actionAbout_triggered() {
-    AboutWindow *aWindow = new AboutWindow;
     aWindow->show();
-    delete aWindow;
 }

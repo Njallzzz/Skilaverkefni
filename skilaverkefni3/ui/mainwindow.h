@@ -57,6 +57,7 @@ private:
     Interface *handler;
     Ui::MainWindow *ui;
     QStandardItemModel *model;
+    AboutWindow *aWindow;
 
     void displayPeople();
     void displayComputers();
