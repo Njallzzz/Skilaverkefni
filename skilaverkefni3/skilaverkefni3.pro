@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     services/interface.cpp \
     ui/computerwindow.cpp \
     ui/mainwindow.cpp \
-    ui/personwindow.cpp
+    ui/personwindow.cpp \
+    ui/aboutwindow.cpp
 
 HEADERS  += models/computer.h \
     models/person.h \
@@ -28,8 +29,10 @@ HEADERS  += models/computer.h \
     services/interface.h \
     ui/computerwindow.h \
     ui/mainwindow.h \
-    ui/personwindow.h
+    ui/personwindow.h \
+    ui/aboutwindow.h
 
 FORMS    += ui/computerwindow.ui \
     ui/mainwindow.ui \
-    ui/personwindow.ui
+    ui/personwindow.ui \
+    ui/aboutwindow.ui

@@ -295,3 +295,8 @@ void MainWindow::on_pushButton_clear_computer_clicked() {
     ui->pushButton_modify_computer->setEnabled(false);
     ui->computer_list->setCurrentIndex( ui->computer_list->model()->index(-1, 0) );
 }
+
+void MainWindow::on_actionAbout_triggered() {
+    AboutWindow *aWindow = new AboutWindow;
+    aWindow->show();
+}

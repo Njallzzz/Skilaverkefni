@@ -9,6 +9,7 @@
 #include "services/interface.h"
 #include "ui/personwindow.h"
 #include "ui/computerwindow.h"
+#include "ui/aboutwindow.h"
 
 namespace Ui {
     class MainWindow;
@@ -52,6 +53,8 @@ private slots:
     void on_pushButton_clear_person_clicked();
 
     void on_pushButton_clear_computer_clicked();
+
+    void on_actionAbout_triggered();
 
 private:
     void resizeEvent( QResizeEvent* event );

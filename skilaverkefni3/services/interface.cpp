@@ -28,8 +28,14 @@ int Interface::Initialize() {
 vector<Person> & Interface::getPeople( bool all ) {
     p.clear();
 
-    if( db.readDatabase( p, sortPeople ) )
-        return p;
+    if( all == false ) {
+        if( db.readDatabase( p, sortPeople ) )
+            return p;
+    } else {
+        if( db.readDatabase( p, NAME_ASC ) )
+            return p;
+    }
+
 
     if(!all)
         p = Filter(p);
@@ -40,8 +46,13 @@ vector<Person> & Interface::getPeople( bool all ) {
 vector<Computer> & Interface::getComputers( bool all ) {
     c.clear();
 
-    if( db.readDatabase( c, sortComputers ) )
-        return c;
+    if( all == false ) {
+        if( db.readDatabase( c, sortComputers ) )
+            return c;
+    } else {
+        if( db.readDatabase( c, NAME_ASC ) )
+            return c;
+    }
 
     if(!all)
         c = Filter(c);

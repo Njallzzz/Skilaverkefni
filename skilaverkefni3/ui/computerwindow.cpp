@@ -1,24 +1,17 @@
 #include "ui/computerwindow.h"
-#include "models/computer.h"
 #include "ui_computerwindow.h"
-#include <QDebug>
 
-Computer c;
-
-ComputerWindow::ComputerWindow(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ComputerWindow)
-{
+ComputerWindow::ComputerWindow(QWidget *parent) : QDialog(parent), ui(new Ui::ComputerWindow) {
     ui->setupUi(this);
+    this->setWindowFlags( Qt::WindowTitleHint | Qt::WindowCloseButtonHint );
     errorEmpty();
 }
 
-ComputerWindow::~ComputerWindow()
-{
+ComputerWindow::~ComputerWindow() {
     delete ui;
 }
 
-void ComputerWindow::errorEmpty(){
+void ComputerWindow::errorEmpty() {
     ui->label_name_error_star->setText( "\0" );
     ui->label_type_error_star->setText( "\0" );
     ui->label_date_error_star->setText( "\0" );
@@ -26,8 +19,7 @@ void ComputerWindow::errorEmpty(){
     ui->label_computer_error->setText( "\0");
 }
 
-bool ComputerWindow::error()
-{
+bool ComputerWindow::error() {
     errorEmpty();
 
     bool ifError = false;
@@ -54,8 +46,7 @@ bool ComputerWindow::error()
     return ifError;
 }
 
-void ComputerWindow::on_pushButton_computer_save_clicked()
-{
+void ComputerWindow::on_pushButton_computer_save_clicked() {
     bool yes_checked = ui->radioButton_yes->isChecked();
 
     if ( !error() ) {
@@ -73,7 +64,6 @@ void ComputerWindow::on_pushButton_computer_save_clicked()
     }
 }
 
-void ComputerWindow::on_pushButton_computer_cancel_clicked()
-{
-    //QDialog::reject();
+void ComputerWindow::on_pushButton_computer_cancel_clicked() {
+    this->hide();
 }
