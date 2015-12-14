@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->pushButton_modify_computer->setEnabled(false);
     ui->pushButton_delete_person->setEnabled(false);
     ui->pushButton_modify_person->setEnabled(false);
+    ui->pushButton_clear_person->setEnabled(false);
+    ui->pushButton_clear_computer->setEnabled(false);
 
     ui->date_birth_p->setEnabled(false);
     ui->date_death_p->setEnabled(false);
@@ -57,7 +59,6 @@ void MainWindow::on_actionCreate_Computer_triggered()
 
 void MainWindow::display() {
     displayPeople();
-    displayComputers();
 }
 
 void MainWindow::displayPeople() {
@@ -65,7 +66,9 @@ void MainWindow::displayPeople() {
 
     ui->pushButton_delete_person->setEnabled(false);
     ui->pushButton_modify_person->setEnabled(false);
+    ui->pushButton_clear_person->setEnabled(false);
     handler->selectPerson(-1);
+    displayComputers();
 
     model = new QStandardItemModel( p.size(), 4, this);
 
@@ -101,6 +104,7 @@ void MainWindow::displayComputers() {
 
     ui->pushButton_delete_computer->setEnabled(false);
     ui->pushButton_modify_computer->setEnabled(false);
+    ui->pushButton_clear_computer->setEnabled(false);
 
     model = new QStandardItemModel( c.size(), 4, this);
 
@@ -185,15 +189,17 @@ void MainWindow::on_filter_date_c_c_clicked() {
 void MainWindow::on_people_list_clicked(const QModelIndex &index) {
     ui->pushButton_delete_person->setEnabled(true);
     ui->pushButton_modify_person->setEnabled(true);
+    ui->pushButton_clear_person->setEnabled(true);
     handler->selectPerson( index.row() );
-    qDebug() << "Person: " << index.row();
+    //qDebug() << "Person: " << index.row();
     displayComputers();
 }
 
 void MainWindow::on_computer_list_clicked(const QModelIndex &index) {
     ui->pushButton_delete_computer->setEnabled(true);
     ui->pushButton_modify_computer->setEnabled(true);
-    qDebug() << "Computer: " << index.row();
+    ui->pushButton_clear_computer->setEnabled(true);
+    //qDebug() << "Computer: " << index.row();
 }
 
 void MainWindow::on_filter_name_p_textEdited(const QString &arg1) {
@@ -249,11 +255,45 @@ void MainWindow::on_pushButton_2_clicked() {
 // ~DEBUG BUTTON FUNCTIONS HERE (REMEMBER TO REMOVE BEFORE RELEASE)
 
 void MainWindow::on_pushButton_delete_person_clicked() {
-    handler->deletePerson( ui->people_list->currentIndex().row() );
-    displayPeople();
+    QMessageBox confirm;
+    confirm.setWindowTitle( "Delete a person" );
+    confirm.setText("Are you sure you want to delete the selected person?");
+    confirm.setStandardButtons(QMessageBox::Yes);
+    confirm.addButton( QMessageBox::No );
+    confirm.setDefaultButton( QMessageBox::No );
+
+    if( confirm.exec() == QMessageBox::Yes ) {
+        handler->deletePerson( ui->people_list->currentIndex().row() );
+        displayPeople();
+    }
 }
 
 void MainWindow::on_pushButton_delete_computer_clicked() {
-    handler->deleteComputer( ui->computer_list->currentIndex().row() );
+    QMessageBox confirm;
+    confirm.setWindowTitle( "Delete a computer" );
+    confirm.setText("Are you sure you want to delete the selected computer?");
+    confirm.setStandardButtons(QMessageBox::Yes);
+    confirm.addButton( QMessageBox::No );
+    confirm.setDefaultButton( QMessageBox::No );
+
+    if( confirm.exec() == QMessageBox::Yes ) {
+        handler->deleteComputer( ui->computer_list->currentIndex().row() );
+        displayComputers();
+    }
+}
+
+void MainWindow::on_pushButton_clear_person_clicked() {
+    ui->pushButton_clear_person->setEnabled(false);
+    ui->pushButton_delete_person->setEnabled(false);
+    ui->pushButton_modify_person->setEnabled(false);
+    ui->people_list->setCurrentIndex( ui->people_list->model()->index(-1, 0) );
+    handler->selectPerson(-1);
     displayComputers();
+}
+
+void MainWindow::on_pushButton_clear_computer_clicked() {
+    ui->pushButton_clear_computer->setEnabled(false);
+    ui->pushButton_delete_computer->setEnabled(false);
+    ui->pushButton_modify_computer->setEnabled(false);
+    ui->computer_list->setCurrentIndex( ui->computer_list->model()->index(-1, 0) );
 }

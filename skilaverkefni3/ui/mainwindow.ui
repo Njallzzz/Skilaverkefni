@@ -135,18 +135,29 @@
           <widget class="QTableView" name="people_list"/>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_delete_person">
+          <widget class="QPushButton" name="pushButton_clear_person">
            <property name="text">
-            <string>Delete Selected</string>
+            <string>Clear Selection</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_modify_person">
-           <property name="text">
-            <string>Modify Selected</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="people_button_group">
+           <item>
+            <widget class="QPushButton" name="pushButton_delete_person">
+             <property name="text">
+              <string>Delete Selected</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_modify_person">
+             <property name="text">
+              <string>Modify Selected</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>
@@ -244,18 +255,29 @@
           <widget class="QTableView" name="computer_list"/>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_delete_computer">
+          <widget class="QPushButton" name="pushButton_clear_computer">
            <property name="text">
-            <string>Delete Selected</string>
+            <string>Clear Selection</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_modify_computer">
-           <property name="text">
-            <string>Modify Selected</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="computer_button_group">
+           <item>
+            <widget class="QPushButton" name="pushButton_delete_computer">
+             <property name="text">
+              <string>Delete Selected</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_modify_computer">
+             <property name="text">
+              <string>Modify Selected</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 #include <QDebug>
 #include <QtCore>
 #include <QtGui>
@@ -47,6 +48,10 @@ private slots:
     void on_pushButton_delete_person_clicked();
 
     void on_pushButton_delete_computer_clicked();
+
+    void on_pushButton_clear_person_clicked();
+
+    void on_pushButton_clear_computer_clicked();
 
 private:
     void resizeEvent( QResizeEvent* event );

@@ -46,37 +46,34 @@ vector<Computer> & Interface::getComputers( bool all ) {
     if(!all)
         c = Filter(c);
 
-    if( SelectedPerson != -1 ) {
+    if( (SelectedPerson != -1) && (all == false) ) {
         int index = 0;
         for(unsigned int x = 0; x < p.size(); x++) {
             if( p[x].getId() == SelectedPerson )
                 index = x;
         }
-
-        //qDebug() << "Total computers: " << c.size() << "  ID of person: " << index;
         vector<int> ids;
 
-        /*for( unsigned int x = 0; x < c.size(); x++ ) {        // Unfinished person selection for computers
-            bool added = false;
-            for( unsigned int y = 0; y < ids.size(); y++ ) {
-                bool exclude = false;
-                for( int z = 0; z < p[index].getSize(); z++) {
-                    for( unsigned int i = 0; i < c.size(); i++ ) {
-                        if( p[index].getComputer(z) == c[i].getId() )
-                            exclude = true;
-                    }
-                }
-                if( (x == ids[y]) || exclude )
-                    added = true;
-            }
-            if(!added)
-                ids.push_back(x);
-        }*/
+        for( unsigned int x = 0; x < c.size(); x++ ) {
+            bool added = false, exclude = false;
 
-        //qDebug() << "Total ids to remove: " << ids.size();
+            for( unsigned int i = 0; i < p[index].getSize(); i++) {
+                if( p[index].getComputer(i) == c[x].getId() )
+                    exclude = true;
+            }
+
+            if( !exclude ) {
+                for( unsigned int y = 0; y < ids.size(); y++ ) {
+                    if( x == ids[y] )
+                        added = true;
+                }
+            }
+
+            if(!added && !exclude)
+                ids.push_back(x);
+        }
 
         for(int x = int(ids.size()) - 1; x >= 0; x--) {
-            //qDebug() << c[ids[x]].getName();
             c.erase( c.begin() + ids[x] );
         }
 
@@ -180,9 +177,12 @@ void Interface::ComputerFilterBuilt( int built ) {
 }
 
 int Interface::selectPerson( int index ) {
-    if( index < 0 || index >= int(p.size()) )
+    if( index < -1 || index >= int(p.size()) )
         return 1;
-    SelectedPerson = p[index].getId();
+    if( index == -1 )
+        SelectedPerson = -1;
+    else
+        SelectedPerson = p[index].getId();
     return 0;
 }
 
