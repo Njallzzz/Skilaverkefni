@@ -50,6 +50,8 @@ private slots:
     void on_pushButton_clear_person_clicked();
     void on_pushButton_clear_computer_clicked();
     void on_actionAbout_triggered();
+    void people_on_sectionClicked( int index );
+    void computers_on_sectionClicked( int index );
 
 private:
     void resizeEvent( QResizeEvent* event );

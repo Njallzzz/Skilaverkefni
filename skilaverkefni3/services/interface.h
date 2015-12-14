@@ -18,6 +18,9 @@ public:
     vector<Person> & getPeople( bool all = false );
     vector<Computer> & getComputers( bool all = false );
 
+    void sortPerson( int index );
+    void sortComputer( int index );
+
     int selectPerson( int index );
 
     void deletePerson( int index );

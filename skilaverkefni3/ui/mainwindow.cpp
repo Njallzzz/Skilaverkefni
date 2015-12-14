@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->computer_list->horizontalHeader()->setStretchLastSection( true );
     ui->computer_list->setSelectionBehavior( QAbstractItemView::SelectRows  );
 
+    connect(ui->people_list->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(people_on_sectionClicked( int )));
+    connect(ui->computer_list->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(computers_on_sectionClicked( int )));
+
     aWindow = new AboutWindow;
 
     ui->pushButton_delete_computer->setEnabled(false);
@@ -304,4 +307,14 @@ void MainWindow::on_pushButton_clear_computer_clicked() {
 
 void MainWindow::on_actionAbout_triggered() {
     aWindow->show();
+}
+
+void MainWindow::people_on_sectionClicked( int index ) {
+    handler->sortPerson( index );
+    displayPeople();
+}
+
+void MainWindow::computers_on_sectionClicked( int index ) {
+    handler->sortComputer( index );
+    displayComputers();
 }

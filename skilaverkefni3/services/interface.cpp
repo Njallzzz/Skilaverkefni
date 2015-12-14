@@ -65,10 +65,10 @@ vector<Computer> & Interface::getComputers( bool all ) {
         }
         vector<int> ids;
 
-        for( unsigned int x = 0; x < c.size(); x++ ) {
+        for( int x = 0; x < int(c.size()); x++ ) {
             bool added = false, exclude = false;
 
-            for( unsigned int i = 0; i < p[index].getSize(); i++) {
+            for( int i = 0; i < p[index].getSize(); i++) {
                 if( p[index].getComputer(i) == c[x].getId() )
                     exclude = true;
             }
@@ -203,4 +203,52 @@ void Interface::deletePerson( int index ) {
 
 void Interface::deleteComputer( int index ) {
     db.removeEntry( c[index] );
+}
+
+void Interface::sortPerson( int index ) {
+    if( index == 0 ) {
+        if( sortPeople == NAME_ASC )
+            sortPeople = NAME_DESC;
+        else
+            sortPeople = NAME_ASC;
+    } else if( index == 1 ) {
+        if( sortPeople == GENDER_ASC )
+            sortPeople = GENDER_DESC;
+        else
+            sortPeople = GENDER_ASC;
+    } else if( index == 2 ) {
+        if( sortPeople == BIRTH_ASC )
+            sortPeople = BIRTH_DESC;
+        else
+            sortPeople = BIRTH_ASC;
+    } else if( index == 3 ) {
+        if( sortPeople == DEATH_ASC )
+            sortPeople = DEATH_DESC;
+        else
+            sortPeople = DEATH_ASC;
+    }
+}
+
+void Interface::sortComputer( int index ) {
+    if( index == 0 ) {
+        if( sortComputers == NAME_ASC )
+            sortComputers = NAME_DESC;
+        else
+            sortComputers = NAME_ASC;
+    } else if( index == 1 ) {
+        if( sortComputers == TYPE_ASC )
+            sortComputers = TYPE_DESC;
+        else
+            sortComputers = TYPE_ASC;
+    } else if( index == 2 ) {
+        if( sortComputers == CREATION_ASC )
+            sortComputers = CREATION_DESC;
+        else
+            sortComputers = CREATION_ASC;
+    } else if( index == 3 ) {
+        if( sortComputers == CONSTRUCTED_ASC )
+            sortComputers = CONSTRUCTED_DESC;
+        else
+            sortComputers = CONSTRUCTED_ASC;
+    }
 }
