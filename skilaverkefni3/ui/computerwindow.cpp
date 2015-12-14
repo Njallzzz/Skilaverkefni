@@ -27,6 +27,7 @@ bool ComputerWindow::error() {
     bool no_checked = ui->radioButton_no->isChecked();
     bool name_empty = ui->lineEdit_computer_name->text().isEmpty();
     bool type_empty = ui->lineEdit_computer_type->text().isEmpty();
+    bool date_empty = ui->dateEdit_year_built->text().isEmpty();
 
     if( name_empty ){
         ui->label_name_error_star->setText( "<font color='red'>*</font>" );
@@ -36,12 +37,16 @@ bool ComputerWindow::error() {
         ui->label_type_error_star->setText( "<font color='red'>*</font>" );
         ifError = true;
     }
+    if( date_empty ) {
+        ui->label_date_error_star->setText( "<font color='red'>*</font>" );
+        ifError = true;
+    }
     if( !yes_checked && !no_checked ){
         ui->label_built_error_star->setText( "<font color='red'>*</font>" );
         ifError = true;
     }
     if( ifError ){
-        ui->label_computer_error->setText( "<font color='red'>*All textboxes and buttons must be filled in or checked</font>" );
+        ui->label_computer_error->setText( "<font color='red'>*All information must be filled in</font>" );
     }
     return ifError;
 }
@@ -57,6 +62,7 @@ void ComputerWindow::on_pushButton_computer_save_clicked() {
             c.setWasBuilt( 1 );
         else
             c.setWasBuilt( 0 );
+
         qDebug() << c.getName();
         qDebug() << c.getType();
         qDebug() << c.getYear();
