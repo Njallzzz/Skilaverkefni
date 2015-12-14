@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>pi.ico</file>
+        <file>rocks.jpg</file>
+    </qresource>
+</RCC>

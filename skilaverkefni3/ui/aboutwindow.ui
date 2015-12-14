@@ -50,14 +50,29 @@
      <x>200</x>
      <y>50</y>
      <width>281</width>
-     <height>221</height>
+     <height>231</height>
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Computer scientist database is a free and open source&lt;/p&gt;&lt;p&gt;something something&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Made by:                                        &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;https://github.com/Njallzzz/Skilaverkefni&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Go to GitHub!&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Arnór Brynjólfsson&lt;/p&gt;&lt;p&gt;Hjálmar Örn Hannesson&lt;/p&gt;&lt;p&gt;Maríus Sævarsson&lt;/p&gt;&lt;p&gt;Njáll Hilmar Hilmarsson&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Computer scientist database was made during a school&lt;/p&gt;
+&lt;p&gt;programming course in Háskólinn í Reykjavík by 4 students&lt;/p&gt;&lt;br&gt;
+&lt;p&gt;Software Version: 1.00&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;https://github.com/Njallzzz/Skilaverkefni&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Go to GitHub!&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Made by:&lt;/p&gt;&lt;p&gt;Arnór Brynjólfsson&lt;/p&gt;&lt;p&gt;Hjálmar Örn Hannesson&lt;/p&gt;&lt;p&gt;Maríus Sævarsson&lt;/p&gt;&lt;p&gt;Njáll Hilmar Hilmarsson&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="image_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>181</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;b&gt;Unable to display image&lt;/b&gt;</string>
    </property>
   </widget>
  </widget>

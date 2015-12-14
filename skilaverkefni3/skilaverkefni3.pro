@@ -36,3 +36,7 @@ FORMS    += ui/computerwindow.ui \
     ui/mainwindow.ui \
     ui/personwindow.ui \
     ui/aboutwindow.ui
+
+RESOURCES += pictures.qrc
+
+RC_FILE += app.rc

@@ -2,6 +2,7 @@
 #define ABOUTWINDOW_H
 
 #include <QDialog>
+#include <QPixmap>
 
 namespace Ui {
     class AboutWindow;
