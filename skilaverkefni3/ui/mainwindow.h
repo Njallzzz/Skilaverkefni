@@ -10,6 +10,7 @@
 #include "ui/personwindow.h"
 #include "ui/computerwindow.h"
 #include "ui/aboutwindow.h"
+#include <QMenu>
 
 namespace Ui {
     class MainWindow;
@@ -52,6 +53,10 @@ private slots:
     void on_actionAbout_triggered();
     void people_on_sectionClicked( int index );
     void computers_on_sectionClicked( int index );
+
+    void on_people_list_customContextMenuRequested(const QPoint &pos);
+
+    void on_action_rightClick_triggered();
 
 private:
     void resizeEvent( QResizeEvent* event );

@@ -318,3 +318,26 @@ void MainWindow::computers_on_sectionClicked( int index ) {
     handler->sortComputer( index );
     displayComputers();
 }
+
+void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos)
+{
+
+    QMenu menu;
+    menu.addAction(ui->action_rightClick);
+    menu.exec(ui->people_list->viewport()->mapToGlobal(pos));
+}
+
+void MainWindow::on_action_rightClick_triggered()
+{
+    QMessageBox confirm;
+    confirm.setWindowTitle( "Delete a person" );
+    confirm.setText("Are you sure you want to delete the selected person?");
+    confirm.setStandardButtons(QMessageBox::Yes);
+    confirm.addButton( QMessageBox::No );
+    confirm.setDefaultButton( QMessageBox::No );
+
+    if( confirm.exec() == QMessageBox::Yes ) {
+        handler->deletePerson( ui->people_list->currentIndex().row() );
+        displayPeople();
+    }
+}

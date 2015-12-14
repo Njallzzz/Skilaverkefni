@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>937</width>
+    <width>999</width>
     <height>575</height>
    </rect>
   </property>
@@ -132,7 +132,11 @@
           </layout>
          </item>
          <item>
-          <widget class="QTableView" name="people_list"/>
+          <widget class="QTableView" name="people_list">
+           <property name="contextMenuPolicy">
+            <enum>Qt::CustomContextMenu</enum>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_clear_person">
@@ -291,8 +295,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>937</width>
-     <height>21</height>
+     <width>999</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuEntry">
@@ -325,6 +329,11 @@
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="action_rightClick">
+   <property name="text">
+    <string>Delete</string>
    </property>
   </action>
  </widget>
