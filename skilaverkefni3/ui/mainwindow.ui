@@ -295,14 +295,6 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionNew"/>
-    <addaction name="actionOpen"/>
-    <addaction name="actionSave"/>
-   </widget>
    <widget class="QMenu" name="menuEntry">
     <property name="title">
      <string>Create</string>
@@ -316,26 +308,10 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
-   <addaction name="menuFile"/>
    <addaction name="menuEntry"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionNew">
-   <property name="text">
-    <string>New</string>
-   </property>
-  </action>
-  <action name="actionOpen">
-   <property name="text">
-    <string>Open</string>
-   </property>
-  </action>
-  <action name="actionSave">
-   <property name="text">
-    <string>Save</string>
-   </property>
-  </action>
   <action name="actionCreate_Person">
    <property name="text">
     <string>Person</string>

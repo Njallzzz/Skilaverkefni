@@ -31,7 +31,7 @@ private slots:
     void on_filter_death_c_p_clicked();
     void on_filter_date_c_c_clicked();
     void on_people_list_clicked(const QModelIndex &index);
-    void on_computer_list_clicked(const QModelIndex &index);
+    void on_computer_list_clicked();
     void on_filter_name_p_textEdited(const QString &arg1);
     void on_filter_name_c_textEdited(const QString &arg1);
     void on_date_birth_p_dateChanged(const QDate &date);

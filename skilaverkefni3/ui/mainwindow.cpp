@@ -191,15 +191,13 @@ void MainWindow::on_people_list_clicked(const QModelIndex &index) {
     ui->pushButton_modify_person->setEnabled(true);
     ui->pushButton_clear_person->setEnabled(true);
     handler->selectPerson( index.row() );
-    //qDebug() << "Person: " << index.row();
     displayComputers();
 }
 
-void MainWindow::on_computer_list_clicked(const QModelIndex &index) {
+void MainWindow::on_computer_list_clicked() {
     ui->pushButton_delete_computer->setEnabled(true);
     ui->pushButton_modify_computer->setEnabled(true);
     ui->pushButton_clear_computer->setEnabled(true);
-    //qDebug() << "Computer: " << index.row();
 }
 
 void MainWindow::on_filter_name_p_textEdited(const QString &arg1) {
