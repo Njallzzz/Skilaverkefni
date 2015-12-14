@@ -5,9 +5,9 @@
 #include <QDebug>
 #include <QtCore>
 #include <QtGui>
-#include "interface.h"
-#include "personwindow.h"
-#include "computerwindow.h"
+#include "services/interface.h"
+#include "ui/personwindow.h"
+#include "ui/computerwindow.h"
 
 namespace Ui {
     class MainWindow;

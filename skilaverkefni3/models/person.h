@@ -6,7 +6,7 @@
 #include <QTextStream>
 #include <vector>
 #include <iostream>
-#include "computer.h"
+#include "models/computer.h"
 
 using namespace std;
 

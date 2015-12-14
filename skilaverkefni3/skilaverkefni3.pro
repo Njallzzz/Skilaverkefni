@@ -14,22 +14,22 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    computer.cpp \
-    person.cpp \
-    sqlitehandler.cpp \
-    computerwindow.cpp\
-    personwindow.cpp \
-    interface.cpp
+    models/computer.cpp \
+    models/person.cpp \
+    repositories/sqlitehandler.cpp \
+    services/interface.cpp \
+    ui/computerwindow.cpp \
+    ui/mainwindow.cpp \
+    ui/personwindow.cpp
 
-HEADERS  += mainwindow.h \
-    computer.h \
-    person.h \
-    sqlitehandler.h \
-    computerwindow.h \
-    personwindow.h \
-    interface.h
+HEADERS  += models/computer.h \
+    models/person.h \
+    repositories/sqlitehandler.h \
+    services/interface.h \
+    ui/computerwindow.h \
+    ui/mainwindow.h \
+    ui/personwindow.h
 
-FORMS    += mainwindow.ui \
-    computerwindow.ui \
-    personwindow.ui
+FORMS    += ui/computerwindow.ui \
+    ui/mainwindow.ui \
+    ui/personwindow.ui

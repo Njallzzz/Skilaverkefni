@@ -1,4 +1,4 @@
-#include "person.h"
+#include "models/person.h"
 
 Person::Person() {}
 

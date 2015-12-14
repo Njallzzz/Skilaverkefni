@@ -1,5 +1,5 @@
-#include "computerwindow.h"
-#include "computer.h"
+#include "ui/computerwindow.h"
+#include "models/computer.h"
 #include "ui_computerwindow.h"
 #include <QDebug>
 

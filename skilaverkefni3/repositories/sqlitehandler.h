@@ -4,10 +4,9 @@
 #include <QString>
 #include <QtSql>
 #include <QDate>
-#include "computer.h"
-#include "person.h"
+#include "models/computer.h"
+#include "models/person.h"
 #include <vector>
-#include <iostream>
 
 using namespace std;
 

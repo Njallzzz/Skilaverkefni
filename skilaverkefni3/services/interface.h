@@ -3,9 +3,9 @@
 
 #include <vector>
 #include <QString>
-#include "person.h"
-#include "computer.h"
-#include "sqlitehandler.h"
+#include "models/person.h"
+#include "models/computer.h"
+#include "repositories/sqlitehandler.h"
 
 using namespace std;
 

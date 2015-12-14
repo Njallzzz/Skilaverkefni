@@ -1,4 +1,4 @@
-#include "personwindow.h"
+#include "ui/personwindow.h"
 #include "ui_personwindow.h"
 
 PersonWindow::PersonWindow(QWidget *parent) :

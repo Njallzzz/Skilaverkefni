@@ -1,7 +1,6 @@
-#include "mainwindow.h"
-
-#include "computerwindow.h"
-#include "personwindow.h"
+#include "ui/mainwindow.h"
+#include "ui/computerwindow.h"
+#include "ui/personwindow.h"
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
