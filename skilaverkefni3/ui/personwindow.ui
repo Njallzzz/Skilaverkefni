@@ -59,7 +59,7 @@
      <widget class="QLineEdit" name="nameInput"/>
     </item>
     <item row="1" column="0">
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="label_gender">
       <property name="font">
        <font>
         <pointsize>12</pointsize>
@@ -71,7 +71,7 @@
      </widget>
     </item>
     <item row="4" column="0">
-     <widget class="QLabel" name="label_5">
+     <widget class="QLabel" name="label_death">
       <property name="font">
        <font>
         <pointsize>12</pointsize>
@@ -83,7 +83,7 @@
      </widget>
     </item>
     <item row="0" column="0">
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="label_name">
       <property name="font">
        <font>
         <pointsize>12</pointsize>
@@ -95,7 +95,7 @@
      </widget>
     </item>
     <item row="2" column="0">
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="label_birth">
       <property name="font">
        <font>
         <pointsize>12</pointsize>

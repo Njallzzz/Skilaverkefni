@@ -21,7 +21,9 @@ SOURCES += main.cpp\
     ui/computerwindow.cpp \
     ui/mainwindow.cpp \
     ui/personwindow.cpp \
-    ui/aboutwindow.cpp
+    ui/aboutwindow.cpp \
+    ui/personaddrelation.cpp \
+    ui/personaddrelation.cpp
 
 HEADERS  += models/computer.h \
     models/person.h \
@@ -30,12 +32,15 @@ HEADERS  += models/computer.h \
     ui/computerwindow.h \
     ui/mainwindow.h \
     ui/personwindow.h \
-    ui/aboutwindow.h
+    ui/aboutwindow.h \
+    ui/personaddrelation.h \
+    ui/personaddrelation.h
 
 FORMS    += ui/computerwindow.ui \
     ui/mainwindow.ui \
     ui/personwindow.ui \
-    ui/aboutwindow.ui
+    ui/aboutwindow.ui \
+    ui/personaddrelation.ui
 
 RESOURCES += pictures.qrc
 
