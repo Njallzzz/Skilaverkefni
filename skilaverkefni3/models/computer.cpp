@@ -94,4 +94,3 @@ std::istream& operator>>(std::istream& is, Computer& c) {
 
     return is;
 }
-

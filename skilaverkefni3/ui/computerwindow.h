@@ -23,6 +23,7 @@ public:
     void initalize();
 
 private slots:
+    //Buttons that can be clicked
     void on_pushButton_computer_save_clicked();
     void on_pushButton_computer_cancel_clicked();
 

@@ -1,7 +1,7 @@
 #include "aboutwindow.h"
 #include "ui_aboutwindow.h"
 
-//The about window diplays information regarding the project i.e. who made
+//The about window diplays information regarding the project i.e. software version, who made it and a link to github page.
 
 AboutWindow::AboutWindow(QWidget *parent) : QDialog(parent), ui(new Ui::AboutWindow) {
     ui->setupUi(this);

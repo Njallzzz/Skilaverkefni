@@ -50,7 +50,7 @@ MainWindow::~MainWindow() {
     delete aWindow;
 }
 
-void MainWindow::on_actionCreate_Person_triggered()
+void MainWindow::on_actionCreate_Person_triggered()         //If create person is selected in the menu bar
 {
     PersonWindow *pWindow = new PersonWindow;
     pWindow->getHandler( handler );
@@ -58,7 +58,7 @@ void MainWindow::on_actionCreate_Person_triggered()
     delete pWindow;
 }
 
-void MainWindow::on_actionCreate_Computer_triggered()
+void MainWindow::on_actionCreate_Computer_triggered()       //If create computer is selected in the menu bar
 {
     ComputerWindow *cWindow = new ComputerWindow;
     cWindow->getHandler( handler );
@@ -67,11 +67,11 @@ void MainWindow::on_actionCreate_Computer_triggered()
     displayComputers();
 }
 
-void MainWindow::display() {
+void MainWindow::display() {                            //to display all
     displayPeople();
 }
 
-void MainWindow::displayPeople() {
+void MainWindow::displayPeople() {                      //to display all
     vector<Person> &p = handler->getPeople();
 
     ui->pushButton_delete_person->setEnabled(false);
@@ -109,7 +109,7 @@ void MainWindow::displayPeople() {
     ui->people_list->setModel(model);
 }
 
-void MainWindow::displayComputers() {
+void MainWindow::displayComputers() {                       //to display computers
     vector<Computer> &c = handler->getComputers();
 
     ui->pushButton_delete_computer->setEnabled(false);
@@ -147,7 +147,7 @@ void MainWindow::displayComputers() {
 }
 
 
-void MainWindow::resizeEvent( QResizeEvent* event ) {
+void MainWindow::resizeEvent( QResizeEvent* event ) {                       //resize columns when dragged by mouse
     ui->people_list->setColumnWidth( 0, 140 + ( (this->width() - 790) / 2 ) );
     ui->people_list->setColumnWidth( 1, 50 );
     ui->people_list->setColumnWidth( 2, 70 );
@@ -155,12 +155,12 @@ void MainWindow::resizeEvent( QResizeEvent* event ) {
 
     ui->computer_list->setColumnWidth( 0, 125 + ( (this->width() - 790) / 4 ) );
     ui->computer_list->setColumnWidth( 1, 125 + ( (this->width() - 790) / 4 ) );
-    ui->computer_list->setColumnWidth( 2, 40 );
-    ui->computer_list->setColumnWidth( 3, 40 );
+    ui->computer_list->setColumnWidth( 2, 45 );
+    ui->computer_list->setColumnWidth( 3, 35 );
     QMainWindow::resizeEvent(event);
 }
 
-void MainWindow::on_filter_birth_c_p_clicked() {
+void MainWindow::on_filter_birth_c_p_clicked() {                    //if peolple filtered by birth checkbox is checked
     if( ui->filter_birth_c_p->isChecked() ) {
         ui->date_birth_p->setEnabled(true);
         handler->peopleFilterBirth( ui->date_birth_p->date() );
@@ -172,7 +172,7 @@ void MainWindow::on_filter_birth_c_p_clicked() {
     displayPeople();
 }
 
-void MainWindow::on_filter_death_c_p_clicked() {
+void MainWindow::on_filter_death_c_p_clicked() {                 //if peolple filtered by death checkbox is checked
     if( ui->filter_death_c_p->isChecked() ) {
         ui->date_death_p->setEnabled(true);
         handler->peopleFilterDeath( ui->date_death_p->date() );
@@ -184,7 +184,7 @@ void MainWindow::on_filter_death_c_p_clicked() {
     displayPeople();
 }
 
-void MainWindow::on_filter_date_c_c_clicked() {
+void MainWindow::on_filter_date_c_c_clicked() {              //if computers filtered by year made checkbox is checked
     if( ui->filter_date_c_c->isChecked() ) {
         ui->date_date_c->setEnabled(true);
         handler->ComputerFilterDate( ui->date_date_c->date() );
@@ -196,61 +196,61 @@ void MainWindow::on_filter_date_c_c_clicked() {
     displayComputers();
 }
 
-void MainWindow::on_people_list_clicked(const QModelIndex &index) {
-    ui->pushButton_delete_person->setEnabled(true);
+void MainWindow::on_people_list_clicked(const QModelIndex &index) {     //highlights a row in person if clicked and enables buttons below
+    ui->pushButton_delete_person->setEnabled(true);                     //also displayes computers linked to selected person
     ui->pushButton_modify_person->setEnabled(true);
     ui->pushButton_clear_person->setEnabled(true);
     handler->selectPerson( index.row() );
     displayComputers();
 }
 
-void MainWindow::on_computer_list_clicked() {
+void MainWindow::on_computer_list_clicked() {                           //highlights a row in computer if clicked and enables buttons below
     ui->pushButton_delete_computer->setEnabled(true);
     ui->pushButton_modify_computer->setEnabled(true);
     ui->pushButton_clear_computer->setEnabled(true);
 }
 
-void MainWindow::on_filter_name_p_textEdited(const QString &arg1) {
+void MainWindow::on_filter_name_p_textEdited(const QString &arg1) { //filters people based on name typed into searchbox
     handler->peopleFilterName( arg1 );
     displayPeople();
 }
 
-void MainWindow::on_filter_name_c_textEdited(const QString &arg1) {
+void MainWindow::on_filter_name_c_textEdited(const QString &arg1) { //filters computers based on name typed into searchbox
     handler->ComputerFilterName( arg1 );
     displayComputers();
 }
 
-void MainWindow::on_date_birth_p_dateChanged(const QDate &date) {
+void MainWindow::on_date_birth_p_dateChanged(const QDate &date) { //filters people based on date of birth selected in searchbox
     handler->peopleFilterBirth( date );
     displayPeople();
 }
 
-void MainWindow::on_date_death_p_dateChanged(const QDate &date) {
+void MainWindow::on_date_death_p_dateChanged(const QDate &date) { //filters people based on date of death selected in searchbox
     handler->peopleFilterDeath( date );
     displayPeople();
 }
 
-void MainWindow::on_filter_type_c_textEdited(const QString &arg1) {
+void MainWindow::on_filter_type_c_textEdited(const QString &arg1) { //filters computers based on type typed into searchbox
     handler->ComputerFilterType( arg1 );
     displayComputers();
 }
 
-void MainWindow::on_date_date_c_dateChanged(const QDate &date) {
+void MainWindow::on_date_date_c_dateChanged(const QDate &date) {   //filters computers based on date built selected in searchbox
     handler->ComputerFilterDate( date );
     displayComputers();
 }
 
-void MainWindow::on_filter_built_c_activated(int index) {
+void MainWindow::on_filter_built_c_activated(int index) {   //filters computers based on if built or not selected in dropbox
     handler->ComputerFilterBuilt( index );
     displayComputers();
 }
 
-void MainWindow::on_filter_gender_p_activated(const QString &arg1) {
+void MainWindow::on_filter_gender_p_activated(const QString &arg1) {    //filters people based on gender selected in dropbox
     handler->peopleFilterGender( arg1 );
     displayPeople();
 }
 
-void MainWindow::on_pushButton_delete_person_clicked() {
+void MainWindow::on_pushButton_delete_person_clicked() {                //Deletes person based on row selected
     QMessageBox confirm;
     confirm.setWindowTitle( "Delete a person" );
     confirm.setText("Are you sure you want to delete the selected person?");
@@ -258,13 +258,13 @@ void MainWindow::on_pushButton_delete_person_clicked() {
     confirm.addButton( QMessageBox::No );
     confirm.setDefaultButton( QMessageBox::No );
 
-    if( confirm.exec() == QMessageBox::Yes ) {
+    if( confirm.exec() == QMessageBox::Yes ) {                      //If yes selected in "confirm" pop-up box then person is deleted
         handler->deletePerson( ui->people_list->currentIndex().row() );
         displayPeople();
     }
 }
 
-void MainWindow::on_pushButton_delete_computer_clicked() {
+void MainWindow::on_pushButton_delete_computer_clicked() {          //Deletes computer based on row selected
     QMessageBox confirm;
     confirm.setWindowTitle( "Delete a computer" );
     confirm.setText("Are you sure you want to delete the selected computer?");
@@ -272,13 +272,13 @@ void MainWindow::on_pushButton_delete_computer_clicked() {
     confirm.addButton( QMessageBox::No );
     confirm.setDefaultButton( QMessageBox::No );
 
-    if( confirm.exec() == QMessageBox::Yes ) {
+    if( confirm.exec() == QMessageBox::Yes ) {                      //If no selected in "confirm" pop-up box then computer is deleted
         handler->deleteComputer( ui->computer_list->currentIndex().row() );
         displayComputers();
     }
 }
 
-void MainWindow::on_pushButton_clear_person_clicked() {
+void MainWindow::on_pushButton_clear_person_clicked() {             //Displayes all people in database without filters
     ui->pushButton_clear_person->setEnabled(false);
     ui->pushButton_delete_person->setEnabled(false);
     ui->pushButton_modify_person->setEnabled(false);
@@ -287,30 +287,29 @@ void MainWindow::on_pushButton_clear_person_clicked() {
     displayComputers();
 }
 
-void MainWindow::on_pushButton_clear_computer_clicked() {
+void MainWindow::on_pushButton_clear_computer_clicked() {           //Displayes all computers in database without filters
     ui->pushButton_clear_computer->setEnabled(false);
     ui->pushButton_delete_computer->setEnabled(false);
     ui->pushButton_modify_computer->setEnabled(false);
     ui->computer_list->setCurrentIndex( ui->computer_list->model()->index(-1, 0) );
 }
 
-void MainWindow::on_actionAbout_triggered() {
+void MainWindow::on_actionAbout_triggered() {                   //Displayes about window that provides info of the project
     aWindow->show();
 }
 
-void MainWindow::people_on_sectionClicked( int index ) {
+void MainWindow::people_on_sectionClicked( int index ) {        //sortes people based on column title clicked
     handler->sortPerson( index );
     displayPeople();
 }
 
-void MainWindow::computers_on_sectionClicked( int index ) {
+void MainWindow::computers_on_sectionClicked( int index ) {     //sortes computers based on column title clicked
     handler->sortComputer( index );
     displayComputers();
 }
 
 void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos)
 {
-
     QMenu menu;
     menu.addAction(ui->action_Add_Person);
     menu.addAction(ui->action_Modify_Person);
@@ -350,7 +349,7 @@ void MainWindow::on_action_Modify_Person_triggered()
     pWindow->exec();
 }
 
-void MainWindow::on_pushButton_modify_person_clicked()
+void MainWindow::on_pushButton_modify_person_clicked()          //Allows the user to modify selected person
 {
     PersonWindow *pWindow = new PersonWindow;
     Person p = handler->getPerson(ui->people_list->currentIndex().row());
@@ -361,7 +360,7 @@ void MainWindow::on_pushButton_modify_person_clicked()
     displayPeople();
 }
 
-void MainWindow::on_pushButton_modify_computer_clicked()
+void MainWindow::on_pushButton_modify_computer_clicked()        //Allows the user to modify selected computer
 {
     ComputerWindow *cWindow = new ComputerWindow;
     cWindow->getHandler( handler );
