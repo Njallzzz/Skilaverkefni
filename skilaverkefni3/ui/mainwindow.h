@@ -63,6 +63,10 @@ private slots:
     void on_pushButton_modify_computer_clicked();
 
 
+    void on_action_Refresh_People_triggered();
+
+    void on_action_Refresh_Computers_triggered();
+
 private:
     void resizeEvent( QResizeEvent* event );
 

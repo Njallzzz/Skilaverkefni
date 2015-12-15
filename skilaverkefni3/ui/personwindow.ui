@@ -107,10 +107,18 @@
      </widget>
     </item>
     <item row="4" column="1">
-     <widget class="QDateEdit" name="deathInput"/>
+     <widget class="QDateEdit" name="deathInput">
+      <property name="displayFormat">
+       <string>dd.MM.yyyy</string>
+      </property>
+     </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QDateEdit" name="birthInput"/>
+     <widget class="QDateEdit" name="birthInput">
+      <property name="displayFormat">
+       <string>dd.MM.yyyy</string>
+      </property>
+     </widget>
     </item>
     <item row="1" column="1">
      <widget class="QComboBox" name="genderInput"/>

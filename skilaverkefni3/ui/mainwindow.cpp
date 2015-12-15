@@ -315,6 +315,7 @@ void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos)
 
     QMenu menu;
     menu.addAction(ui->action_Add_Person);
+    menu.addAction(ui->action_Refresh_People);
 
     menu.exec(ui->people_list->viewport()->mapToGlobal(pos));
 }
@@ -331,6 +332,7 @@ void MainWindow::on_computer_list_customContextMenuRequested(const QPoint &pos)
 {
     QMenu menu;
     menu.addAction(ui->action_Add_Computer);
+    menu.addAction(ui->action_Refresh_Computers);
 
     menu.exec(ui->computer_list->viewport()->mapToGlobal(pos));
 }
@@ -365,5 +367,15 @@ void MainWindow::on_pushButton_modify_computer_clicked()
     cWindow->initalize();
     cWindow->exec();
     delete cWindow;
+    displayComputers();
+}
+
+void MainWindow::on_action_Refresh_People_triggered()   // refresh list of people if for some reason it hasnt
+{
+    displayPeople();
+}
+
+void MainWindow::on_action_Refresh_Computers_triggered()    // refresh list of computers if for some reason it hasnt
+{
     displayComputers();
 }
