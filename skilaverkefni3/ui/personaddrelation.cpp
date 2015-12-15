@@ -50,7 +50,7 @@ void PersonAddRelation::displayComputers()
 
     model->setHeaderData(0,Qt::Horizontal, "Computers");
 
-    for(int i = 0; i < notRelated.size(); i++){
+    for(int i = 0; i < int(notRelated.size()); i++){
         QModelIndex index = model->index( i, 0, QModelIndex() );
         model->setData( index, notRelated[i].getName() );
     }

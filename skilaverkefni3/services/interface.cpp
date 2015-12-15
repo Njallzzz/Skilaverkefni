@@ -202,7 +202,7 @@ void Interface::ComputerFilterBuilt( int built ) {              //To filter comp
         computerSearch.setWasBuilt( 0 );             //If neither specified
 }
 
-int Interface::selectPerson( int index ) {          //Gets id from people list based in row selected
+int Interface::selectPerson( int index ) {          //Gets id from people list based on row selected
     if( index < -1 || index >= int(p.size()) )
         return 1;
     if( index == -1 )
@@ -282,11 +282,11 @@ Person Interface::getPerson(int index)                  //returns person from co
     return p[index];
 }
 
-void Interface::addComputer( Computer comp ) {          //Adds computer to sql database
+void Interface::addComputer( Computer comp ) {          //Adds computer to the sql database
     db.addEntry( comp );
 }
 
-void Interface::modifyComputer( Computer comp ) {       //Modifies computer in sql database
+void Interface::modifyComputer( Computer comp ) {       //Modifies computer in the sql database
     db.modifyEntry( comp );
 }
 

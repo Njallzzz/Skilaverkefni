@@ -36,29 +36,33 @@ public:
     void ComputerFilterDate( QDate date );          //To filter computers by date built
     void ComputerFilterBuilt( int built );          //To filter computers by if built
 
-    void addComputer( Computer comp );
-    void modifyComputer( Computer comp );
-    Computer getComputer( int index );
+    void addComputer( Computer comp );              //Adds computer to the sql database
+    void modifyComputer( Computer comp );           //Modifies computer in the sql database
+    Computer getComputer( int index );              //returns computer from computer vector based on selected index
 
-    void addPerson(Person p);
-    void modifyPerson(Person p);
-    Person getPerson(int index);
+    void addPerson(Person p);                       //Adds person to the sql database
+    void modifyPerson(Person p);                    //Modifies person in the sql database
+    Person getPerson(int index);                    //returns person from person vector based on selected index
+
+    Person getPersonById(int id);
+    void removeRelation(Person p, Computer c);
+    void addRelation(Person p, Computer c);
 
 private:
-    vector<Person> p;
-    vector<Computer> c;
+    vector<Person> p;       //Person vector, data on persons is moved from the sql database into this vector
+    vector<Computer> c;     //Computer vector, data on computers is moved from the sql database into this vector
 
     vector<Person> Filter( vector<Person> & people );
     vector<Computer> Filter( vector<Computer> & computers );
 
-    sorting sortComputers;
-    sorting sortPeople;
+    sorting sortComputers;      //the sorting option for computers is kept in this varible
+    sorting sortPeople;         //the sorting option for people is kept in this varible
 
-    SQLITEHandler db;
+    SQLITEHandler db;           //Used to interact with the SQLITEHandler class
 
-    Person personSearch;
-    Computer computerSearch;
-    int SelectedPerson;
+    Person personSearch;        //the searching options for persons are kept in this varable
+    Computer computerSearch;    //the searching options for computers are kept in this varable
+    int SelectedPerson;         //the index of the selected person is kept in this varible
 };
 
 #endif // INTERFACE_H
