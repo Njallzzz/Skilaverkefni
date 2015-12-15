@@ -11,7 +11,7 @@ PersonWindow::PersonWindow(QWidget *parent) : QDialog(parent), ui(new Ui::Person
     ui->deathInput->setEnabled(true);
     ui->addRelationButton->setEnabled(false);
 
-    if(p.getId() != NULL){
+    if(p.getId() > 0){
         ui->nameInput->setText(p.getName());
         if(p.getGender() == 1)
             ui->genderInput->setCurrentIndex(0);

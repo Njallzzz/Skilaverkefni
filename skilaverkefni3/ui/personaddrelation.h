@@ -13,8 +13,8 @@ class PersonAddRelation : public QDialog
 {
     Q_OBJECT
 
-/*public:
-    //explicit PersonAddRelation(QWidget *parent = 0);
+public:
+    explicit PersonAddRelation(QWidget *parent = 0);
     ~PersonAddRelation();
 
     void setPerson(Person p);
@@ -24,7 +24,7 @@ private slots:
 
 private:
     Ui::PersonAddRelation *ui;
-    Person p;*/
+    Person p;
 };
 
 #endif // PERSONADDRELATION_H
