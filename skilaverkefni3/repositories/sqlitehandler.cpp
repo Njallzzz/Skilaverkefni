@@ -271,10 +271,9 @@ int SQLITEHandler::deleteRelation( Person p, Computer c ) { // Delete relation b
     return 0;                   // Return Success
 }
 //returns a person based on id
-Person SQLITEHandler::getPerson(int cid)
-{
-    q.prepare("SELECT * FROM people WHERE id = (:id)");
-    q.bindValue(":id", cid);
+Person SQLITEHandler::getPerson(int id) {
+    q.prepare("SELECT * FROM people WHERE id = (:id) LIMIT 1");
+    q.bindValue(":id", id);
 
     if( !q.exec() )
         return Person();
@@ -287,8 +286,8 @@ Person SQLITEHandler::getPerson(int cid)
     ref[4] = q.record().indexOf("death");
 
     q.next();
-    Person p;                                                         // Execute until all people have been added to vector
-    int id = q.value( ref[0] ).toInt(),                                     // Insert all data into relevant variables
+    Person p;
+    int pId = q.value( ref[0] ).toInt(),                                     // Insert all data into relevant variables
         gender = 0;
     QString name = q.value( ref[1] ).toString(),
             genderString = q.value( ref[2] ).toString();
@@ -298,10 +297,10 @@ Person SQLITEHandler::getPerson(int cid)
         gender = 1;
     else if( genderString == "Female" )
         gender = 2;
-    p = Person( id, name, gender, birth, death  );
+    p = Person( pId, name, gender, birth, death  );
 
     q.prepare("SELECT * FROM relation WHERE person = (:id)");               // Get all from relations table where name
-    q.bindValue( ":id", cid );
+    q.bindValue( ":id", id );
     if( !q.exec() )
         return Person();
     int reference = q.record().indexOf("computer");
@@ -312,16 +311,14 @@ Person SQLITEHandler::getPerson(int cid)
 }
 
 //returns the person with the highest id
-int SQLITEHandler::getLatestId()
-{
+int SQLITEHandler::getLatestId() {
     q.prepare("SELECT id FROM people ORDER BY id DESC LIMIT 0,1");
 
     if(!q.exec())
-        return 1;
+        return 0;           // Error
     int ref = q.record().indexOf("id");
     q.next();
     int id = q.value( ref ).toInt();
-    qDebug() << id;
 
     return id;
 }

@@ -26,14 +26,10 @@ public:
 
 private slots:
     void on_pushButton_cancel_clicked();
-
     void on_pushButton_add_relation_clicked();
-
     void on_pushButton_remove_relation_clicked();
-
-    void on_computer_list_clicked(const QModelIndex &index);
-
-    void on_computer_list_related_clicked(const QModelIndex &index);
+    void on_computer_list_clicked();
+    void on_computer_list_related_clicked();
 
 private:
     Ui::PersonAddRelation *ui;

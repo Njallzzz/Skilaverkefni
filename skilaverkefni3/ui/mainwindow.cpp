@@ -153,13 +153,13 @@ void MainWindow::displayComputers() {                       //to display(/refres
 }
 
 void MainWindow::resizeEvent( QResizeEvent* event ) {                   //resizes columns to fit data
-    ui->people_list->setColumnWidth( 0, 120 + ( (this->width() - 790) / 2 ) );
+    ui->people_list->setColumnWidth( 0, 95 + ( (this->width() - 790) / 2 ) );
     ui->people_list->setColumnWidth( 1, 60 );
     ui->people_list->setColumnWidth( 2, 80 );
     ui->people_list->setColumnWidth( 3, 80 );
 
-    ui->computer_list->setColumnWidth( 0, 110 + ( (this->width() - 790) / 4 ) );
-    ui->computer_list->setColumnWidth( 1, 110 + ( (this->width() - 790) / 4 ) );
+    ui->computer_list->setColumnWidth( 0, 100 + ( (this->width() - 790) / 4 ) );
+    ui->computer_list->setColumnWidth( 1, 100 + ( (this->width() - 790) / 4 ) );
     ui->computer_list->setColumnWidth( 2, 60 );
     ui->computer_list->setColumnWidth( 3, 40 );
     QMainWindow::resizeEvent(event);
@@ -352,7 +352,7 @@ void MainWindow::on_action_Add_Computer_triggered()                 //Like creat
 void MainWindow::on_pushButton_modify_person_clicked()          //Allows the user to modify selected person
 {
     PersonWindow *pWindow = new PersonWindow;
-    Person p = handler->getPerson(ui->people_list->currentIndex().row());
+    Person p = handler->getPerson( ui->people_list->currentIndex().row() );
     pWindow->getHandler( handler );
     pWindow->setPerson(p);
 
