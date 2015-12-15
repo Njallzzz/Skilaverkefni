@@ -21,17 +21,10 @@ public:
     int getWasBuilt();
 
     //Setters
-    void setId( int id );
     void setName(QString theName);
     void setYear(QString year);
     void setType(QString theType);
     void setWasBuilt(int built);
-
-    // Display
-    friend std::ostream& operator<<(std::ostream& os, const Computer& c);
-
-    // Add/Modify
-    friend std::istream& operator>>(std::istream& is, Computer& c);
 
 private:
     int id;

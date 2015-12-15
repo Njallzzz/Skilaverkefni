@@ -84,7 +84,7 @@
              <item>
               <widget class="QDateEdit" name="date_birth_p">
                <property name="displayFormat">
-                <string>dd.MM.yyyy</string>
+                <string>dd/MM/yyyy</string>
                </property>
               </widget>
              </item>
@@ -111,11 +111,7 @@
               </layout>
              </item>
              <item>
-              <widget class="QDateEdit" name="date_death_p">
-               <property name="displayFormat">
-                <string>dd.MM.yyyy</string>
-               </property>
-              </widget>
+              <widget class="QDateEdit" name="date_death_p"/>
              </item>
             </layout>
            </item>
@@ -342,11 +338,32 @@
   </action>
   <action name="action_Refresh_Computers">
    <property name="text">
-    <string>Refresh</string>
+    <string>Modify</string>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>filter_name_p</tabstop>
+  <tabstop>filter_gender_p</tabstop>
+  <tabstop>people_list</tabstop>
+  <tabstop>pushButton_clear_person</tabstop>
+  <tabstop>date_birth_p</tabstop>
+  <tabstop>filter_birth_c_p</tabstop>
+  <tabstop>date_death_p</tabstop>
+  <tabstop>filter_death_c_p</tabstop>
+  <tabstop>pushButton_delete_person</tabstop>
+  <tabstop>pushButton_modify_person</tabstop>
+  <tabstop>filter_name_c</tabstop>
+  <tabstop>filter_type_c</tabstop>
+  <tabstop>filter_date_c_c</tabstop>
+  <tabstop>date_date_c</tabstop>
+  <tabstop>filter_built_c</tabstop>
+  <tabstop>computer_list</tabstop>
+  <tabstop>pushButton_clear_computer</tabstop>
+  <tabstop>pushButton_delete_computer</tabstop>
+  <tabstop>pushButton_modify_computer</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
