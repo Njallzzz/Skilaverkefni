@@ -335,16 +335,6 @@
     <string>Add</string>
    </property>
   </action>
-  <action name="action_Modify_Computer">
-   <property name="text">
-    <string>Modify</string>
-   </property>
-  </action>
-  <action name="action_Modify_Person">
-   <property name="text">
-    <string>Modify</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

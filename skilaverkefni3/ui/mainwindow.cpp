@@ -315,7 +315,7 @@ void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos)
 
     QMenu menu;
     menu.addAction(ui->action_Add_Person);
-    menu.addAction(ui->action_Modify_Person);
+
     menu.exec(ui->people_list->viewport()->mapToGlobal(pos));
 }
 
@@ -331,7 +331,7 @@ void MainWindow::on_computer_list_customContextMenuRequested(const QPoint &pos)
 {
     QMenu menu;
     menu.addAction(ui->action_Add_Computer);
-    menu.addAction(ui->action_Modify_Computer);
+
     menu.exec(ui->computer_list->viewport()->mapToGlobal(pos));
 }
 
@@ -344,13 +344,7 @@ void MainWindow::on_action_Add_Computer_triggered()
     displayComputers();
 }
 
-void MainWindow::on_action_Modify_Person_triggered()
-{
-    PersonWindow *pWindow = new PersonWindow;
-    pWindow->setPerson(handler->getPerson(ui->people_list->currentIndex().row()));
 
-    pWindow->exec();
-}
 
 void MainWindow::on_pushButton_modify_person_clicked()
 {
