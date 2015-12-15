@@ -65,33 +65,4 @@ std::ostream& operator<<(std::ostream& os, const Computer& c) {
     return os;
 }
 
-std::istream& operator>>(std::istream& is, Computer& c) {
-    QTextStream in(stdin);
-
-    cout << "Name: ";
-    c.name = "";
-    while( c.name == "" )
-            c.name = in.readLine();
-
-    cout << "Designed/Created(yyyy): ";
-    c.yearOfBuild = QDate();
-    while( !c.yearOfBuild.isValid() )
-        c.yearOfBuild = QDate::fromString( in.readLine(), "yyyy" );
-
-    cout << "Type: ";
-    c.type = "";
-    while( c.type == "" )
-        c.type = in.readLine();
-
-    cout << "Constructed(true/false): ";
-    QString text;
-    while( text != "true" && text != "True" && text != "1" && text != "false" && text != "False" && text != "0" )
-        text = in.readLine();
-    if( text == "true" || text == "True" || text == "1" )
-        c.wasBuilt = true;
-    else
-        c.wasBuilt = false;
-
-    return is;
-}
 

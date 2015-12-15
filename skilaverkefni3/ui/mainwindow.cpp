@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->date_date_c->setEnabled(false);
 
     QString date = ui->date_birth_p->text();
-    qDebug() << date;
+
     ui->filter_gender_p->addItem( "" );
     ui->filter_gender_p->addItem( "Male" );
     ui->filter_gender_p->addItem( "Female" );
