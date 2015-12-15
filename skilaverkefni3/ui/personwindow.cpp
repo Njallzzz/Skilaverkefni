@@ -97,6 +97,7 @@ void PersonWindow::on_saveButton_clicked() {
             ui->addRelationButton->setEnabled(true);
             person = handler->getLatestPerson();
             ui->saveButton->setText("Close");       //Change buttons text to "Close when a person is saved"
+            ui->cancelButton->setEnabled(false);
         }
     }
     else if(ui->saveButton->text() == "Close") {

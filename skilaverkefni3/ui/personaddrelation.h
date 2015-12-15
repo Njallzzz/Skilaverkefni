@@ -37,7 +37,6 @@ private:
     Interface *handler;
     QStandardItemModel *model;
 
-    vector<Computer> comps;
     vector<Computer> related;
     vector<Computer> notRelated;
 };

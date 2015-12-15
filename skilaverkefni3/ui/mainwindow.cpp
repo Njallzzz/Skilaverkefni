@@ -313,8 +313,7 @@ void MainWindow::computers_on_sectionClicked( int index ) {     //sorts computer
     displayComputers();
 }
 
-void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos)   //Displays right click menu in people list
-{
+void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos) {   //Displays right click menu in people list
     QMenu menu;
     menu.addAction(ui->action_Add_Person);
     menu.addAction(ui->action_Refresh_People);
@@ -322,8 +321,7 @@ void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos)   
     menu.exec(ui->people_list->viewport()->mapToGlobal(pos));
 }
 
-void MainWindow::on_action_Add_Person_triggered()           //Like create computer in menu bar except in the right click menu
-{
+void MainWindow::on_action_Add_Person_triggered() {           //Like create computer in menu bar except in the right click menu
     PersonWindow *pWindow = new PersonWindow;
     pWindow->getHandler( handler );
     pWindow->exec();
@@ -331,8 +329,7 @@ void MainWindow::on_action_Add_Person_triggered()           //Like create comput
     displayPeople();
 }
 
-void MainWindow::on_computer_list_customContextMenuRequested(const QPoint &pos) //Displays right click menu in computer list
-{
+void MainWindow::on_computer_list_customContextMenuRequested(const QPoint &pos) { //Displays right click menu in computer list
     QMenu menu;
     menu.addAction(ui->action_Add_Computer);
     menu.addAction(ui->action_Refresh_Computers);
@@ -340,8 +337,7 @@ void MainWindow::on_computer_list_customContextMenuRequested(const QPoint &pos) 
     menu.exec(ui->computer_list->viewport()->mapToGlobal(pos));
 }
 
-void MainWindow::on_action_Add_Computer_triggered()                 //Like create computer in menu bar except in the right click menu
-{
+void MainWindow::on_action_Add_Computer_triggered() {                 //Like create computer in menu bar except in the right click menu
     ComputerWindow *cWindow = new ComputerWindow;
     cWindow->getHandler( handler );
     cWindow->exec();
@@ -349,8 +345,7 @@ void MainWindow::on_action_Add_Computer_triggered()                 //Like creat
     displayComputers();
 }
 
-void MainWindow::on_pushButton_modify_person_clicked()          //Allows the user to modify selected person
-{
+void MainWindow::on_pushButton_modify_person_clicked() {          //Allows the user to modify selected person
     PersonWindow *pWindow = new PersonWindow;
     Person p = handler->getPerson( ui->people_list->currentIndex().row() );
     pWindow->getHandler( handler );
@@ -361,8 +356,7 @@ void MainWindow::on_pushButton_modify_person_clicked()          //Allows the use
     displayPeople();
 }
 
-void MainWindow::on_pushButton_modify_computer_clicked()        //Allows the user to modify selected computer
-{
+void MainWindow::on_pushButton_modify_computer_clicked() {        //Allows the user to modify selected computer
     ComputerWindow *cWindow = new ComputerWindow;
     cWindow->getHandler( handler );
     cWindow->setComputer( ui->computer_list->currentIndex().row() );
@@ -372,12 +366,10 @@ void MainWindow::on_pushButton_modify_computer_clicked()        //Allows the use
     displayComputers();
 }
 
-void MainWindow::on_action_Refresh_People_triggered()   // refresh list of people if for some reason it hasnt
-{
+void MainWindow::on_action_Refresh_People_triggered() {  // refresh list of people if for some reason it hasnt
     displayPeople();
 }
 
-void MainWindow::on_action_Refresh_Computers_triggered()    // refresh list of computers if for some reason it hasnt
-{
+void MainWindow::on_action_Refresh_Computers_triggered() {   // refresh list of computers if for some reason it hasnt
     displayComputers();
 }

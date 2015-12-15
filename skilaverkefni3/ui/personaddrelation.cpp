@@ -1,7 +1,7 @@
 #include "ui/personaddrelation.h"
 #include "ui_personaddrelation.h"
 
-PersonAddRelation::PersonAddRelation(QWidget *parent) :QDialog(parent),ui(new Ui::PersonAddRelation) {
+PersonAddRelation::PersonAddRelation(QWidget *parent) : QDialog(parent), ui(new Ui::PersonAddRelation) {
     ui->setupUi(this);
     this->setWindowFlags( Qt::WindowTitleHint | Qt::WindowCloseButtonHint );
 
@@ -32,15 +32,15 @@ void PersonAddRelation::setPerson(Person p) {
 void PersonAddRelation::displayComputers() {
     related.clear();
     notRelated.clear();
-    comps = handler->getComputers( true );
+    notRelated = handler->getComputers( true );
     for(int i = 0; i < person.getSize(); i++) {              //find computers that are related to the person
-        for(int j = 0; j < int(comps.size()); j++) {
+        for(int j = 0; j < int(notRelated.size()); j++) {
             if(handler->getComputer(j).getId() == person.getComputer(i)) {
                 related.push_back(handler->getComputer(j));
             }
         }
     }
-    notRelated = comps;
+    notRelated = notRelated;
     for(int i = notRelated.size() - 1; i >= 0; i--) {        //find computers that are not related to the person
         for(int j = 0; j < int(related.size()); j++) {
             if(notRelated[i].getId() == related[j].getId()) {
