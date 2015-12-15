@@ -272,10 +272,13 @@ int SQLITEHandler::deleteRelation( Person p, Computer c ) { // Delete relation b
     return 0;                   // Return Success
 }
 
-Person SQLITEHandler::getPerson(int id)
+Person SQLITEHandler::getPerson(int cid)
 {
-    q.prepare("SELECT * FROM people WHERE id = :id");
-    q.bindValue(":id", id);
+    q.prepare("SELECT * FROM people WHERE id = (:id)");
+    q.bindValue(":id", cid);
+
+    if( !q.exec() )
+        return Person();
 
     int ref[5];                                                                 // Create table index
     ref[0] = q.record().indexOf("id");                                          // 'id' handle, etc.
@@ -284,28 +287,29 @@ Person SQLITEHandler::getPerson(int id)
     ref[3] = q.record().indexOf("birth");
     ref[4] = q.record().indexOf("death");
 
-    Person p;
-    while( q.next() ) {                                                         // Execute until all people have been added to vector
-        int id = q.value( ref[0] ).toInt(),                                     // Insert all data into relevant variables
-            gender = 0;
-        QString name = q.value( ref[1] ).toString(),
-                genderString = q.value( ref[2] ).toString();
-        QDate birth = QDate::fromString( q.value( ref[3] ).toString(), "yyyy-MM-dd" ),
-              death = QDate::fromString( q.value( ref[4] ).toString(), "yyyy-MM-dd" );
-        if( genderString == "Male" )
-            gender = 1;
-        else if( genderString == "Female" )
-            gender = 2;
-        p = Person( id, name, gender, birth, death  );                            // Construct a individual with those variables
-    }
+    q.next();
+    Person p;                                                         // Execute until all people have been added to vector
+    int id = q.value( ref[0] ).toInt(),                                     // Insert all data into relevant variables
+        gender = 0;
+    QString name = q.value( ref[1] ).toString(),
+            genderString = q.value( ref[2] ).toString();
+    qDebug() << id << "hæ";
+    QDate birth = QDate::fromString( q.value( ref[3] ).toString(), "yyyy-MM-dd" ),
+          death = QDate::fromString( q.value( ref[4] ).toString(), "yyyy-MM-dd" );
+    if( genderString == "Male" )
+        gender = 1;
+    else if( genderString == "Female" )
+        gender = 2;
+    p = Person( id, name, gender, birth, death  );
 
     q.prepare("SELECT * FROM relation WHERE person = (:id)");               // Get all from relations table where name
-    q.bindValue( ":id", id );
+    q.bindValue( ":id", cid );
     if( !q.exec() )
         return Person();
     int reference = q.record().indexOf("computer");
     while( q.next() ) {                                                     // Execute query until all relations have been assigned for the individual
         p.add_relation( q.value( reference ).toInt() );                   // Add relation to person
     }
+    qDebug() << p.getId() << " " << p.getName();
     return p;
 }

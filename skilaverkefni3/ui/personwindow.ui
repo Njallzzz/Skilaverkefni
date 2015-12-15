@@ -186,7 +186,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Add relation</string>
+       <string>Relations</string>
       </property>
      </widget>
     </item>
