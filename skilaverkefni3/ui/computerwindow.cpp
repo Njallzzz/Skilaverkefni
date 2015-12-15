@@ -5,10 +5,10 @@ ComputerWindow::ComputerWindow(QWidget *parent) : QDialog(parent), ui(new Ui::Co
     ui->setupUi(this);
     this->setWindowFlags( Qt::WindowTitleHint | Qt::WindowCloseButtonHint );
     errorEmpty();
-    indexComputer = -1;
+    indexComputer = -1;                     //Saves index to modify computer, if index = -1 then no computer is selected
 }
 
-void ComputerWindow::initalize(){
+void ComputerWindow::initalize(){                                       //To modify a computer, enters all info from selected computer
     comp = handler->getComputer( indexComputer );
     ui->groupBox_newComputer->setTitle( "Modify Computer" );
     ui->lineEdit_computer_name->setText( comp.getName() );
@@ -24,7 +24,7 @@ ComputerWindow::~ComputerWindow() {
     delete ui;
 }
 
-void ComputerWindow::errorEmpty() {
+void ComputerWindow::errorEmpty() {                     //Clear all error messages
     ui->label_name_error_star->setText( "\0" );
     ui->label_type_error_star->setText( "\0" );
     ui->label_date_error_star->setText( "\0" );
@@ -32,7 +32,7 @@ void ComputerWindow::errorEmpty() {
     ui->label_computer_error->setText( "\0");
 }
 
-bool ComputerWindow::error() {
+bool ComputerWindow::error() {                          //Error handling and diplays error messages
     errorEmpty();
 
     bool ifError = false;
@@ -64,7 +64,7 @@ bool ComputerWindow::error() {
     return ifError;
 }
 
-void ComputerWindow::on_pushButton_computer_save_clicked() {
+void ComputerWindow::on_pushButton_computer_save_clicked() {    //Saves all information inserted
     bool yes_checked = ui->radioButton_yes->isChecked();
 
     if ( !error() ) {
@@ -84,14 +84,14 @@ void ComputerWindow::on_pushButton_computer_save_clicked() {
     }
 }
 
-void ComputerWindow::on_pushButton_computer_cancel_clicked() {
+void ComputerWindow::on_pushButton_computer_cancel_clicked() {      //Closes window if cancel button is selected
     this->hide();
 }
 
-void ComputerWindow::getHandler( Interface *h ){
+void ComputerWindow::getHandler( Interface *h ){                    //
     handler = h;
 }
 
-void ComputerWindow::setComputer( int index ){
+void ComputerWindow::setComputer( int index ){                      //Set index of computer for modify function
     indexComputer = index;
 }

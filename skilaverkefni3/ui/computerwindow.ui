@@ -31,7 +31,7 @@
      <x>10</x>
      <y>10</y>
      <width>281</width>
-     <height>251</height>
+     <height>261</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -325,28 +325,31 @@
   <widget class="QLabel" name="label_computer_error">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>300</y>
-     <width>256</width>
-     <height>20</height>
+     <x>180</x>
+     <y>280</y>
+     <width>111</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="maximumSize">
     <size>
      <width>16777215</width>
-     <height>20</height>
+     <height>3000</height>
     </size>
    </property>
    <property name="text">
     <string>&lt;font color='red'&gt;*Error&lt;/font&gt;</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>270</y>
-     <width>280</width>
+     <y>280</y>
+     <width>161</width>
      <height>39</height>
     </rect>
    </property>
@@ -358,13 +361,6 @@
      <widget class="QPushButton" name="pushButton_computer_save">
       <property name="text">
        <string>Save</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton_computer_addRelation">
-      <property name="text">
-       <string>Add relation</string>
       </property>
      </widget>
     </item>
@@ -385,8 +381,6 @@
   <tabstop>radioButton_yes</tabstop>
   <tabstop>radioButton_no</tabstop>
   <tabstop>pushButton_computer_save</tabstop>
-  <tabstop>pushButton_computer_addRelation</tabstop>
-  <tabstop>pushButton_computer_cancel</tabstop>
  </tabstops>
  <resources/>
  <connections/>

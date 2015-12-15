@@ -55,12 +55,17 @@ private slots:
     void on_action_Add_Person_triggered();
 
     void on_computer_list_customContextMenuRequested(const QPoint &pos);
-    void on_pushButton_modify_computer_clicked();
+
     void on_action_Add_Computer_triggered();
 
-    void on_action_Modify_Person_triggered();
-
     void on_pushButton_modify_person_clicked();
+
+    void on_pushButton_modify_computer_clicked();
+
+
+    void on_action_Refresh_People_triggered();
+
+    void on_action_Refresh_Computers_triggered();
 
 private:
     void resizeEvent( QResizeEvent* event );

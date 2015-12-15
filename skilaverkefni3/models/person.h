@@ -5,7 +5,6 @@
 #include <QDate>
 #include <QTextStream>
 #include <vector>
-#include <iostream>
 #include "models/computer.h"
 
 using namespace std;

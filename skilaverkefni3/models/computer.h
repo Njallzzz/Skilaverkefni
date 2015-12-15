@@ -4,7 +4,6 @@
 #include <QString>
 #include <QDate>
 #include <QTextStream>
-#include <iostream>
 
 using namespace std;
 

@@ -25,7 +25,7 @@ int Interface::Initialize() {
     return 0;
 }
 
-vector<Person> & Interface::getPeople( bool all ) {
+vector<Person> & Interface::getPeople( bool all ) {     //retrieves data from sql database file and inserts it into a vector
     p.clear();
 
     if( all == false ) {
@@ -43,7 +43,7 @@ vector<Person> & Interface::getPeople( bool all ) {
     return p;
 }
 
-vector<Computer> & Interface::getComputers( bool all ) {
+vector<Computer> & Interface::getComputers( bool all ) {    //retrives data from sql database file and inserts it into a vector
     c.clear();
 
     if( all == false ) {
@@ -197,11 +197,11 @@ int Interface::selectPerson( int index ) {
     return 0;
 }
 
-void Interface::deletePerson( int index ) {
+void Interface::deletePerson( int index ) {         //Deletes person from sql database based on selected index
     db.removeEntry( p[index] );
 }
 
-void Interface::deleteComputer( int index ) {
+void Interface::deleteComputer( int index ) {       //Deletes computer from sql database based on selected index
     db.removeEntry( c[index] );
 }
 
@@ -267,14 +267,14 @@ Person Interface::getPerson(int index)
     return p[index];
 }
 
-void Interface::addComputer( Computer comp ) {
+void Interface::addComputer( Computer comp ) {          //Adds computer to sql database
     db.addEntry( comp );
 }
 
-void Interface::modifyComputer( Computer comp ) {
+void Interface::modifyComputer( Computer comp ) {       //Modifies computer in sql database
     db.modifyEntry( comp );
 }
 
-Computer Interface::getComputer( int index ){
+Computer Interface::getComputer( int index ){           //returns computer from computer vector based on selected index
     return c[ index ];
 }

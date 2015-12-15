@@ -335,14 +335,14 @@
     <string>Add</string>
    </property>
   </action>
-  <action name="action_Modify_Computer">
+  <action name="action_Refresh_People">
    <property name="text">
-    <string>Modify</string>
+    <string>Refresh</string>
    </property>
   </action>
-  <action name="action_Modify_Person">
+  <action name="action_Refresh_Computers">
    <property name="text">
-    <string>Modify</string>
+    <string>Refresh</string>
    </property>
   </action>
  </widget>
