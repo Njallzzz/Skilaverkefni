@@ -18,7 +18,7 @@ public:
     ~ComputerWindow();
     void errorEmpty();                      //Clears all error messages
     bool error();                           //Error handling and diplays error messages
-    void getHandler( Interface *h );        //creates a new handler to interact with Interface.cpp
+    void getHandler( Interface *h );        //Creates a new handler to interact with Interface.cpp
     void setComputer( int index );          //Set index of computer for modify function
     void initalize();                       //To modify a computer, enters all info from selected computer
 
@@ -27,9 +27,9 @@ private slots:  //Buttons that can be clicked
     void on_pushButton_computer_cancel_clicked();   //Closes window if cancel button is selected
 
 private:
-    int indexComputer;
-    Computer comp;
-    Interface *handler;
+    int indexComputer;      //Used to hold index when modifying
+    Computer comp;          //Used to hold an instnase of computer from computer vector based on selted index, when modifying
+    Interface *handler;     //Used to interact with interface class
     Ui::ComputerWindow *ui;
 };
 

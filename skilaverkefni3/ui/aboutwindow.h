@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QPixmap>
 
+//The about window diplays information regarding the project i.e. introdution, software version, who made it and a link to github page.
+
 namespace Ui {
     class AboutWindow;
 }
