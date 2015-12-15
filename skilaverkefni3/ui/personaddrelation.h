@@ -4,6 +4,9 @@
 #include <QDialog>
 #include "services/interface.h"
 #include "models/person.h"
+#include "services/interface.h"
+#include <QtCore>
+#include <QtGui>
 
 namespace Ui {
 class PersonAddRelation;
@@ -18,13 +21,19 @@ public:
     ~PersonAddRelation();
 
     void setPerson(Person p);
+    void displayComputers();
+    void setHandler(Interface *handler);
 
 private slots:
     void on_pushButton_cancel_clicked();
 
+    void on_pushButton_add_relation_clicked();
+
 private:
     Ui::PersonAddRelation *ui;
-    Person p;
+    Person person;
+    Interface *handler;
+    QStandardItemModel *model;
 };
 
 #endif // PERSONADDRELATION_H

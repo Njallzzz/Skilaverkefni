@@ -232,24 +232,16 @@ int SQLITEHandler::modifyEntry( Computer c ) {      // Modify computer in databa
 }
 
 int SQLITEHandler::modifyEntry( Person p ) {        // Modify Person in database
-    qDebug() << "sql";
-    qDebug() << p.getName();
     if( !status )                                   // If not connected, fail
         return 1;
-    qDebug() << p.getName();
     q.prepare( "UPDATE people SET name = (:name), gender = (:gender), birth = (:birth), death = (:death) WHERE id = (:id)" );
-    qDebug() << "id";
     q.bindValue( ":id", p.getId() );
-    qDebug() << "name";
     q.bindValue( ":name", p.getName() );
-    qDebug() << "gender";
     if( p.getGender() == 1 )
         q.bindValue( ":gender", "Male" );
     else if( p.getGender() == 2 )
         q.bindValue( ":gender", "Female" );
-    qDebug() << "birth";
     q.bindValue( ":birth", p.getBirth().toString("yyyy-MM-dd") );
-    qDebug() << "death";
     q.bindValue( ":death", p.getDeath().toString("yyyy-MM-dd") );
     if( !q.exec() )                                 // Attempt to execute query
         return 2;

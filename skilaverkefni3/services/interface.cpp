@@ -1,6 +1,6 @@
 #include "services/interface.h"
 
-Interface::Interface() {
+Interface::Interface() {                        //Sets all search and sort options to default
     db.SetDatabase( "Database.db" );
     sortPeople = NAME_ASC;
     sortComputers = NAME_ASC;
@@ -145,49 +145,49 @@ vector<Computer> Interface::Filter( vector<Computer> & computers ) {
     return results;
 }
 
-void Interface::peopleFilterName( QString name ) {
+void Interface::peopleFilterName( QString name ) {              //To filter people by name
     personSearch.setName( name );
 }
 
-void Interface::peopleFilterGender( QString gender ) {
+void Interface::peopleFilterGender( QString gender ) {          //To filter people by gender
     if( gender == "Male" )
         personSearch.setGender( 1 );
     else if( gender == "Female" )
         personSearch.setGender( 2 );
     else
-        personSearch.setGender( 0 );
+        personSearch.setGender( 0 );        //If neither specified
 }
 
-void Interface::peopleFilterBirth( QDate date ) {
+void Interface::peopleFilterBirth( QDate date ) {               //To filter people by birth date
     personSearch.setBirth( date );
 }
 
-void Interface::peopleFilterDeath( QDate date ) {
+void Interface::peopleFilterDeath( QDate date ) {               //To filter people by death date
     personSearch.setDeath( date );
 }
 
-void Interface::ComputerFilterName( QString name ) {
+void Interface::ComputerFilterName( QString name ) {            //To filter computers by name
     computerSearch.setName( name );
 }
 
-void Interface::ComputerFilterType( QString type ) {
+void Interface::ComputerFilterType( QString type ) {            //To filter computers by type
     computerSearch.setType( type );
 }
 
-void Interface::ComputerFilterDate( QDate date ) {
+void Interface::ComputerFilterDate( QDate date ) {              //To filter computers by date built
     computerSearch.setYear( date.toString("yyyy") );
 }
 
-void Interface::ComputerFilterBuilt( int built ) {
+void Interface::ComputerFilterBuilt( int built ) {              //To filter computers by if built
     if( built == 0 )
         computerSearch.setWasBuilt( 2 );
     else if( built == 1 )
         computerSearch.setWasBuilt( 1 );
     else if( built == 2 )
-        computerSearch.setWasBuilt( 0 );
+        computerSearch.setWasBuilt( 0 );             //If neither specified
 }
 
-int Interface::selectPerson( int index ) {
+int Interface::selectPerson( int index ) {          //Gets id from people list based in row selected
     if( index < -1 || index >= int(p.size()) )
         return 1;
     if( index == -1 )
@@ -205,65 +205,64 @@ void Interface::deleteComputer( int index ) {       //Deletes computer from sql 
     db.removeEntry( c[index] );
 }
 
-void Interface::sortPerson( int index ) {
+void Interface::sortPerson( int index ) {           //To sort people list, all both ascending and descending
     if( index == 0 ) {
-        if( sortPeople == NAME_ASC )
+        if( sortPeople == NAME_ASC )                //Sort by name
             sortPeople = NAME_DESC;
         else
             sortPeople = NAME_ASC;
     } else if( index == 1 ) {
-        if( sortPeople == GENDER_ASC )
+        if( sortPeople == GENDER_ASC )              //Sort by gender
             sortPeople = GENDER_DESC;
         else
             sortPeople = GENDER_ASC;
     } else if( index == 2 ) {
-        if( sortPeople == BIRTH_ASC )
+        if( sortPeople == BIRTH_ASC )               //Sort by birth date
             sortPeople = BIRTH_DESC;
         else
             sortPeople = BIRTH_ASC;
     } else if( index == 3 ) {
-        if( sortPeople == DEATH_ASC )
+        if( sortPeople == DEATH_ASC )               //Sort by death date
             sortPeople = DEATH_DESC;
         else
             sortPeople = DEATH_ASC;
     }
 }
 
-void Interface::sortComputer( int index ) {
+void Interface::sortComputer( int index ) {     //To sort computers list, all both ascending and descending
     if( index == 0 ) {
-        if( sortComputers == NAME_ASC )
+        if( sortComputers == NAME_ASC )         //Sort by name
             sortComputers = NAME_DESC;
         else
             sortComputers = NAME_ASC;
     } else if( index == 1 ) {
-        if( sortComputers == TYPE_ASC )
+        if( sortComputers == TYPE_ASC )         //Sort by type
             sortComputers = TYPE_DESC;
         else
             sortComputers = TYPE_ASC;
     } else if( index == 2 ) {
-        if( sortComputers == CREATION_ASC )
+        if( sortComputers == CREATION_ASC )     //Sort by date created
             sortComputers = CREATION_DESC;
         else
             sortComputers = CREATION_ASC;
     } else if( index == 3 ) {
-        if( sortComputers == CONSTRUCTED_ASC )
+        if( sortComputers == CONSTRUCTED_ASC )      //Sort by if constructed
             sortComputers = CONSTRUCTED_DESC;
         else
             sortComputers = CONSTRUCTED_ASC;
     }
 }
 
-void Interface::addPerson(Person p){
+void Interface::addPerson(Person p){                    //Adds person to sql database
     db.addEntry(p);
 }
 
-void Interface::modifyPerson(Person p)
+void Interface::modifyPerson(Person p)                  //Modifies person in sql database
 {
-    qDebug() << "handler";
     db.modifyEntry(p);
 }
 
-Person Interface::getPerson(int index)
+Person Interface::getPerson(int index)                  //returns person from computer vector based on selected index
 {
     return p[index];
 }

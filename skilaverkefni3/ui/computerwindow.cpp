@@ -64,7 +64,7 @@ bool ComputerWindow::error() {                          //Error handling and dip
     return ifError;
 }
 
-void ComputerWindow::on_pushButton_computer_save_clicked() {    //Saves all information inserted
+void ComputerWindow::on_pushButton_computer_save_clicked() {    //Saves all information inserted to sql database file
     bool yes_checked = ui->radioButton_yes->isChecked();
 
     if ( !error() ) {
@@ -76,9 +76,9 @@ void ComputerWindow::on_pushButton_computer_save_clicked() {    //Saves all info
         else
             comp.setWasBuilt( 0 );
 
-        if( indexComputer > -1 )
+        if( indexComputer > -1 )                //used if index is pre-selected
             handler->modifyComputer( comp );
-        else
+        else                                    //else
             handler->addComputer( comp );
         this->hide();
     }
@@ -88,7 +88,7 @@ void ComputerWindow::on_pushButton_computer_cancel_clicked() {      //Closes win
     this->hide();
 }
 
-void ComputerWindow::getHandler( Interface *h ){                    //
+void ComputerWindow::getHandler( Interface *h ){                    //creates a new handler to interact with Interface.cpp
     handler = h;
 }
 

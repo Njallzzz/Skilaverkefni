@@ -345,12 +345,11 @@ void MainWindow::on_action_Add_Computer_triggered()                             
     displayComputers();
 }
 
-
-
 void MainWindow::on_pushButton_modify_person_clicked()          //Allows the user to modify selected person
 {
     PersonWindow *pWindow = new PersonWindow;
     Person p = handler->getPerson(ui->people_list->currentIndex().row());
+    pWindow->getHandler( handler );
     pWindow->setPerson(p);
 
     pWindow->exec();

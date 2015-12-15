@@ -49,6 +49,8 @@ void PersonWindow::getHandler(Interface *h)
 void PersonWindow::on_addRelationButton_clicked()
 {
     PersonAddRelation *rel = new PersonAddRelation;
+    rel->setHandler( handler );
+    rel->setPerson(person);
     rel->exec();
 }
 
@@ -106,7 +108,6 @@ void PersonWindow::on_saveButton_clicked()
                 handler->addPerson(person);
             }
             else {
-                qDebug() << person.getId() << person.getName() << person.getGender() << person.getBirth().toString("dd.MM.yyyy") << person.getDeath().toString("dd.MM.yyyy");
                 handler->modifyPerson(person);
             }
 
