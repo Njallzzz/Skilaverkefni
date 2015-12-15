@@ -56,7 +56,11 @@ private slots:
 
     void on_people_list_customContextMenuRequested(const QPoint &pos);
 
-    void on_action_rightClick_triggered();
+    void on_action_Delete_Person_triggered();
+
+    void on_computer_list_customContextMenuRequested(const QPoint &pos);
+
+    void on_action_Delete_Computer_triggered();
 
 private:
     void resizeEvent( QResizeEvent* event );
