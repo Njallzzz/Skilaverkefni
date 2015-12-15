@@ -252,3 +252,7 @@ void Interface::sortComputer( int index ) {
             sortComputers = CONSTRUCTED_ASC;
     }
 }
+
+void Interface::addPerson(Person p){
+    db.addEntry(p);
+}

@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "personaddrelation.h"
+#include <QMessageBox>
 
 namespace Ui {
 class PersonWindow;
@@ -16,6 +17,8 @@ public:
     explicit PersonWindow(QWidget *parent = 0);
     ~PersonWindow();
 
+    void setPerson(Person p);
+
 private slots:
     void on_addRelationButton_clicked();
 
@@ -27,6 +30,7 @@ private slots:
 
 private:
     Ui::PersonWindow *ui;
+    Person p;
 };
 
 #endif // PERSONWINDOW_H

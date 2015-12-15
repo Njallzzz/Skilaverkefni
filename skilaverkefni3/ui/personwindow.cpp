@@ -9,10 +9,32 @@ PersonWindow::PersonWindow(QWidget *parent) : QDialog(parent), ui(new Ui::Person
     ui->genderInput->addItem("Female");
 
     ui->deathInput->setEnabled(true);
+    ui->addRelationButton->setEnabled(false);
+
+    if(p.getId() != NULL){
+        ui->nameInput->setText(p.getName());
+        if(p.getGender() == 1)
+            ui->genderInput->setCurrentIndex(0);
+        else if(p.getGender() == 2)
+            ui->genderInput->setCurrentIndex(1);
+        ui->birthInput->setDate(p.getBirth());
+        if(!p.getDeath().isValid()){
+            ui->isAliveCheckBox->setChecked(false);
+        }
+        else{
+            ui->isAliveCheckBox->setChecked(true);
+            ui->deathInput->setDate(p.getDeath());
+        }
+    }
 }
 
 PersonWindow::~PersonWindow() {
     delete ui;
+}
+
+void PersonWindow::setPerson(Person p)
+{
+    this->p = p;
 }
 
 void PersonWindow::on_addRelationButton_clicked()
@@ -58,9 +80,11 @@ void PersonWindow::on_saveButton_clicked()
         }
         if(ui->deathInput->dateTime() > ui->birthInput->dateTime()){
             valid = false;
+            QMessageBox::warning(this,"Input error", "the birth date you entered was later than the death date!");
         }
     }
     if(valid == true){
-        this->close();
+        ui->addRelationButton->setEnabled(true);
+        ui->saveButton->setText("Close");
     }
 }

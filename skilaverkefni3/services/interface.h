@@ -36,6 +36,8 @@ public:
     void ComputerFilterDate( QDate date );
     void ComputerFilterBuilt( int built );
 
+    void addPerson(Person p);
+
 private:
     vector<Person> p;
     vector<Computer> c;
