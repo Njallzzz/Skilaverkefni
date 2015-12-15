@@ -38,9 +38,6 @@ int Person::getSize() {
     return computers.size();
 }
 
-void Person::setId(int id){
-    this->id = id;
-}
 void Person::setName(QString name){
     this->name = name;
 }

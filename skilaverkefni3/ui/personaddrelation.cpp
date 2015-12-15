@@ -22,7 +22,7 @@ void PersonAddRelation::displayComputers()
     notRelated.clear();
     comps = handler->getComputers( true );
     for(int i = 0; i < person.getSize(); i++){
-        for(int j = 0; j < comps.size(); j++){
+        for(int j = 0; j < int(comps.size()); j++){
             if(handler->getComputer(j).getId() == person.getComputer(i)){
                 related.push_back(handler->getComputer(j));
             }
@@ -30,7 +30,7 @@ void PersonAddRelation::displayComputers()
     }
     notRelated = comps;
     for(int i = notRelated.size() - 1; i >= 0; i--){
-        for(int j = 0; j < related.size(); j++){
+        for(int j = 0; j < int(related.size()); j++){
             if(notRelated[i].getId() == related[j].getId()){
                 notRelated.erase(notRelated.begin() + i);
             }
@@ -40,7 +40,7 @@ void PersonAddRelation::displayComputers()
 
     model->setHeaderData(0,Qt::Horizontal, "Computers");
 
-    for(int i = 0; i < related.size(); i++){
+    for(int i = 0; i < int(related.size()); i++){
         QModelIndex index = model->index( i, 0, QModelIndex() );
         model->setData( index, related[i].getName() );
     }
