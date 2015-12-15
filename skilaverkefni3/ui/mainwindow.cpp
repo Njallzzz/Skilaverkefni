@@ -60,8 +60,10 @@ void MainWindow::on_actionCreate_Person_triggered()
 void MainWindow::on_actionCreate_Computer_triggered()
 {
     ComputerWindow *cWindow = new ComputerWindow;
+    cWindow->getHandler( handler );
     cWindow->exec();
     delete cWindow;
+    displayComputers();
 }
 
 void MainWindow::display() {
@@ -246,20 +248,6 @@ void MainWindow::on_filter_gender_p_activated(const QString &arg1) {
     handler->peopleFilterGender( arg1 );
     displayPeople();
 }
-
-// DEBUG BUTTON FUNCTIONS HERE (REMEMBER TO REMOVE BEFORE RELEASE)
-void MainWindow::on_pushButton_3_clicked() {
-    PersonWindow *pWindow = new PersonWindow;
-    pWindow->exec();
-    delete pWindow;
-}
-
-void MainWindow::on_pushButton_2_clicked() {
-    ComputerWindow *cWindow = new ComputerWindow;
-    cWindow->exec();
-    delete cWindow;
-}
-// ~DEBUG BUTTON FUNCTIONS HERE (REMEMBER TO REMOVE BEFORE RELEASE)
 
 void MainWindow::on_pushButton_delete_person_clicked() {
     QMessageBox confirm;

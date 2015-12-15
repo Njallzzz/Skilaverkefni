@@ -42,10 +42,6 @@ private slots:
     void on_date_date_c_dateChanged(const QDate &date);
     void on_filter_built_c_activated(int index);
     void on_filter_gender_p_activated(const QString &arg1);
-    // DEBUG BUTTON FUNCTIONS HERE (REMEMBER TO REMOVE BEFORE RELEASE)
-    void on_pushButton_3_clicked();
-    void on_pushButton_2_clicked();
-    // ~DEBUG BUTTON FUNCTIONS HERE (REMEMBER TO REMOVE BEFORE RELEASE)
     void on_pushButton_delete_person_clicked();
     void on_pushButton_delete_computer_clicked();
     void on_pushButton_clear_person_clicked();
