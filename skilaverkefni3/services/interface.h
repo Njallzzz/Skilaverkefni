@@ -47,6 +47,7 @@ public:
     Person getPersonById(int id);
     void removeRelation(Person p, Computer c);
     void addRelation(Person p, Computer c);
+    Person getLatestPerson();
 
 private:
     vector<Person> p;       //Person vector, data on persons is moved from the sql database into this vector

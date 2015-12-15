@@ -144,17 +144,24 @@ vector<Computer> Interface::Filter( vector<Computer> & computers ) {
     }
     return results;
 }
-
+//adds a relation between a person and a computer
 void Interface::addRelation(Person p, Computer c)
 {
     db.addRelation(p, c);
 }
-
+//returns the latest person added to the database
+Person Interface::getLatestPerson()
+{
+    int id = db.getLatestId();
+    Person p = getPersonById(id);
+    return p;
+}
+//removes a relation between a person and a computer
 void Interface::removeRelation(Person p, Computer c)
 {
     db.deleteRelation(p, c);
 }
-
+//returns a person based on it's id
 Person Interface::getPersonById(int id)
 {
     return db.getPerson(id);

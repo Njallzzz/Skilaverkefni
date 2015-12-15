@@ -58,6 +58,7 @@ public:
     int deleteRelation( Person p, Computer c );
 
     Person getPerson(int id);
+    int getLatestId();
 
 private:
     QString file;       // Filename

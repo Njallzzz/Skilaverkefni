@@ -11,6 +11,7 @@ PersonWindow::PersonWindow(QWidget *parent) : QDialog(parent), ui(new Ui::Person
     ui->deathInput->setEnabled(true);
     ui->addRelationButton->setEnabled(false);
 
+    //modifying or adding user
     moding = false;
 }
 
@@ -18,6 +19,7 @@ PersonWindow::~PersonWindow() {
     delete ui;
 }
 
+//set which person this information belongs to
 void PersonWindow::setPerson(Person p)
 {
     moding = true;
@@ -26,6 +28,7 @@ void PersonWindow::setPerson(Person p)
     displayPerson();
 }
 
+//get an instance of the service class
 void PersonWindow::getHandler(Interface *h)
 {
     handler = h;
@@ -39,6 +42,7 @@ void PersonWindow::on_addRelationButton_clicked()
     rel->exec();
 }
 
+//toggles whether you can enter anything into the death column
 void PersonWindow::on_isAliveCheckBox_toggled(bool checked)
 {
     if(checked == true){
@@ -57,8 +61,10 @@ void PersonWindow::on_cancelButton_clicked()
 void PersonWindow::on_saveButton_clicked()
 {
 
-    if(ui->saveButton->text() == "Save"){
+    if(ui->saveButton->text() == "Save"){       //check wheather the button should save the person or close the window
         bool valid = true;
+
+        //validation for input
         if(ui->nameInput->text() == NULL){
             valid = false;
             ui->label_name->setText("<font color='red'>Name</font>");
@@ -97,13 +103,14 @@ void PersonWindow::on_saveButton_clicked()
             }
 
             ui->addRelationButton->setEnabled(true);
-            ui->saveButton->setText("Close");
+            person = handler->getLatestPerson();
+            ui->saveButton->setText("Close");       //Change buttons text to "Close when a person is saved"
         }
     }
     else if(ui->saveButton->text() == "Close")
         this->close();
 }
-
+//insert correct information into the edit boxes
 void PersonWindow::displayPerson()
 {
     ui->nameInput->setText(person.getName());

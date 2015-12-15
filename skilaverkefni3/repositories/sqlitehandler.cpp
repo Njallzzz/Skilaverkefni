@@ -167,7 +167,6 @@ int SQLITEHandler::addEntry( Computer c ) {         // Add Computer to database
 }
 
 int SQLITEHandler::addEntry( Person p ) {           // Add Person to database
-    qDebug() << p.getName() << " " << p.getGender() << " " << p.getBirth().toString("dd.MM.yyyy") << " " << p.getDeath().toString("dd.MM.yyyy");
 
     if( !status )                                   // If not connected, fail
         return 1;
@@ -271,7 +270,7 @@ int SQLITEHandler::deleteRelation( Person p, Computer c ) { // Delete relation b
         return 2;
     return 0;                   // Return Success
 }
-
+//returns a person based on id
 Person SQLITEHandler::getPerson(int cid)
 {
     q.prepare("SELECT * FROM people WHERE id = (:id)");
@@ -293,7 +292,6 @@ Person SQLITEHandler::getPerson(int cid)
         gender = 0;
     QString name = q.value( ref[1] ).toString(),
             genderString = q.value( ref[2] ).toString();
-    qDebug() << id << "hæ";
     QDate birth = QDate::fromString( q.value( ref[3] ).toString(), "yyyy-MM-dd" ),
           death = QDate::fromString( q.value( ref[4] ).toString(), "yyyy-MM-dd" );
     if( genderString == "Male" )
@@ -310,6 +308,20 @@ Person SQLITEHandler::getPerson(int cid)
     while( q.next() ) {                                                     // Execute query until all relations have been assigned for the individual
         p.add_relation( q.value( reference ).toInt() );                   // Add relation to person
     }
-    qDebug() << p.getId() << " " << p.getName();
     return p;
+}
+
+//returns the person with the highest id
+int SQLITEHandler::getLatestId()
+{
+    q.prepare("SELECT id FROM people ORDER BY id DESC LIMIT 0,1");
+
+    if(!q.exec())
+        return 1;
+    int ref = q.record().indexOf("id");
+    q.next();
+    int id = q.value( ref ).toInt();
+    qDebug() << id;
+
+    return id;
 }
