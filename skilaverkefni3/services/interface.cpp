@@ -256,3 +256,11 @@ void Interface::sortComputer( int index ) {
 void Interface::addComputer( Computer comp ) {
     db.addEntry( comp );
 }
+
+void Interface::modifyComputer( Computer comp ) {
+    db.modifyEntry( comp );
+}
+
+Computer Interface::getComputer( int index ){
+    return c[ index ];
+}

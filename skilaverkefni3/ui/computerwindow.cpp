@@ -5,6 +5,19 @@ ComputerWindow::ComputerWindow(QWidget *parent) : QDialog(parent), ui(new Ui::Co
     ui->setupUi(this);
     this->setWindowFlags( Qt::WindowTitleHint | Qt::WindowCloseButtonHint );
     errorEmpty();
+    indexComputer = -1;
+}
+
+void ComputerWindow::initalize(){
+    comp = handler->getComputer( indexComputer );
+    ui->groupBox_newComputer->setTitle( "Modify Computer" );
+    ui->lineEdit_computer_name->setText( comp.getName() );
+    ui->lineEdit_computer_type->setText( comp.getType() );
+    ui->dateEdit_year_built->setDate( QDate::fromString( comp.getYear(), "yyyy" ) );
+    if( comp.getWasBuilt() )
+        ui->radioButton_yes->setChecked( 1 );
+    else
+        ui->radioButton_no->setChecked( 1 );
 }
 
 ComputerWindow::~ComputerWindow() {
@@ -63,7 +76,10 @@ void ComputerWindow::on_pushButton_computer_save_clicked() {
         else
             comp.setWasBuilt( 0 );
 
-        handler->addComputer( comp );
+        if( indexComputer > -1 )
+            handler->modifyComputer( comp );
+        else
+            handler->addComputer( comp );
         this->hide();
     }
 }
@@ -74,4 +90,8 @@ void ComputerWindow::on_pushButton_computer_cancel_clicked() {
 
 void ComputerWindow::getHandler( Interface *h ){
     handler = h;
+}
+
+void ComputerWindow::setComputer( int index ){
+    indexComputer = index;
 }

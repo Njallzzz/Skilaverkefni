@@ -57,6 +57,8 @@ private slots:
     void on_computer_list_customContextMenuRequested(const QPoint &pos);
 
     void on_action_Delete_Computer_triggered();
+    
+    void on_pushButton_modify_computer_clicked();
 
 private:
     void resizeEvent( QResizeEvent* event );

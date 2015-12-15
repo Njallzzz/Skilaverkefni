@@ -353,3 +353,14 @@ void MainWindow::on_action_Delete_Computer_triggered()
         displayComputers();
     }
 }
+
+void MainWindow::on_pushButton_modify_computer_clicked()
+{
+    ComputerWindow *cWindow = new ComputerWindow;
+    cWindow->getHandler( handler );
+    cWindow->setComputer( ui->computer_list->currentIndex().row() );
+    cWindow->initalize();
+    cWindow->exec();
+    delete cWindow;
+    displayComputers();
+}
