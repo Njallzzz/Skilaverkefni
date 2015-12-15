@@ -60,8 +60,10 @@ void MainWindow::on_actionCreate_Person_triggered()
 void MainWindow::on_actionCreate_Computer_triggered()
 {
     ComputerWindow *cWindow = new ComputerWindow;
+    cWindow->getHandler( handler );
     cWindow->exec();
     delete cWindow;
+    displayComputers();
 }
 
 void MainWindow::display() {
@@ -247,20 +249,6 @@ void MainWindow::on_filter_gender_p_activated(const QString &arg1) {
     displayPeople();
 }
 
-// DEBUG BUTTON FUNCTIONS HERE (REMEMBER TO REMOVE BEFORE RELEASE)
-void MainWindow::on_pushButton_3_clicked() {
-    PersonWindow *pWindow = new PersonWindow;
-    pWindow->exec();
-    delete pWindow;
-}
-
-void MainWindow::on_pushButton_2_clicked() {
-    ComputerWindow *cWindow = new ComputerWindow;
-    cWindow->exec();
-    delete cWindow;
-}
-// ~DEBUG BUTTON FUNCTIONS HERE (REMEMBER TO REMOVE BEFORE RELEASE)
-
 void MainWindow::on_pushButton_delete_person_clicked() {
     QMessageBox confirm;
     confirm.setWindowTitle( "Delete a person" );
@@ -323,45 +311,31 @@ void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos)
 {
 
     QMenu menu;
-    menu.addAction(ui->action_Delete_Person);
+    menu.addAction(ui->action_Add_Person);
     menu.addAction(ui->action_Modify_Person);
     menu.exec(ui->people_list->viewport()->mapToGlobal(pos));
 }
 
-void MainWindow::on_action_Delete_Person_triggered()
+void MainWindow::on_action_Add_Person_triggered()
 {
-    QMessageBox confirm;
-    confirm.setWindowTitle( "Delete a person" );
-    confirm.setText("Are you sure you want to delete the selected person?");
-    confirm.setStandardButtons(QMessageBox::Yes);
-    confirm.addButton( QMessageBox::No );
-    confirm.setDefaultButton( QMessageBox::No );
-
-    if( confirm.exec() == QMessageBox::Yes ) {
-        handler->deletePerson( ui->people_list->currentIndex().row() );
-        displayPeople();
-    }
+    PersonWindow *pWindow = new PersonWindow;
+    pWindow->exec();
+    delete pWindow;
 }
 
 void MainWindow::on_computer_list_customContextMenuRequested(const QPoint &pos)
 {
     QMenu menu;
-    menu.addAction(ui->action_Delete_Computer);
+    menu.addAction(ui->action_Add_Computer);
     menu.addAction(ui->action_Modify_Computer);
     menu.exec(ui->computer_list->viewport()->mapToGlobal(pos));
 }
 
-void MainWindow::on_action_Delete_Computer_triggered()
+void MainWindow::on_action_Add_Computer_triggered()
 {
-    QMessageBox confirm;
-    confirm.setWindowTitle( "Delete a computer" );
-    confirm.setText("Are you sure you want to delete the selected computer?");
-    confirm.setStandardButtons(QMessageBox::Yes);
-    confirm.addButton( QMessageBox::No );
-    confirm.setDefaultButton( QMessageBox::No );
-
-    if( confirm.exec() == QMessageBox::Yes ) {
-        handler->deleteComputer( ui->computer_list->currentIndex().row() );
-        displayComputers();
-    }
+    ComputerWindow *cWindow = new ComputerWindow;
+    cWindow->getHandler( handler );
+    cWindow->exec();
+    delete cWindow;
+    displayComputers();
 }

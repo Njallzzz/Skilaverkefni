@@ -2,6 +2,7 @@
 #define COMPUTERWINDOW_H
 
 #include "models/computer.h"
+#include "services/interface.h"
 #include <QDialog>
 #include <QDebug>
 
@@ -17,13 +18,15 @@ public:
     ~ComputerWindow();
     void errorEmpty();
     bool error();
+    void getHandler( Interface *h );
 
 private slots:
     void on_pushButton_computer_save_clicked();
     void on_pushButton_computer_cancel_clicked();
 
 private:
-    Computer c;
+    Computer comp;
+    Interface *handler;
     Ui::ComputerWindow *ui;
 };
 

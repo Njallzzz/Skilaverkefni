@@ -55,21 +55,23 @@ void ComputerWindow::on_pushButton_computer_save_clicked() {
     bool yes_checked = ui->radioButton_yes->isChecked();
 
     if ( !error() ) {
-        c.setName( ui->lineEdit_computer_name->text() );
-        c.setType( ui->lineEdit_computer_type->text() );
-        c.setYear( ui->dateEdit_year_built->text() );
+        comp.setName( ui->lineEdit_computer_name->text() );
+        comp.setType( ui->lineEdit_computer_type->text() );
+        comp.setYear( ui->dateEdit_year_built->text() );
         if( yes_checked )
-            c.setWasBuilt( 1 );
+            comp.setWasBuilt( 1 );
         else
-            c.setWasBuilt( 0 );
+            comp.setWasBuilt( 0 );
 
-        qDebug() << c.getName();
-        qDebug() << c.getType();
-        qDebug() << c.getYear();
-        qDebug() << c.getWasBuilt();
+        handler->addComputer( comp );
+        this->hide();
     }
 }
 
 void ComputerWindow::on_pushButton_computer_cancel_clicked() {
     this->hide();
+}
+
+void ComputerWindow::getHandler( Interface *h ){
+    handler = h;
 }

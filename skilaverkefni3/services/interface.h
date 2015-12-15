@@ -35,6 +35,7 @@ public:
     void ComputerFilterType( QString type );
     void ComputerFilterDate( QDate date );
     void ComputerFilterBuilt( int built );
+    void addComputer( Computer comp );
 
     void addPerson(Person p);
 

@@ -17,3 +17,4 @@ void PersonAddRelation::on_pushButton_cancel_clicked()
 {
     this->close();
 }
+
