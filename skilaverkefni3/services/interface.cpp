@@ -25,7 +25,7 @@ int Interface::Initialize() {
     return 0;
 }
 
-vector<Person> & Interface::getPeople( bool all ) {
+vector<Person> & Interface::getPeople( bool all ) {     //retrieves data from sql database file and inserts it into a vector
     p.clear();
 
     if( all == false ) {
@@ -43,7 +43,7 @@ vector<Person> & Interface::getPeople( bool all ) {
     return p;
 }
 
-vector<Computer> & Interface::getComputers( bool all ) {
+vector<Computer> & Interface::getComputers( bool all ) {    //retrives data from sql database file and inserts it into a vector
     c.clear();
 
     if( all == false ) {

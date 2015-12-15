@@ -29,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->date_death_p->setEnabled(false);
     ui->date_date_c->setEnabled(false);
 
+    QString date = ui->date_birth_p->text();
+
     ui->filter_gender_p->addItem( "" );
     ui->filter_gender_p->addItem( "Male" );
     ui->filter_gender_p->addItem( "Female" );
@@ -100,9 +102,9 @@ void MainWindow::displayPeople() {                      //to display all
                 else
                     model->setData( index, "Unspecified" );
             } else if( col == 2 )
-                model->setData( index, p[row].getBirth() );
+                model->setData( index, p[row].getBirth().toString("d.M.yyyy") );
             else if( col == 3 )
-                model->setData( index, p[row].getDeath() );
+                model->setData( index, p[row].getDeath().toString("d.M.yyyy") );
         }
     }
 
@@ -146,17 +148,16 @@ void MainWindow::displayComputers() {                       //to display compute
     ui->computer_list->setModel(model);
 }
 
+void MainWindow::resizeEvent( QResizeEvent* event ) {
+    ui->people_list->setColumnWidth( 0, 120 + ( (this->width() - 790) / 2 ) );
+    ui->people_list->setColumnWidth( 1, 60 );
+    ui->people_list->setColumnWidth( 2, 80 );
+    ui->people_list->setColumnWidth( 3, 80 );
 
-void MainWindow::resizeEvent( QResizeEvent* event ) {                       //resize columns when dragged by mouse
-    ui->people_list->setColumnWidth( 0, 140 + ( (this->width() - 790) / 2 ) );
-    ui->people_list->setColumnWidth( 1, 50 );
-    ui->people_list->setColumnWidth( 2, 70 );
-    ui->people_list->setColumnWidth( 3, 70 );
-
-    ui->computer_list->setColumnWidth( 0, 125 + ( (this->width() - 790) / 4 ) );
-    ui->computer_list->setColumnWidth( 1, 125 + ( (this->width() - 790) / 4 ) );
-    ui->computer_list->setColumnWidth( 2, 45 );
-    ui->computer_list->setColumnWidth( 3, 35 );
+    ui->computer_list->setColumnWidth( 0, 110 + ( (this->width() - 790) / 4 ) );
+    ui->computer_list->setColumnWidth( 1, 110 + ( (this->width() - 790) / 4 ) );
+    ui->computer_list->setColumnWidth( 2, 60 );
+    ui->computer_list->setColumnWidth( 3, 40 );
     QMainWindow::resizeEvent(event);
 }
 
@@ -197,7 +198,7 @@ void MainWindow::on_filter_date_c_c_clicked() {              //if computers filt
 }
 
 void MainWindow::on_people_list_clicked(const QModelIndex &index) {     //highlights a row in person if clicked and enables buttons below
-    ui->pushButton_delete_person->setEnabled(true);                     //also displayes computers linked to selected person
+    ui->pushButton_delete_person->setEnabled(true);                     //also displays computers linked to selected person
     ui->pushButton_modify_person->setEnabled(true);
     ui->pushButton_clear_person->setEnabled(true);
     handler->selectPerson( index.row() );
@@ -240,7 +241,7 @@ void MainWindow::on_date_date_c_dateChanged(const QDate &date) {   //filters com
     displayComputers();
 }
 
-void MainWindow::on_filter_built_c_activated(int index) {   //filters computers based on if built or not selected in dropbox
+void MainWindow::on_filter_built_c_activated(int index) {   //filters computers based on if built or not selected in drop-down list
     handler->ComputerFilterBuilt( index );
     displayComputers();
 }
@@ -272,13 +273,13 @@ void MainWindow::on_pushButton_delete_computer_clicked() {          //Deletes co
     confirm.addButton( QMessageBox::No );
     confirm.setDefaultButton( QMessageBox::No );
 
-    if( confirm.exec() == QMessageBox::Yes ) {                      //If no selected in "confirm" pop-up box then computer is deleted
+    if( confirm.exec() == QMessageBox::Yes ) {                      //If yes is selected in "confirm" pop-up box then computer is deleted
         handler->deleteComputer( ui->computer_list->currentIndex().row() );
         displayComputers();
     }
 }
 
-void MainWindow::on_pushButton_clear_person_clicked() {             //Displayes all people in database without filters
+void MainWindow::on_pushButton_clear_person_clicked() {             //Displays all people in database without filters
     ui->pushButton_clear_person->setEnabled(false);
     ui->pushButton_delete_person->setEnabled(false);
     ui->pushButton_modify_person->setEnabled(false);
@@ -287,23 +288,23 @@ void MainWindow::on_pushButton_clear_person_clicked() {             //Displayes 
     displayComputers();
 }
 
-void MainWindow::on_pushButton_clear_computer_clicked() {           //Displayes all computers in database without filters
+void MainWindow::on_pushButton_clear_computer_clicked() {           //Displays all computers in database without filters
     ui->pushButton_clear_computer->setEnabled(false);
     ui->pushButton_delete_computer->setEnabled(false);
     ui->pushButton_modify_computer->setEnabled(false);
     ui->computer_list->setCurrentIndex( ui->computer_list->model()->index(-1, 0) );
 }
 
-void MainWindow::on_actionAbout_triggered() {                   //Displayes about window that provides info of the project
+void MainWindow::on_actionAbout_triggered() {                   //Displays about window that provides info of the project
     aWindow->show();
 }
 
-void MainWindow::people_on_sectionClicked( int index ) {        //sortes people based on column title clicked
+void MainWindow::people_on_sectionClicked( int index ) {        //sorts people based on column title clicked
     handler->sortPerson( index );
     displayPeople();
 }
 
-void MainWindow::computers_on_sectionClicked( int index ) {     //sortes computers based on column title clicked
+void MainWindow::computers_on_sectionClicked( int index ) {     //sorts computers based on column title clicked
     handler->sortComputer( index );
     displayComputers();
 }
@@ -312,7 +313,8 @@ void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos)
 {
     QMenu menu;
     menu.addAction(ui->action_Add_Person);
-    menu.addAction(ui->action_Modify_Person);
+    menu.addAction(ui->action_Refresh_People);
+
     menu.exec(ui->people_list->viewport()->mapToGlobal(pos));
 }
 
@@ -328,7 +330,8 @@ void MainWindow::on_computer_list_customContextMenuRequested(const QPoint &pos)
 {
     QMenu menu;
     menu.addAction(ui->action_Add_Computer);
-    menu.addAction(ui->action_Modify_Computer);
+    menu.addAction(ui->action_Refresh_Computers);
+
     menu.exec(ui->computer_list->viewport()->mapToGlobal(pos));
 }
 
@@ -341,13 +344,7 @@ void MainWindow::on_action_Add_Computer_triggered()
     displayComputers();
 }
 
-void MainWindow::on_action_Modify_Person_triggered()
-{
-    PersonWindow *pWindow = new PersonWindow;
-    pWindow->setPerson(handler->getPerson(ui->people_list->currentIndex().row()));
 
-    pWindow->exec();
-}
 
 void MainWindow::on_pushButton_modify_person_clicked()          //Allows the user to modify selected person
 {
@@ -368,5 +365,15 @@ void MainWindow::on_pushButton_modify_computer_clicked()        //Allows the use
     cWindow->initalize();
     cWindow->exec();
     delete cWindow;
+    displayComputers();
+}
+
+void MainWindow::on_action_Refresh_People_triggered()   // refresh list of people if for some reason it hasnt
+{
+    displayPeople();
+}
+
+void MainWindow::on_action_Refresh_Computers_triggered()    // refresh list of computers if for some reason it hasnt
+{
     displayComputers();
 }

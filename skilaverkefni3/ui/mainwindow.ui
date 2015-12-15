@@ -82,7 +82,11 @@
               </layout>
              </item>
              <item>
-              <widget class="QDateEdit" name="date_birth_p"/>
+              <widget class="QDateEdit" name="date_birth_p">
+               <property name="displayFormat">
+                <string>dd.MM.yyyy</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -107,7 +111,11 @@
               </layout>
              </item>
              <item>
-              <widget class="QDateEdit" name="date_death_p"/>
+              <widget class="QDateEdit" name="date_death_p">
+               <property name="displayFormat">
+                <string>dd.MM.yyyy</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -322,19 +330,19 @@
     <string>Add</string>
    </property>
   </action>
-  <action name="action_Modify_Person">
-   <property name="text">
-    <string>Modify</string>
-   </property>
-  </action>
   <action name="action_Add_Computer">
    <property name="text">
     <string>Add</string>
    </property>
   </action>
-  <action name="action_Modify_Computer">
+  <action name="action_Refresh_People">
    <property name="text">
-    <string>Modify</string>
+    <string>Refresh</string>
+   </property>
+  </action>
+  <action name="action_Refresh_Computers">
+   <property name="text">
+    <string>Refresh</string>
    </property>
   </action>
  </widget>
