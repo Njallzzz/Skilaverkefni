@@ -24,7 +24,7 @@ public:
     int getSize();
     int getComputer(int i);
 
-    void setId( int id );
+
     void setName(QString name);
     void setGender(int gender);
     void setBirth(QDate birth);
@@ -34,8 +34,6 @@ public:
 
     bool isRelated( Computer c );       // Check if this person is related with a computer
 
-    friend std::istream& operator>>(std::istream& is, Person& p);
-    friend std::ostream& operator<<(std::ostream& os, Person& p);
 
 private:
     int id;
