@@ -102,9 +102,9 @@ void MainWindow::displayPeople() {
                 else
                     model->setData( index, "Unspecified" );
             } else if( col == 2 )
-                model->setData( index, p[row].getBirth() );
+                model->setData( index, p[row].getBirth().toString("d.M.yyyy") );
             else if( col == 3 )
-                model->setData( index, p[row].getDeath() );
+                model->setData( index, p[row].getDeath().toString("d.M.yyyy") );
         }
     }
 
@@ -150,14 +150,14 @@ void MainWindow::displayComputers() {
 
 
 void MainWindow::resizeEvent( QResizeEvent* event ) {
-    ui->people_list->setColumnWidth( 0, 140 + ( (this->width() - 790) / 2 ) );
-    ui->people_list->setColumnWidth( 1, 50 );
-    ui->people_list->setColumnWidth( 2, 70 );
-    ui->people_list->setColumnWidth( 3, 70 );
+    ui->people_list->setColumnWidth( 0, 120 + ( (this->width() - 790) / 2 ) );
+    ui->people_list->setColumnWidth( 1, 60 );
+    ui->people_list->setColumnWidth( 2, 80 );
+    ui->people_list->setColumnWidth( 3, 80 );
 
-    ui->computer_list->setColumnWidth( 0, 125 + ( (this->width() - 790) / 4 ) );
-    ui->computer_list->setColumnWidth( 1, 125 + ( (this->width() - 790) / 4 ) );
-    ui->computer_list->setColumnWidth( 2, 40 );
+    ui->computer_list->setColumnWidth( 0, 110 + ( (this->width() - 790) / 4 ) );
+    ui->computer_list->setColumnWidth( 1, 110 + ( (this->width() - 790) / 4 ) );
+    ui->computer_list->setColumnWidth( 2, 60 );
     ui->computer_list->setColumnWidth( 3, 40 );
     QMainWindow::resizeEvent(event);
 }

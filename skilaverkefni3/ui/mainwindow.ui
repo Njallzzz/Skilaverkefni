@@ -84,7 +84,7 @@
              <item>
               <widget class="QDateEdit" name="date_birth_p">
                <property name="displayFormat">
-                <string>dd/MM/yyyy</string>
+                <string>dd.MM.yyyy</string>
                </property>
               </widget>
              </item>
@@ -113,7 +113,7 @@
              <item>
               <widget class="QDateEdit" name="date_death_p">
                <property name="displayFormat">
-                <string>dd/MM/yyyy</string>
+                <string>dd.MM.yyyy</string>
                </property>
               </widget>
              </item>
