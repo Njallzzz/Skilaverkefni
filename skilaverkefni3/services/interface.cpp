@@ -19,7 +19,7 @@ Interface::~Interface() {
     db.disconnect();
 }
 
-int Interface::Initialize() {
+int Interface::Initialize() {           //Check sql database connection
     if( db.connect() )
         return 1;
     return 0;
@@ -209,7 +209,7 @@ void Interface::ComputerFilterBuilt( int built ) {              //To filter comp
         computerSearch.setWasBuilt( 0 );             //If neither specified
 }
 
-int Interface::selectPerson( int index ) {          //Gets id from people list based on row selected
+int Interface::selectPerson( int index ) {          //Checks id
     if( index < -1 || index >= int(p.size()) )
         return 1;
     if( index == -1 )

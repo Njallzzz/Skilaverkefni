@@ -11,20 +11,20 @@ using namespace std;
 
 class Interface {
 public:
-    Interface();
+    Interface();            //Sets all search and sort options to default
     ~Interface();
-    int Initialize();
+    int Initialize();       //Check sql database connection
 
     vector<Person> & getPeople( bool all = false );         //retrieves "people" data from sql database file and inserts it into a vector
     vector<Computer> & getComputers( bool all = false );    //retrieves "computer" data from sql database file and inserts it into a vector
 
-    void sortPerson( int index );
-    void sortComputer( int index );
+    void sortPerson( int index );                   //To sort people list
+    void sortComputer( int index );                 //To sort computer list
 
-    int selectPerson( int index );
+    int selectPerson( int index );                  //Checks id
 
-    void deletePerson( int index );
-    void deleteComputer( int index );
+    void deletePerson( int index );                 //Deletes person from sql database based on selected index
+    void deleteComputer( int index );               //Deletes computer from sql database based on selected index
 
     void peopleFilterName( QString name );          //To filter people by name
     void peopleFilterGender( QString gender );      //To filter people by gender
@@ -63,7 +63,7 @@ private:
 
     Person personSearch;        //the searching options for persons are kept in this varable
     Computer computerSearch;    //the searching options for computers are kept in this varable
-    int SelectedPerson;         //the index of the selected person is kept in this varible
+    int SelectedPerson;         //Checks id
 };
 
 #endif // INTERFACE_H

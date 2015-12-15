@@ -76,9 +76,9 @@ void ComputerWindow::on_pushButton_computer_save_clicked() {    //Saves all info
         else
             comp.setWasBuilt( 0 );
 
-        if( indexComputer > -1 )                //used if index is pre-selected
+        if( indexComputer > -1 )                //used if index is pre-selected to modify
             handler->modifyComputer( comp );
-        else                                    //else
+        else
             handler->addComputer( comp );
         this->hide();
     }
