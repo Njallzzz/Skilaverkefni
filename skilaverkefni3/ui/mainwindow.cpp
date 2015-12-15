@@ -53,6 +53,7 @@ MainWindow::~MainWindow() {
 void MainWindow::on_actionCreate_Person_triggered()
 {
     PersonWindow *pWindow = new PersonWindow;
+    pWindow->getHandler( handler );
     pWindow->exec();
     delete pWindow;
 }
@@ -321,6 +322,7 @@ void MainWindow::on_action_Add_Person_triggered()
     PersonWindow *pWindow = new PersonWindow;
     pWindow->exec();
     delete pWindow;
+    displayPeople();
 }
 
 void MainWindow::on_computer_list_customContextMenuRequested(const QPoint &pos)
@@ -335,6 +337,36 @@ void MainWindow::on_action_Add_Computer_triggered()
 {
     ComputerWindow *cWindow = new ComputerWindow;
     cWindow->getHandler( handler );
+    cWindow->exec();
+    delete cWindow;
+    displayComputers();
+}
+
+void MainWindow::on_action_Modify_Person_triggered()
+{
+    PersonWindow *pWindow = new PersonWindow;
+    pWindow->setPerson(handler->getPerson(ui->people_list->currentIndex().row()));
+
+    pWindow->exec();
+}
+
+void MainWindow::on_pushButton_modify_person_clicked()
+{
+    PersonWindow *pWindow = new PersonWindow;
+    Person p = handler->getPerson(ui->people_list->currentIndex().row());
+    pWindow->setPerson(p);
+
+    pWindow->exec();
+    delete pWindow;
+    displayPeople();
+}
+
+void MainWindow::on_pushButton_modify_computer_clicked()
+{
+    ComputerWindow *cWindow = new ComputerWindow;
+    cWindow->getHandler( handler );
+    cWindow->setComputer( ui->computer_list->currentIndex().row() );
+    cWindow->initalize();
     cWindow->exec();
     delete cWindow;
     displayComputers();

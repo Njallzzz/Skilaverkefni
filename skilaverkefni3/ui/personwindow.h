@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "personaddrelation.h"
+#include "services/interface.h"
 #include <QMessageBox>
 
 namespace Ui {
@@ -18,6 +19,7 @@ public:
     ~PersonWindow();
 
     void setPerson(Person p);
+    void getHandler(Interface *h);
 
 private slots:
     void on_addRelationButton_clicked();
@@ -30,7 +32,11 @@ private slots:
 
 private:
     Ui::PersonWindow *ui;
-    Person p;
+    Person person;
+    Interface *handler;
+    bool moding;
+
+    void displayPerson();
 };
 
 #endif // PERSONWINDOW_H

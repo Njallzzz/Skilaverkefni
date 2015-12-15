@@ -25,7 +25,6 @@ private slots:
 private:
     Ui::PersonAddRelation *ui;
     Person p;
-
 };
 
 #endif // PERSONADDRELATION_H

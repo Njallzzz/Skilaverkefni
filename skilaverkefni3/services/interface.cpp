@@ -1,7 +1,7 @@
 #include "services/interface.h"
 
 Interface::Interface() {
-    db.SetDatabase( "/Users/Helmut/Downloads/Skilaverkefni_2/Executable/Database.db" );
+    db.SetDatabase( "Database.db" );
     sortPeople = NAME_ASC;
     sortComputers = NAME_ASC;
 
@@ -257,6 +257,25 @@ void Interface::addPerson(Person p){
     db.addEntry(p);
 }
 
+void Interface::modifyPerson(Person p)
+{
+    qDebug() << "handler";
+    db.modifyEntry(p);
+}
+
+Person Interface::getPerson(int index)
+{
+    return p[index];
+}
+
 void Interface::addComputer( Computer comp ) {
     db.addEntry( comp );
+}
+
+void Interface::modifyComputer( Computer comp ) {
+    db.modifyEntry( comp );
+}
+
+Computer Interface::getComputer( int index ){
+    return c[ index ];
 }
