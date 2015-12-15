@@ -338,7 +338,7 @@
   </action>
   <action name="action_Refresh_Computers">
    <property name="text">
-    <string>Modify</string>
+    <string>Refresh</string>
    </property>
   </action>
  </widget>
