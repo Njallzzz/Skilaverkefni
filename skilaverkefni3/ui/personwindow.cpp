@@ -11,21 +11,6 @@ PersonWindow::PersonWindow(QWidget *parent) : QDialog(parent), ui(new Ui::Person
     ui->deathInput->setEnabled(true);
     ui->addRelationButton->setEnabled(false);
 
-    /*if(p.getId() > 0){
-        ui->nameInput->setText(p.getName());
-        if(p.getGender() == 1)
-            ui->genderInput->setCurrentIndex(0);
-        else if(p.getGender() == 2)
-            ui->genderInput->setCurrentIndex(1);
-        ui->birthInput->setDate(p.getBirth());
-        if(!p.getDeath().isValid()){
-            ui->isAliveCheckBox->setChecked(false);
-        }
-        else{
-            ui->isAliveCheckBox->setChecked(true);
-            ui->deathInput->setDate(p.getDeath());
-        }
-    }*/
     moding = false;
 }
 

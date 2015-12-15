@@ -66,8 +66,8 @@ private:
     QStandardItemModel *model;
     AboutWindow *aWindow;
 
-    void displayPeople();           //to display all, puts data into columns and rows
-    void displayComputers();         //to display computers, puts data into columns and rows
+    void displayPeople();           //to display(/refresh ) all, puts data into columns and rows
+    void displayComputers();         //to display(/refresh ) computers, puts data into columns and rows
 };
 
 #endif // MAINWINDOW_H
