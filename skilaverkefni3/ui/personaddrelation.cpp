@@ -70,8 +70,10 @@ void PersonAddRelation::on_pushButton_cancel_clicked()
 void PersonAddRelation::on_pushButton_add_relation_clicked()
 {
     Computer tmp = notRelated[ui->computer_list->currentIndex().row()];
+    qDebug() << tmp.getName();
     handler->addRelation(person, tmp);
     person = handler->getPersonById(person.getId());
+    qDebug() << person.getId() << " " << person.getName();
     displayComputers();
 }
 
