@@ -1,7 +1,7 @@
 #include "services/interface.h"
 
 Interface::Interface() {
-    db.SetDatabase( "Database.db" );
+    db.SetDatabase( "/Users/Helmut/Downloads/Skilaverkefni_2/Executable/Database.db" );
     sortPeople = NAME_ASC;
     sortComputers = NAME_ASC;
 

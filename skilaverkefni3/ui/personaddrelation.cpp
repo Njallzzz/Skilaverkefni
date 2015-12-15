@@ -1,7 +1,7 @@
 #include "personaddrelation.h"
 #include "ui_personaddrelation.h"
 
-PersonAddRelation::PersonAddRelation(QWidget *parent) :
+/*PersonAddRelation::PersonAddRelation(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PersonAddRelation)
 {
@@ -17,3 +17,4 @@ void PersonAddRelation::on_pushButton_cancel_clicked()
 {
     this->close();
 }
+*/
