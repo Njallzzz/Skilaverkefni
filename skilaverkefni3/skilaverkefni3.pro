@@ -22,7 +22,6 @@ SOURCES += main.cpp\
     ui/mainwindow.cpp \
     ui/personwindow.cpp \
     ui/aboutwindow.cpp \
-    ui/personaddrelation.cpp \
     ui/personaddrelation.cpp
 
 HEADERS  += models/computer.h \
@@ -33,7 +32,6 @@ HEADERS  += models/computer.h \
     ui/mainwindow.h \
     ui/personwindow.h \
     ui/aboutwindow.h \
-    ui/personaddrelation.h \
     ui/personaddrelation.h
 
 FORMS    += ui/computerwindow.ui \

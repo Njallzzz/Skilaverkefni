@@ -259,7 +259,6 @@ void Interface::addPerson(Person p){
 
 void Interface::modifyPerson(Person p)
 {
-    qDebug() << "handler";
     db.modifyEntry(p);
 }
 

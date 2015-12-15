@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->date_death_p->setEnabled(false);
     ui->date_date_c->setEnabled(false);
 
+    QString date = ui->date_birth_p->text();
     ui->filter_gender_p->addItem( "" );
     ui->filter_gender_p->addItem( "Male" );
     ui->filter_gender_p->addItem( "Female" );
@@ -100,9 +101,9 @@ void MainWindow::displayPeople() {
                 else
                     model->setData( index, "Unspecified" );
             } else if( col == 2 )
-                model->setData( index, p[row].getBirth() );
+                model->setData( index, p[row].getBirth().toString("d.M.yyyy") );
             else if( col == 3 )
-                model->setData( index, p[row].getDeath() );
+                model->setData( index, p[row].getDeath().toString("d.M.yyyy") );
         }
     }
 
@@ -148,14 +149,14 @@ void MainWindow::displayComputers() {
 
 
 void MainWindow::resizeEvent( QResizeEvent* event ) {
-    ui->people_list->setColumnWidth( 0, 140 + ( (this->width() - 790) / 2 ) );
-    ui->people_list->setColumnWidth( 1, 50 );
-    ui->people_list->setColumnWidth( 2, 70 );
-    ui->people_list->setColumnWidth( 3, 70 );
+    ui->people_list->setColumnWidth( 0, 120 + ( (this->width() - 790) / 2 ) );
+    ui->people_list->setColumnWidth( 1, 60 );
+    ui->people_list->setColumnWidth( 2, 80 );
+    ui->people_list->setColumnWidth( 3, 80 );
 
-    ui->computer_list->setColumnWidth( 0, 125 + ( (this->width() - 790) / 4 ) );
-    ui->computer_list->setColumnWidth( 1, 125 + ( (this->width() - 790) / 4 ) );
-    ui->computer_list->setColumnWidth( 2, 40 );
+    ui->computer_list->setColumnWidth( 0, 110 + ( (this->width() - 790) / 4 ) );
+    ui->computer_list->setColumnWidth( 1, 110 + ( (this->width() - 790) / 4 ) );
+    ui->computer_list->setColumnWidth( 2, 60 );
     ui->computer_list->setColumnWidth( 3, 40 );
     QMainWindow::resizeEvent(event);
 }
@@ -345,6 +346,7 @@ void MainWindow::on_action_Add_Computer_triggered()
 void MainWindow::on_action_Modify_Person_triggered()
 {
     PersonWindow *pWindow = new PersonWindow;
+    pWindow->getHandler( handler );
     pWindow->setPerson(handler->getPerson(ui->people_list->currentIndex().row()));
 
     pWindow->exec();
@@ -354,6 +356,7 @@ void MainWindow::on_pushButton_modify_person_clicked()
 {
     PersonWindow *pWindow = new PersonWindow;
     Person p = handler->getPerson(ui->people_list->currentIndex().row());
+    pWindow->getHandler( handler );
     pWindow->setPerson(p);
 
     pWindow->exec();

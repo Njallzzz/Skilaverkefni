@@ -11,6 +11,21 @@ PersonWindow::PersonWindow(QWidget *parent) : QDialog(parent), ui(new Ui::Person
     ui->deathInput->setEnabled(true);
     ui->addRelationButton->setEnabled(false);
 
+    /*if(p.getId() > 0){
+        ui->nameInput->setText(p.getName());
+        if(p.getGender() == 1)
+            ui->genderInput->setCurrentIndex(0);
+        else if(p.getGender() == 2)
+            ui->genderInput->setCurrentIndex(1);
+        ui->birthInput->setDate(p.getBirth());
+        if(!p.getDeath().isValid()){
+            ui->isAliveCheckBox->setChecked(false);
+        }
+        else{
+            ui->isAliveCheckBox->setChecked(true);
+            ui->deathInput->setDate(p.getDeath());
+        }
+    }*/
     moding = false;
 }
 
@@ -34,6 +49,8 @@ void PersonWindow::getHandler(Interface *h)
 void PersonWindow::on_addRelationButton_clicked()
 {
     PersonAddRelation *rel = new PersonAddRelation;
+    rel->setHandler( handler );
+    rel->setPerson(person);
     rel->exec();
 }
 
@@ -91,7 +108,6 @@ void PersonWindow::on_saveButton_clicked()
                 handler->addPerson(person);
             }
             else {
-                qDebug() << person.getId() << person.getName() << person.getGender() << person.getBirth().toString("dd.MM.yyyy") << person.getDeath().toString("dd.MM.yyyy");
                 handler->modifyPerson(person);
             }
 
