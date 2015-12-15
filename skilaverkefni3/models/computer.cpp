@@ -8,6 +8,7 @@ Computer::Computer( int ID, QString theName, QDate year, QString theType, bool b
     id = ID;
 }
 
+//To get data
 int Computer::getId() {
     return id;
 }
@@ -24,6 +25,7 @@ int Computer::getWasBuilt() {
     return wasBuilt;
 }
 
+//To set data
 void Computer::setId( int theId ) {
     id = theId;
 }

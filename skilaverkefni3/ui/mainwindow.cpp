@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     QString date = ui->date_birth_p->text();
 
+    //Adds options to dorp-down lists
     ui->filter_gender_p->addItem( "" );
     ui->filter_gender_p->addItem( "Male" );
     ui->filter_gender_p->addItem( "Female" );
@@ -73,7 +74,7 @@ void MainWindow::display() {                            //to display all
     displayPeople();
 }
 
-void MainWindow::displayPeople() {                      //to display all
+void MainWindow::displayPeople() {                      //to display all, puts data into columns and rows
     vector<Person> &p = handler->getPeople();
 
     ui->pushButton_delete_person->setEnabled(false);
@@ -111,7 +112,7 @@ void MainWindow::displayPeople() {                      //to display all
     ui->people_list->setModel(model);
 }
 
-void MainWindow::displayComputers() {                       //to display computers
+void MainWindow::displayComputers() {                       //to display computers, puts data into columns and rows
     vector<Computer> &c = handler->getComputers();
 
     ui->pushButton_delete_computer->setEnabled(false);
@@ -148,7 +149,7 @@ void MainWindow::displayComputers() {                       //to display compute
     ui->computer_list->setModel(model);
 }
 
-void MainWindow::resizeEvent( QResizeEvent* event ) {
+void MainWindow::resizeEvent( QResizeEvent* event ) {                   //resizes columns to fit data
     ui->people_list->setColumnWidth( 0, 120 + ( (this->width() - 790) / 2 ) );
     ui->people_list->setColumnWidth( 1, 60 );
     ui->people_list->setColumnWidth( 2, 80 );
@@ -309,7 +310,7 @@ void MainWindow::computers_on_sectionClicked( int index ) {     //sorts computer
     displayComputers();
 }
 
-void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos)
+void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos)   //Displays right click menu in people list
 {
     QMenu menu;
     menu.addAction(ui->action_Add_Person);
@@ -326,7 +327,7 @@ void MainWindow::on_action_Add_Person_triggered()
     displayPeople();
 }
 
-void MainWindow::on_computer_list_customContextMenuRequested(const QPoint &pos)
+void MainWindow::on_computer_list_customContextMenuRequested(const QPoint &pos) //Displays right click menu in computer list
 {
     QMenu menu;
     menu.addAction(ui->action_Add_Computer);
@@ -335,7 +336,7 @@ void MainWindow::on_computer_list_customContextMenuRequested(const QPoint &pos)
     menu.exec(ui->computer_list->viewport()->mapToGlobal(pos));
 }
 
-void MainWindow::on_action_Add_Computer_triggered()
+void MainWindow::on_action_Add_Computer_triggered()                             //Like create computer in menu bar except in the right click menu
 {
     ComputerWindow *cWindow = new ComputerWindow;
     cWindow->getHandler( handler );
