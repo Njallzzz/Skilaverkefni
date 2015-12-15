@@ -57,6 +57,8 @@ public:
     int addRelation( Person p, Computer c );
     int deleteRelation( Person p, Computer c );
 
+    Person getPerson(int id);
+
 private:
     QString file;       // Filename
     bool status;        // Whether connected or not

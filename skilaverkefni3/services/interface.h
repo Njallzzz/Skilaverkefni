@@ -46,6 +46,11 @@ public:
 
     Person getPerson(int index);
 
+    void addRelation(Person p, Computer c);
+    void removeRelation(Person p, Computer c);
+
+    Person getPersonById(int id);
+
 private:
     vector<Person> p;
     vector<Computer> c;
