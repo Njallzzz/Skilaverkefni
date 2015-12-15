@@ -320,6 +320,7 @@ void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos)
 void MainWindow::on_action_Add_Person_triggered()
 {
     PersonWindow *pWindow = new PersonWindow;
+    pWindow->getHandler( handler );
     pWindow->exec();
     delete pWindow;
     displayPeople();
