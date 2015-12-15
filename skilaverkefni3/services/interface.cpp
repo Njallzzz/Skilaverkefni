@@ -253,6 +253,10 @@ void Interface::sortComputer( int index ) {
     }
 }
 
+void Interface::addPerson(Person p){
+    db.addEntry(p);
+}
+
 void Interface::addComputer( Computer comp ) {
     db.addEntry( comp );
 }

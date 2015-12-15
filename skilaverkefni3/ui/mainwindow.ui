@@ -317,9 +317,9 @@
     <string>About</string>
    </property>
   </action>
-  <action name="action_Delete_Person">
+  <action name="action_Add_Person">
    <property name="text">
-    <string>Delete</string>
+    <string>Add</string>
    </property>
   </action>
   <action name="action_Modify_Person">
@@ -327,9 +327,9 @@
     <string>Modify</string>
    </property>
   </action>
-  <action name="action_Delete_Computer">
+  <action name="action_Add_Computer">
    <property name="text">
-    <string>Delete</string>
+    <string>Add</string>
    </property>
   </action>
   <action name="action_Modify_Computer">

@@ -41,6 +41,8 @@ public:
     //void setComputer( int index );
 
 
+    void addPerson(Person p);
+
 private:
     vector<Person> p;
     vector<Computer> c;
