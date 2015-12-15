@@ -29,11 +29,17 @@ private slots:
 
     void on_pushButton_add_relation_clicked();
 
+    void on_pushButton_remove_relation_clicked();
+
 private:
     Ui::PersonAddRelation *ui;
     Person person;
     Interface *handler;
     QStandardItemModel *model;
+
+    vector<Computer> comps;
+    vector<Computer> related;
+    vector<Computer> notRelated;
 };
 
 #endif // PERSONADDRELATION_H

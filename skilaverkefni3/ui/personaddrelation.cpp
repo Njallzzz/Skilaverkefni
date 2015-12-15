@@ -18,9 +18,9 @@ void PersonAddRelation::setPerson(Person p)
 
 void PersonAddRelation::displayComputers()
 {
-    vector<Computer> comps = handler->getComputers( true );
-    vector<Computer> related;
-    vector<Computer> notRelated;
+    related.clear();
+    notRelated.clear();
+    comps = handler->getComputers( true );
     for(int i = 0; i < person.getSize(); i++){
         for(int j = 0; j < comps.size(); j++){
             if(handler->getComputer(j).getId() == person.getComputer(i)){
@@ -50,8 +50,6 @@ void PersonAddRelation::displayComputers()
 
     model->setHeaderData(0,Qt::Horizontal, "Computers");
 
-    qDebug() << comps.size();
-
     for(int i = 0; i < notRelated.size(); i++){
         QModelIndex index = model->index( i, 0, QModelIndex() );
         model->setData( index, notRelated[i].getName() );
@@ -71,5 +69,18 @@ void PersonAddRelation::on_pushButton_cancel_clicked()
 
 void PersonAddRelation::on_pushButton_add_relation_clicked()
 {
+    Computer tmp = notRelated[ui->computer_list->currentIndex().row()];
+    handler->addRelation(person, tmp);
+    person = handler->getPersonById(person.getId());
+    displayComputers();
+}
 
+void PersonAddRelation::on_pushButton_remove_relation_clicked()
+{
+    Computer tmp = related[ui->computer_list_related->currentIndex().row()];
+    qDebug() << ui->computer_list_related->currentIndex().row();
+    qDebug() << tmp.getName();
+    handler->removeRelation(person, tmp);
+    person = handler->getPersonById(person.getId());
+    displayComputers();
 }
