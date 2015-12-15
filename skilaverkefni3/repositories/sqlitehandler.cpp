@@ -167,6 +167,8 @@ int SQLITEHandler::addEntry( Computer c ) {         // Add Computer to database
 }
 
 int SQLITEHandler::addEntry( Person p ) {           // Add Person to database
+    qDebug() << p.getName() << " " << p.getGender() << " " << p.getBirth().toString("dd.MM.yyyy") << " " << p.getDeath().toString("dd.MM.yyyy");
+
     if( !status )                                   // If not connected, fail
         return 1;
     q.prepare( "INSERT INTO people (name, gender, birth, death) VALUES (:name, :gender, :birth, :death)" );
@@ -230,16 +232,24 @@ int SQLITEHandler::modifyEntry( Computer c ) {      // Modify computer in databa
 }
 
 int SQLITEHandler::modifyEntry( Person p ) {        // Modify Person in database
+    qDebug() << "sql";
+    qDebug() << p.getName();
     if( !status )                                   // If not connected, fail
         return 1;
+    qDebug() << p.getName();
     q.prepare( "UPDATE people SET name = (:name), gender = (:gender), birth = (:birth), death = (:death) WHERE id = (:id)" );
+    qDebug() << "id";
     q.bindValue( ":id", p.getId() );
+    qDebug() << "name";
     q.bindValue( ":name", p.getName() );
+    qDebug() << "gender";
     if( p.getGender() == 1 )
         q.bindValue( ":gender", "Male" );
     else if( p.getGender() == 2 )
         q.bindValue( ":gender", "Female" );
+    qDebug() << "birth";
     q.bindValue( ":birth", p.getBirth().toString("yyyy-MM-dd") );
+    qDebug() << "death";
     q.bindValue( ":death", p.getDeath().toString("yyyy-MM-dd") );
     if( !q.exec() )                                 // Attempt to execute query
         return 2;

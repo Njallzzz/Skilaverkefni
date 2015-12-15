@@ -42,6 +42,9 @@ public:
 
 
     void addPerson(Person p);
+    void modifyPerson(Person p);
+
+    Person getPerson(int index);
 
 private:
     vector<Person> p;

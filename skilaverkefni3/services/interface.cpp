@@ -257,6 +257,17 @@ void Interface::addPerson(Person p){
     db.addEntry(p);
 }
 
+void Interface::modifyPerson(Person p)
+{
+    qDebug() << "handler";
+    db.modifyEntry(p);
+}
+
+Person Interface::getPerson(int index)
+{
+    return p[index];
+}
+
 void Interface::addComputer( Computer comp ) {
     db.addEntry( comp );
 }
