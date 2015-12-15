@@ -145,7 +145,22 @@ vector<Computer> Interface::Filter( vector<Computer> & computers ) {
     return results;
 }
 
-void Interface::peopleFilterName( QString name ) {              //To filter people by name
+void Interface::addRelation(Person p, Computer c)
+{
+    db.addRelation(p, c);
+}
+
+void Interface::removeRelation(Person p, Computer c)
+{
+    db.deleteRelation(p, c);
+}
+
+Person Interface::getPersonById(int id)
+{
+    return db.getPerson(id);
+}
+
+void Interface::peopleFilterName( QString name ) {
     personSearch.setName( name );
 }
 
