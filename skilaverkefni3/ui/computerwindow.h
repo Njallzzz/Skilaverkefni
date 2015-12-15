@@ -19,12 +19,15 @@ public:
     void errorEmpty();
     bool error();
     void getHandler( Interface *h );
+    void setComputer( int index );
+    void initalize();
 
 private slots:
     void on_pushButton_computer_save_clicked();
     void on_pushButton_computer_cancel_clicked();
 
 private:
+    int indexComputer;
     Computer comp;
     Interface *handler;
     Ui::ComputerWindow *ui;

@@ -25,7 +25,7 @@
   <property name="windowTitle">
    <string>Computer</string>
   </property>
-  <widget class="QGroupBox" name="groupBox">
+  <widget class="QGroupBox" name="groupBox_newComputer">
    <property name="geometry">
     <rect>
      <x>10</x>

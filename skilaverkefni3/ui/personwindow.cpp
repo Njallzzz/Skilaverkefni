@@ -90,8 +90,7 @@ void PersonWindow::on_saveButton_clicked()
             if(moding == false){
                 handler->addPerson(person);
             }
-            else{
-                qDebug() << "window";
+            else {
                 qDebug() << person.getId() << person.getName() << person.getGender() << person.getBirth().toString("dd.MM.yyyy") << person.getDeath().toString("dd.MM.yyyy");
                 handler->modifyPerson(person);
             }

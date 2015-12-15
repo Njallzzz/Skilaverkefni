@@ -36,6 +36,10 @@ public:
     void ComputerFilterDate( QDate date );
     void ComputerFilterBuilt( int built );
     void addComputer( Computer comp );
+    void modifyComputer( Computer comp );
+    Computer getComputer( int index );
+    //void setComputer( int index );
+
 
     void addPerson(Person p);
     void modifyPerson(Person p);

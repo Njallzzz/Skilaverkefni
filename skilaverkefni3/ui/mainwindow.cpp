@@ -360,3 +360,14 @@ void MainWindow::on_pushButton_modify_person_clicked()
     delete pWindow;
     displayPeople();
 }
+
+void MainWindow::on_pushButton_modify_computer_clicked()
+{
+    ComputerWindow *cWindow = new ComputerWindow;
+    cWindow->getHandler( handler );
+    cWindow->setComputer( ui->computer_list->currentIndex().row() );
+    cWindow->initalize();
+    cWindow->exec();
+    delete cWindow;
+    displayComputers();
+}
