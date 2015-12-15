@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     aWindow = new AboutWindow;
 
+    //Disables buttons until something is selected
     ui->pushButton_delete_computer->setEnabled(false);
     ui->pushButton_modify_computer->setEnabled(false);
     ui->pushButton_delete_person->setEnabled(false);
@@ -29,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->date_death_p->setEnabled(false);
     ui->date_date_c->setEnabled(false);
 
+    //Truns text in date-boxes into QDate
     QString date = ui->date_birth_p->text();
 
     //Adds options to dorp-down lists
@@ -59,6 +61,7 @@ void MainWindow::on_actionCreate_Person_triggered()         //If create person i
     pWindow->getHandler( handler );
     pWindow->exec();
     delete pWindow;
+    displayPeople();
 }
 
 void MainWindow::on_actionCreate_Computer_triggered()       //If create computer is selected in the menu bar
@@ -70,11 +73,11 @@ void MainWindow::on_actionCreate_Computer_triggered()       //If create computer
     displayComputers();
 }
 
-void MainWindow::display() {                            //to display all
-    displayPeople();
+void MainWindow::display() {                            //to display(/refresh) all
+    displayPeople();                                    //diaplayComputers is in displayPeople
 }
 
-void MainWindow::displayPeople() {                      //to display all, puts data into columns and rows
+void MainWindow::displayPeople() {                      //to display(/refresh) all, puts data into columns and rows
     vector<Person> &p = handler->getPeople();
 
     ui->pushButton_delete_person->setEnabled(false);
@@ -112,7 +115,7 @@ void MainWindow::displayPeople() {                      //to display all, puts d
     ui->people_list->setModel(model);
 }
 
-void MainWindow::displayComputers() {                       //to display computers, puts data into columns and rows
+void MainWindow::displayComputers() {                       //to display(/refresh) computers, puts data into columns and rows
     vector<Computer> &c = handler->getComputers();
 
     ui->pushButton_delete_computer->setEnabled(false);
@@ -280,7 +283,7 @@ void MainWindow::on_pushButton_delete_computer_clicked() {          //Deletes co
     }
 }
 
-void MainWindow::on_pushButton_clear_person_clicked() {             //Displays all people in database without filters
+void MainWindow::on_pushButton_clear_person_clicked() {             //Unselects all in person list and drops filters
     ui->pushButton_clear_person->setEnabled(false);
     ui->pushButton_delete_person->setEnabled(false);
     ui->pushButton_modify_person->setEnabled(false);
@@ -289,14 +292,14 @@ void MainWindow::on_pushButton_clear_person_clicked() {             //Displays a
     displayComputers();
 }
 
-void MainWindow::on_pushButton_clear_computer_clicked() {           //Displays all computers in database without filters
+void MainWindow::on_pushButton_clear_computer_clicked() {           //Unselects all in computers list and drops filtes
     ui->pushButton_clear_computer->setEnabled(false);
     ui->pushButton_delete_computer->setEnabled(false);
     ui->pushButton_modify_computer->setEnabled(false);
     ui->computer_list->setCurrentIndex( ui->computer_list->model()->index(-1, 0) );
 }
 
-void MainWindow::on_actionAbout_triggered() {                   //Displays about window that provides info of the project
+void MainWindow::on_actionAbout_triggered() {                   //Displays "about window" that provides info of the project
     aWindow->show();
 }
 
@@ -319,7 +322,7 @@ void MainWindow::on_people_list_customContextMenuRequested(const QPoint &pos)   
     menu.exec(ui->people_list->viewport()->mapToGlobal(pos));
 }
 
-void MainWindow::on_action_Add_Person_triggered()
+void MainWindow::on_action_Add_Person_triggered()           //Like create computer in menu bar except in the right click menu
 {
     PersonWindow *pWindow = new PersonWindow;
     pWindow->getHandler( handler );
@@ -337,7 +340,7 @@ void MainWindow::on_computer_list_customContextMenuRequested(const QPoint &pos) 
     menu.exec(ui->computer_list->viewport()->mapToGlobal(pos));
 }
 
-void MainWindow::on_action_Add_Computer_triggered()                             //Like create computer in menu bar except in the right click menu
+void MainWindow::on_action_Add_Computer_triggered()                 //Like create computer in menu bar except in the right click menu
 {
     ComputerWindow *cWindow = new ComputerWindow;
     cWindow->getHandler( handler );

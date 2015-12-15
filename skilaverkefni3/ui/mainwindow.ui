@@ -346,12 +346,12 @@
  <tabstops>
   <tabstop>filter_name_p</tabstop>
   <tabstop>filter_gender_p</tabstop>
+  <tabstop>filter_birth_c_p</tabstop>
+  <tabstop>date_birth_p</tabstop>
+  <tabstop>filter_death_c_p</tabstop>
+  <tabstop>date_death_p</tabstop>
   <tabstop>people_list</tabstop>
   <tabstop>pushButton_clear_person</tabstop>
-  <tabstop>date_birth_p</tabstop>
-  <tabstop>filter_birth_c_p</tabstop>
-  <tabstop>date_death_p</tabstop>
-  <tabstop>filter_death_c_p</tabstop>
   <tabstop>pushButton_delete_person</tabstop>
   <tabstop>pushButton_modify_person</tabstop>
   <tabstop>filter_name_c</tabstop>

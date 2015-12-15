@@ -88,7 +88,7 @@ void ComputerWindow::on_pushButton_computer_cancel_clicked() {      //Closes win
     this->hide();
 }
 
-void ComputerWindow::getHandler( Interface *h ){                    //creates a new handler to interact with Interface.cpp
+void ComputerWindow::getHandler( Interface *h ){                    //creates a new handler to interact with interface class
     handler = h;
 }
 
