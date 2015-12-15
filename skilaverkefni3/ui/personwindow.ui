@@ -196,6 +196,16 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>nameInput</tabstop>
+  <tabstop>genderInput</tabstop>
+  <tabstop>birthInput</tabstop>
+  <tabstop>isAliveCheckBox</tabstop>
+  <tabstop>deathInput</tabstop>
+  <tabstop>cancelButton</tabstop>
+  <tabstop>saveButton</tabstop>
+  <tabstop>addRelationButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
